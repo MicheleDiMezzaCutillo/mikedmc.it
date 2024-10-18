@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-68L3V697J8"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'G-68L3V697J8');
+	</script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Discord Bot</title>
+	<link rel="stylesheet" href="css/sell.css">
+	<link th:replace="~{fragments/favicon :: link}">
+
+</head>
+<body>
+    <div th:replace="~{fragments/header-ro :: header}"></div>
+    
+    <div class="sub-header">
+        <a href="#info"><i class="fa-solid fa-circle-info"></i> Informații</a>
+        <a href="#faq"><i class="fa-solid fa-circle-question"></i> Întrebări</a>
+        <a href="#prezzi"><i class="fa-solid fa-comment-dollar"></i> Prețuri</a>
+    </div>
+    
+    <section id="info" class="sezione">
+		<div class="head-container">
+			<h2>Ce este un Bot Discord Personalizat?</h2>
+				<h5>Un Bot Discord personalizat este o aplicație creată special pentru tine. Va avea un nume, o poză de profil, un fundal, o descriere și o activitate personalizată la alegerea ta. Poate avea funcții deja existente sau comenzi care nu există și pe care doar tu le vei avea! De exemplu, poți vedea <a href="/progetti?lang=ro">proiectele mele</a> sau, mai precis, <a href="/progetti?lang=ro#botds">boturile</a> și diversele <a href="/progetti?lang=ro#embeds">embeds</a> pe care le-am făcut, astfel încât să vezi ce te-ar putea interesa.</h5>
+		</div>
+	</section>
+	<section id="faq" class="sezione">
+		<div class="head-container">
+			<h2>Întrebări frecvente</h2>
+		</div>
+		<div class="faq-cards">
+
+			<div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-language"></i> În ce limbă va răspunde botul? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>Poți alege limba. Folosesc în principal engleză și italiană, dar la cerere pot folosi și alte limbi: trebuie doar să-mi trimiți textele pe care dorești să le utilizezi.</h5>
+                </div>
+            </div>
+            
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-server"></i> Ce înseamnă "hosting" și cum pot menține botul activ 24/7? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>Hostingul unui bot Discord înseamnă să-l menții în funcțiune continuu. Pentru a menține botul tău activ 24/7, poți alege să-l rulezi pe computerul tău, să-l lași pe o mașină virtuală sau să-mi încredințezi hostingul pentru o taxă lunară.</h5>
+                </div>
+            </div>
+            
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fa-solid fa-box-open"></i> Ce este un fișier .jar? Voi primi codul sursă? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>Un fișier .jar este un program creat în Java care poate fi executat. După achiziționarea botului, vei primi unul dintre aceste fișiere, care va conține botul în sine. Prin rularea lui, botul va fi lansat. Desigur, la cerere, pot oferi codul sursă împreună cu fișierul .jar al botului.</h5>
+                </div>
+            </div>
+            
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-tools"></i> Ce trebuie să fac dacă întâmpin probleme cu botul după livrare? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>Poți să mă contactezi, iar eu voi rezolva erorile cât mai curând posibil. Dacă botul încetează să funcționeze din cauza schimbărilor în API în termen de 1 lună de la livrare, îl voi actualiza gratuit.</h5>
+                </div>
+            </div>
+            
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-link"></i> Trebuie să îți împărtășesc serverul meu Discord? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>Da, pentru instalarea inițială și testare, voi avea nevoie de acces la serverul tău. Alternativ, pot crea un server temporar pentru a testa și demonstra funcțiile solicitate.</h5>
+                </div>
+            </div>
+            
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-plug"></i> Poți integra alte aplicații sau site-uri web? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>Cu siguranță, folosind API-uri sau Web Scraping, este posibil să integrezi aplicații și site-uri web în botul tău.</h5>
+                </div>
+            </div>
+            
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-microphone"></i> Dacă proiectul nu este ușor de scris sau explicat, pot vorbi direct cu tine? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>Desigur, folosesc în principal Discord și sunt mereu deschis pentru dialog pentru a oferi cel mai bun serviciu posibil într-un mod clar.</h5>
+                </div>
+            </div>
+            
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-cogs"></i> Poți crea comenzi slash și poți folosi module și butoane? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>Da, pot crea comenzi slash pentru botul tău. De asemenea, pot folosi module și butoane, care sunt adesea folosite în boți pentru gestionarea biletelor și alte funcții interactive.</h5>
+                </div>
+            </div>
+            
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-plus-circle"></i> Am cumpărat un bot și acum vreau să adaug noi funcționalități. Pot face asta? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>Da, dacă ai codul sursă (care poate fi solicitat la livrarea botului), pot adăuga noi funcționalități sau modifica cele existente pentru o taxă bazată pe caracteristicile care trebuie adăugate.</h5>
+                </div>
+            </div>
+            
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-edit"></i> Poți modifica un bot Discord existent? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>Pot modifica un bot achiziționat anterior de la mine dacă ai codul sursă. Nu este posibil să modifici boți pe care nu i-am creat eu.</h5>
+                </div>
+            </div>
+            <!-- Sfârșit faq-card -->
+		</div>
+	</section>
+	<section id="prezzi" class="sezione">
+		<div class="head-container">
+			<h2>Costuri</h2>
+		</div>
+		<div class="info-cards">
+
+			<div class="info-card">
+				<h4><i class="fas fa-dollar-sign"></i> Costul Botului</h4>
+				<p>Costul Botului va fi adaptat cerințelor specifice și funcțiilor dorite.</p>
+				<p>Prețul de bază este de 5 €.</p>
+			</div>
+			<div class="info-card">
+				<h4><i class="fas fa-shield-alt"></i> Hosting din partea mea</h4>
+				<p>Prin intermediul unei taxe lunare, din momentul creării botului, voi menține botul activ 24/7.</p>
+			</div>
+			<div class="info-card">
+				<h4><i class="fas fa-tags"></i> Hosting din partea ta</h4>
+				<p>Dacă deja ai în minte unde să îți menții botul activ, îți voi trimite fișierul executabil (.jar) și te voi ajuta cât de bine pot la instalarea acestuia.</p>
+			</div>
+		</div>
+	</section>
+
+	<div th:replace="~{fragments/footer-ro :: footer}"></div>
+	<script>
+	    function toggleAnswer(element) {
+	        const answer = element.nextElementSibling;
+	        const icon = element.querySelector('.fas.fa-chevron-down');
+	        
+	        if (answer.style.display === "flex") {
+	            answer.style.display = "none";
+	            icon.style.transform = "rotate(0deg)";
+	        } else {
+	            answer.style.display = "flex";
+	            icon.style.transform = "rotate(180deg)";
+	        }
+	    }
+	</script>
+</body>
+</html>

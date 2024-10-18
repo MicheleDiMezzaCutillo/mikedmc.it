@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-68L3V697J8"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'G-68L3V697J8');
+	</script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Nic</title>
+	<link rel="stylesheet" href="css/sell.css">
+	<link th:replace="~{fragments/favicon :: link}">
+
+</head>
+<body>
+    <div th:replace="~{fragments/header-pl :: header}"></div>
+    
+	<section id="faq" class="sezione" style="margin: 3em 0;">
+		<div class="info-cards">
+			<div class="info-card">
+				<h4><i class="fas fa-couch"></i> Hasło</h4>
+				<p>Szukałeś wyjątkowego sposobu na relaks? Zapomnij o zgiełku codziennego życia i pozwól mi nic nie robić, aby Ci pomóc.</p>
+			</div>
+			<div class="info-card">
+				<h4><i class="fas fa-question-circle"></i> Dlaczego miałbyś mnie potrzebować?</h4>
+				<p>Czy kiedykolwiek miałeś problem ze znalezieniem przyjaciela, który dołączyłby do Ciebie w nicnierobieniu? Lub w graniu z innymi i czujesz, że musisz ich “zabawiać” rozmawiając lub robiąc coś? Oto jestem, znany również jako “Mężczyzna, który nic nie robi.”</p>
+			</div>
+			<div class="info-card">
+				<h4><i class="fas fa-user"></i> Co robię?</h4>
+				<p>Oferuję dość nietypową usługę wynajmu moim klientom online, zobowiązując się do “Nicnierobienia.”</p>
+			</div>
+		</div>
+	</section>
+	<section class="sezione">
+		<div class="info-cards">
+			<div></div>
+			<div class="info-card">
+				<h4><i class="fas fa-star"></i> Dlaczego warto mnie wybrać?</h4>
+				<p>Chociaż są agencje, w których można wynająć aktorów do odegrania roli przyjaciela lub całej rodziny, takie usługi wynajmu nie są rzadkością. Jednak wyróżniam się “lekkim” podejściem, a nie przyjmowaniem innego charakteru.</p>
+			</div>
+
+			<div class="info-card">
+				<h4><i class="fas fa-coffee"></i> Co mam na myśli mówiąc “Nicnierobienie”?</h4>
+				<p>“Nicnierobienie oznacza jedzenie i picie (z klientami), granie z nimi, przebywanie na Discordzie i odpowiadanie na ich proste pytania prostymi odpowiedziami.”</p>
+			</div>
+			<div></div>
+		</div>
+	</section>
+	<section id="prices" class="sezione">
+		<div class="info-cards">
+			<div></div>
+			<div class="info-card">
+				<img src="img/nic/nic-na-discordzie.png" alt="nic na ds">
+				<img src="img/nic/nic-na-lol.png" alt="nic na lol">
+			</div>
+			<div class="info-card">
+				<img src="img/nic/nic-na-minecraft.png" alt="nic na mine">
+				<img src="img/nic/nic-na-valorant.png" alt="nic na valo">
+			</div>
+			<div></div>
+		</div>
+	</section>
+	<div th:replace="~{fragments/footer-pl :: footer}"></div>
+</body>
+</html>

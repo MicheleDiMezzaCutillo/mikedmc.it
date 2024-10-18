@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-68L3V697J8"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'G-68L3V697J8');
+	</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects</title>
+    <link rel="stylesheet" href="css/progetti.css">
+    <link th:replace="~{fragments/favicon :: link}">
+</head>
+<body>
+    <!-- Header -->
+    <div th:replace="~{fragments/header-pl :: header}"></div>
+    
+    <div class="sub-header">
+        <a href="#botds"><i class="fa-brands fa-discord"></i> Discord Bots</a>
+        <a href="#serverds"><i class="fa-solid fa-server"></i> Discord Servers</a>
+        <a href="#bottg"><i class="fa-brands fa-telegram"></i> Telegram Bots</a>
+        <a href="#embeds"><i class="fa-solid fa-message"></i> Embeds</a>
+        <a href="#bottwitch"><i class="fa-brands fa-twitch"></i> Twitch Bots</a>
+    </div>
+    <div class="intro">
+        <h4 class="testo-sistemato">Tutaj znajdziesz niektóre z moich zleconych prac, takie jak <a href="#botds">Discord Bots</a>, <a href="#bottg">Telegram Bots</a> oraz <a href="#serverds">Discord Servers</a>, podczas gdy inne są objęte prawami autorskimi. Niektóre to projekty osobiste, jak <a href="#bottwitch">Twitch Bot</a> i wiele <a href="#embeds">Embeds</a>, podczas gdy inne zostały mi zlecone.</h4>
+    </div>
+    <h1 id="botds" class="titolanza">Boty Discord</h1>
+    
+<!-- Animanza DsBot -->
+<section id="animanza" class="section pb-2">
+    <div class="bot-info">
+        <img src="https://cdn.discordapp.com/avatars/1241100527505375362/0977be7a1f9a7f77c94f690a4ecd2bcd?size=1024" alt="Obraz bota" class="bot-image">
+        <div class="bot-details">
+            <h2>Animanza</h2>
+            <p>Prywatny i osobisty bot, który informuje o nowych wydaniach anime z dubbingiem/napisami w języku włoskim za pomocą wiadomości prywatnych, abyś nie przegapił żadnego odcinka.</p>
+        </div>
+    </div>
+
+    <hr class="separator">
+    
+    <div class="masonry">
+        <div class="mItem">
+            <img src="img/progetti/animanza-post.PNG" data-title="Post" data-description="Wysyła powiadomienie, gdy pojawi się pierwszy odcinek anime, poniżej znajdują się przyciski do wygodnej interakcji z Animanzą.">
+        </div>
+        
+        <div class="mItem">
+            <img src="/img/progetti/animanza-info.PNG" data-title="Komenda Info" data-description="Za pomocą /info możesz zrozumieć, co robi Animanza i jak działa. Jeśli nie ustawiłeś kanału na Discordzie, bot go dla Ciebie ustawi; w przeciwnym razie oznaczy Cię wiadomością, jak pokazano na zdjęciu.">
+        </div>
+
+        <div class="mItem">
+            <img src="img/progetti/animanza-mostra-notifiche-attive.PNG" data-title="Usuń Anime" data-description="Po zakończeniu anime zostanie ono usunięte z Twojej listy, ale jeśli liczba odcinków jest nieznana, będziesz mógł usunąć je ręcznie. Dzięki temu Twoja lista będzie zawsze aktualna. Wkrótce, jeśli będziesz miał konto i powiążesz swoje konto Discord, będziesz mógł przeglądać listę i usuwać anime bezpośrednio z dedykowanej strony.">
+        </div>
+        
+        <div class="mItem">
+            <img src="/img/progetti/animanza-successo.PNG" data-title="Dodaj Anime" data-description="Każdy post umożliwia naciśnięcie przycisku, aby otrzymywać powiadomienia o tym anime. Niektóre anime będą miały również opcję powiadamiania Cię tylko wtedy, gdy anime zostanie zakończone, dzięki czemu będziesz mógł obejrzeć je w całości ;)">
+        </div>
+        
+        <div class="mItem">
+            <img src="img/progetti/animanza-comandi.PNG" data-title="Inne Komendy" data-description="Za pomocą tych komend możesz ustawić kanał tekstowy dla powiadomień Animanza lub usunąć kanał.">
+        </div>
+    </div>
+</section>
+    <!-- Support Bot -->
+<section id="support-bot" class="section pb-2">
+    <div class="bot-info">
+        <img src="https://cdn.discordapp.com/avatars/1112818173721464924/9a059e1ac6c321339837ae4849a67004?size=1024" alt="Obraz bota" class="bot-image">
+        <div class="bot-details">
+            <h2>Support Bot</h2>
+            <p>Bot stworzony w celu pomocy w zarządzaniu użytkownikami na Discordzie, oferujący spersonalizowane wiadomości i niemal unikalne funkcje.</p>
+        </div>
+    </div>
+    
+    <div class="masonry">
+
+        <div class="mItem">
+            <img src="img/progetti/supportBot-threadMessage.PNG" data-title="Thread Prio" data-description="Niektórzy użytkownicy z określonymi rolami mają dostęp do wybranych kanałów forum, gdzie będą mieli priorytet i pełne wsparcie mojego klienta. Formularz, który wypełnią, nadpisze bieżącą wiadomość.">
+        </div>
+        
+        <div class="mItem">
+            <img src="img/progetti/supportBot-dailyMessage.PNG" data-title="Wiadomość dzienna" data-description="Wysyła wiadomość co 24 godziny na czacie, aby zapewnić dobrą widoczność zasad tego kanału, zapewniając, że będzie ona zawsze widoczna, nawet dla nowych użytkowników.">
+        </div>
+        
+        <div class="mItem">
+            <img src="/img/progetti/supportBot-premiumSupportReminder.PNG" data-title="Powiadomienie" data-description="Gdy użytkownik pisze na publicznym czacie wsparcia, jeśli ma określoną rolę premium, bot powiadomi go, że powinien pisać na innym kanale, ponieważ ma priorytet jako VIP.">
+        </div>
+        
+        <div class="mItem">
+            <img src="/img/progetti/supportBot-threadMessageModal.PNG" data-title="Thread" data-description="Różni użytkownicy mają dostęp do ogólnego kanału forum, który pozwala na pomoc od mojego klienta, ale z mniejszym priorytetem.">
+        </div>
+        
+        <div class="mItem">
+            <img src="img/progetti/supportBot-ticketLog.PNG" data-title="Log Thread" data-description="Gdy thread zostaje zamknięty, może być zamknięty normalnie i oznaczony jako rozwiązany, lub odrzucony, a użytkownik zostanie oznaczony, z zaleceniem działań, które należy podjąć.">
+        </div>
+    </div>
+</section>
+    <!-- Sessanza -->
+<section id="sessanza" class="section pb-2">
+    <div class="bot-info">
+        <img src="https://cdn.discordapp.com/avatars/1076230242785579019/26af94d3a390375ddb825260393a0c7f?size=1024" alt="Obraz bota" class="bot-image">
+        <div class="bot-details">
+            <h2>Sessanza</h2>
+            <p>Praktycznie pierwszy bot, który stworzyłem, z różnymi komendami użytecznościowymi, ciekawymi reakcjami i grami w stylu fantasy-średniowiecznym.</p>
+        </div>
+    </div>
+
+    <hr class="separator">
+    
+    <div class="masonry">
+        
+        <div class="mItem">
+            <img src="img/progetti/sessanza-giochionline.PNG" data-title="Gry Online" data-description="Pobiera z listy, którą stworzyłem i którą czasami modyfikuję, różne dane gier online, które można grać w towarzystwie.">
+        </div>
+        
+        <div class="mItem">
+            <img src="/img/progetti/sessanza-condividi.PNG" data-title="Komenda Udostępnij" data-description="Pierwsza komenda, którą stworzyłem, służy do wysyłania wiadomości prywatnej do wszystkich, którzy są z tobą na czacie głosowym, na przykład, gdy musisz szybko coś udostępnić.">
+        </div>
+
+        <div class="mItem">
+            <img src="img/progetti/sessanza-dadi.PNG" data-title="Kości" data-description="Nigdy nie grałeś w D&D? Dzięki tej komendzie otworzysz wygodny interfejs do rzucania kośćmi. Kiedy rzucisz, wyniki pojawią się w wiadomości, tworząc historię, ale jeśli rzucisz zbyt dużo złych kości, możesz nacisnąć 'Wznów Kości', aby usunąć wszystkie dotychczasowe rzuty.">
+        </div>
+        
+        <div class="mItem">
+            <img src="/img/progetti/sessanza-pulisci.PNG" data-title="Komenda Wyczyść" data-description="Dla maniaków porządku jak ja, jeśli czat z botem będzie zagracony, można użyć tej komendy, aby usunąć wszystkie wiadomości, które bot wysłał.">
+        </div>
+        
+        <div class="mItem">
+            <img src="img/progetti/sessanza-reazioni-custom.PNG" data-title="Reakcje" data-description="Bardzo dziwna i urocza funkcja: za każdym razem, gdy wysyłasz wiadomość, bot zareaguje emoji. Jeśli zostaniesz oznaczony, zrobi to samo w tej wiadomości, a także jeśli ktoś odpowie na twoją wiadomość. Emoji można dostosować dla wszystkich trzech akcji.">
+        </div>
+        
+        <div class="mItem">
+            <img src="img/progetti/sessanza-roulette.PNG" data-title="Ruletka" data-description="Za pomocą jednej komendy można uruchomić ruletkę, do której może dołączyć maksymalnie 6 graczy, a tylko ten, kto zaoferował grę, może ją rozpocząć lub usunąć.">
+        </div>
+        
+        <div class="mItem">
+            <img src="img/progetti/sessanza-roulette-no-vittime.PNG" data-title="Szczęśliwa Ruletka" data-description="Po uruchomieniu ruletki istnieje możliwość, że nikt nie zostanie zabity, ponieważ jest to losowe.">
+        </div>
+        
+        <div class="mItem">
+            <img src="img/progetti/sessanza-roulette-persa.PNG" data-title="Niefortunna Ruletka" data-description="Po uruchomieniu ruletki, jeden z użytkowników zostanie trafiony i eliminowany. Po przeładowaniu broni będzie można kontynuować ruletkę, eliminowany użytkownik nie będzie już na liście, ale będzie mógł ponownie dołączyć, naciskając odpowiedni przycisk.">
+        </div>
+    </div>
+</section>
+    <!-- Kibelius -->
+<section id="kibelius" class="section pb-2">
+    <div class="bot-info">
+        <img src="https://cdn.discordapp.com/avatars/1221824877946998945/2b0582847dedcc8400921e44a03f6fd1?size=1024" alt="Obraz bota" class="bot-image">
+        <div class="bot-details">
+            <h2>Kibelius</h2>
+            <p>Bot stworzony dla serwera Minecraft na Discordzie, który pomaga z zaawansowanym i spersonalizowanym systemem ticketów.</p>
+        </div>
+    </div>
+
+    <hr class="separator">
+    
+    <div class="masonry">
+        
+        <div class="mItem">
+            <img src="img/progetti/kibelius-ticket-console.PNG" data-title="Otwórz Ticket" data-description="Wygodny i przejrzysty kanał, w którym można wybrać powód ticketu. Po naciśnięciu zostanie otwarty formularz do wypełnienia danymi.">
+        </div>
+        
+        <div class="mItem">
+            <img src="/img/progetti/kibelius-ticket-modal.PNG" data-title="Modal Ticket" data-description="Po naciśnięciu przycisku otworzy się ten formularz, który poprosi o dane, które po wprowadzeniu zostaną użyte do otwarcia ticketu.">
+        </div>
+
+        <div class="mItem">
+            <img src="img/progetti/kibelius-ticket-creato.PNG" data-title="Ticket Otwarte" data-description="Gdy ticket zostanie otwarty, wiadomość i nazwa kanału będą różne w zależności od powodu ticketu (przycisk, który został naciśnięty, aby go otworzyć). W niektórych przypadkach będą wymagane dodatkowe dane, w tym przypadku, ponieważ jest to wsparcie ogólne, nie będą wymagane żadne dane. Po naciśnięciu 'Zamknij Ticket' kanał zostanie usunięty, a transkrypcja ticketu zostanie wysłana na inny kanał widoczny tylko dla personelu.">
+        </div>
+        
+        <div class="mItem">
+            <img src="/img/progetti/kibelius-canale-creato.PNG" data-title="Log Kanału Utworzonego" data-description="Wysyła wiadomość, gdy kanał zostanie utworzony.">
+        </div>
+        
+        <div class="mItem">
+            <img src="img/progetti/kibelius-canale-eliminato.PNG" data-title="Log Kanału Usuniętego" data-description="Wysyła wiadomość, gdy kanał zostanie usunięty.">
+        </div>
+        
+        <div class="mItem">
+            <img src="img/progetti/kibelius-canale-modificato.PNG" data-title="Log Kanału Zmodyfikowanego" data-description="Wysyła wiadomość, gdy kanał zostanie zmodyfikowany.">
+        </div>
+        
+        <div class="mItem">
+            <img src="img/progetti/kibelius-canale-nsfw.PNG" data-title="Log Kanału NSFW" data-description="Wysyła wiadomość, gdy kanałowi zostanie włączony lub wyłączony tryb NSFW.">
+        </div>
+        
+        <div class="mItem">
+            <img src="img/progetti/kibelius-canale-tipo-modificato.PNG" data-title="Log Zmiany Typu Kanału" data-description="Wysyła wiadomość, gdy typ kanału zostanie zmieniony.">
+        </div>
+        
+        <div class="mItem">
+            <img src="img/progetti/kibelius-join.PNG" data-title="Log Wejść" data-description="Wysyła wiadomość, gdy nowy użytkownik dołącza do serwera.">
+        </div>
+        
+        <div class="mItem">
+            <img src="img/progetti/kibelius-leave.PNG" data-title="Log Wyjść" data-description="Wysyła wiadomość, gdy użytkownik opuszcza serwer.">
+        </div>
+        
+        <div class="mItem">
+            <img src="img/progetti/kibelius-messaggio-eliminato.PNG" data-title="Log Usuniętej Wiadomości" data-description="Wysyła wiadomość, gdy wiadomość zostanie usunięta.">
+        </div>
+        
+        <div class="mItem">
+            <img src="img/progetti/kibelius-messaggio-modificato.PNG" data-title="Log Zmodyfikowanej Wiadomości" data-description="Wysyła wiadomość, gdy wiadomość zostanie zmodyfikowana.">
+        </div>
+    </div>
+</section>
+    <h1 id="serverds" class="titolanza">Serwer Discord</h1>
+
+<!-- ServerDs -->
+<section class="section">            
+    <div class="masonry">
+        
+        <div class="mItem">
+            <img src="img/progetti/canali-general.png" data-title="Serwer Ogólny" data-description="Prosty i ogólny serwer, wygodny i podzielony w taki sposób, aby nie wprowadzać zamieszania.">
+        </div>
+        <div class="mItem">
+            <img src="img/progetti/visual-general.png" data-title="Ogólne Role" data-description="Kilka prostych ról, aby podzielić bez 40 zbędnych ról.">
+        </div>
+        <div class="mItem">
+            <img src="img/progetti/canali-gilda.png" data-title="Serwer Gildii" data-description="Serwer stworzony na zamówienie dla gildii w Albion Online. Jeśli masz gildię w jakiejkolwiek grze i musisz rekrutować, nie chcąc jednocześnie udostępniać swojego Discorda wszystkim, to jest to, czego potrzebujesz – specjalna sekcja dla adminów (tych, którzy zarządzają), sekcja dla członków, sekcja dla przyjaciół/sojuszników i oczywiście strefa rekrutacyjna dla nowych graczy.">
+        </div>
+        <div class="mItem">
+            <img src="img/progetti/visual-ruoli-gilda.png" data-title="Role Gildii" data-description="To są różne role, które mogą występować w gildii, a wybór zależy od gry.">
+        </div>
+        <div class="mItem">
+            <img src="img/progetti/canali-naruto.png" data-title="Serwer Tematyczny" data-description="Jeśli masz coś, co szczególnie lubisz i chciałbyś się w to zaangażować, wystarczy mieć tematyczny Discord, aby poczuć się zdecydowanie lepiej.">
+        </div>
+        <div class="mItem">
+            <img src="img/progetti/visual-naruto.png" data-title="Role Tematyczne" data-description="Role mogą mieć dowolne nazwy, więc na pewno będą zgodne z Twoimi wymaganiami.">
+        </div>
+        <div class="mItem">
+            <img src="img/progetti/canali-twitch.png" data-title="Serwer Twitch" data-description="Discord stworzony na zamówienie dla kilku streamerów, z publiczną sekcją dla obserwujących, sekcją dla subskrybentów i VIP-ów oraz oczywiście strefą adminów z bezpiecznym pokojem do streamowania.">
+        </div>
+        <div class="mItem">
+            <img src="img/progetti/visual-twitch.png" data-title="Role Twitch" data-description="Prosty i ogólny serwer, wygodny i podzielony w taki sposób, aby nie wprowadzać zamieszania.">
+        </div>
+    </div>
+</section>
+
+<h1 id="bottg" class="titolanza">Bot Telegram</h1>
+
+<!-- Mitsuri TgBot-->
+<section class="section">
+    <div class="bot-info">
+        <img src="img/progetti/mitsuriBot.jpeg" alt="Obraz bota" class="bot-image">
+        <div class="bot-details">
+            <h2>Mitsuri Bot</h2>
+            <p>Mój pierwszy bot na Telegramie, stworzony na zamówienie dla <a href="https://www.twitch.tv/roxannepierce" target="_blank">streamera</a>. Powiadamia, gdy streamer jest na żywo, i odpowiada na wiadomości, gdy ktoś pisze w jego grupie TG.</p>
+        </div>
+    </div>
+
+    <hr class="separator">
+    
+    <div class="masonry">
+        <div class="mItem">
+            <img src="img/progetti/mitsuriBot-social.PNG" data-title="Komenda /social" data-description="Odpowiada wiadomością i przyciskami.">
+        </div>
+        <div class="mItem">
+            <img src="img/progetti/mitsuriBot-saluta3.PNG" data-title="Automatyczny Trigger" data-description="Gdy użytkownik pisze w grupie i oznacza bota, wysyłana jest automatyczna wiadomość przekierowująca na moją stronę.">
+        </div>
+        <div class="mItem">
+            <img src="img/progetti/mitsuriBot-saluta2.PNG" data-title="Automatyczny Trigger 2" data-description="Gdy użytkownik pisze w grupie i wspomina o transmisjach na żywo lub Twitchu, wysyłana jest automatyczna wiadomość promująca Twitch streamera.">
+        </div>
+        <div class="mItem">
+            <img src="img/progetti/mitsuriBot-saluta.PNG" data-title="Automatyczny Trigger 3" data-description="Gdy użytkownik wita się w grupie, bot odpowie grzecznie.">
+        </div>
+        <div class="mItem">
+            <img src="img/progetti/mitsuriBot-notifiche.PNG" data-title="Powiadomienia na żywo" data-description="Bot powiadomi w grupie, gdy streamer jest na żywo, promując go.">
+        </div>
+    
+        <div class="mItem">
+            <img src="img/progetti/mitsuriBot-notifica-privata.PNG" data-title="Personalizowane Powiadomienia na Żywo" data-description="Rzadki, ale unikalny komenda, pisząc w czacie do bota /notifica, możesz zapisać się na powiadomienia o streamerze bezpośrednio na prywatnie, aby mimo wyciszenia grupy, otrzymywać powiadomienia i śledzić transmisje.">
+        </div>
+        
+        <div class="mItem">
+            <img src="img/progetti/mitsuriBot-info.PNG" data-title="/info" data-description="Prosta komenda, która promuje twórcę bota (mnie), pozostawiając przyciski prowadzące do różnych linków. Oczywiście za zgodą klienta.">
+        </div>
+        
+        <div class="mItem">
+            <img src="img/progetti/mitsuriBot-comandiAdmin.PNG" data-title="/comandi" data-description="Użytkownik może użyć komendy, aby dowiedzieć się, jakie komendy są dostępne, ale jeśli zrobi to admin, bot odpowie inaczej, pokazując także komendy dostępne tylko dla adminów, niedostępne dla wszystkich.">
+        </div>
+        
+    </div>
+</section>
+    <h1 id="embeds" class="titolanza">Embeds</h1>
+<!-- Embeds -->
+<section class="section">
+    <div class="masonry">
+        
+        <div class="mItem">
+            <img src="img/progetti/embed-kamiengine-evento.PNG" data-title="Wydarzenie" data-description="Za pomocą komendy, w której wprowadza się od 3 do 5 parametrów, można stworzyć takie wydarzenie. Po przekroczeniu limitu osób, przechodzi się do rezerwy (jeśli opcja jest aktywna). Różne przyciski służą do interakcji z wydarzeniem: Pinga - Edytuj - Usuń, tylko lider grupy może z nich korzystać. Pinga uczestników, pingując wszystkich uczestników.">
+        </div>
+        
+        <div class="mItem">
+            <img src="img/progetti/embed-aiutanza-ticket.PNG" data-title="Moje ticket" data-description="System ticketów na moim serwerze wsparcia, wspierający język włoski i angielski, z listą pytań, które po naciśnięciu pokażą odpowiedni komunikat, wygodne dla FAQ.">
+        </div>
+        
+        <div class="mItem">
+            <img src="img/progetti/embed-aiutanza-faq.PNG" data-title="FAQ Ticket" data-description="W wiadomości można wybrać z listy pytań, które będą powiązane z odpowiedziami, aby uniknąć ciągłego powtarzania się. Może być używane zarówno przez użytkownika, jak i przez personel, aby szybko odpowiedzieć na pytanie. (Ograniczenie Discorda wynosi 25, ale w razie potrzeby można znaleźć rozwiązanie.)">
+        </div>
+        
+        <div class="mItem">
+            <img src="img/progetti/embed-aiutanza-console.PNG" data-title="Konsola ticketów" data-description="Wiadomość osadzona na moim serwerze wsparcia Discord, z przyciskami prowadzącymi do przydatnych linków, takich jak moja strona internetowa, a inne służą do tworzenia zgłoszeń.">
+        </div>
+        
+        <div class="mItem">
+            <img src="img/progetti/embed-aiutanza-faq-risposta.PNG" data-title="Odpowiedź FAQ" data-description="Gdy naciśniesz pytanie, zostanie wysłana odpowiedź. Ta bardzo poszukiwana funkcja może być dodana wszędzie i dla czegokolwiek chcesz.">
+        </div>
+        
+        <div class="mItem">
+            <img src="img/progetti/embed-musicanza-riproduzione.PNG" data-title="Musicanza odtwarzanie" data-description="Mój bot do muzyki, to wiadomość dotycząca odtwarzania piosenki.">
+        </div>
+        
+        <div class="mItem">
+            <img src="img/progetti/embed-musicanza-coda.PNG" data-title="Musicanza Kolejka" data-description="Za pomocą komendy /play można dodać piosenkę do kolejki, jeśli już coś jest odtwarzane.">
+        </div>
+        
+        <div class="mItem">
+            <img src="img/progetti/embed-testanza-captcha.PNG" data-title="System Captcha" data-description="Wiadomość, którą użytkownik widzi po raz pierwszy, zarówno na Discordzie, jak i prywatnie.">
+        </div>
+        
+        <div class="mItem">
+            <img src="img/progetti/embed-testanza-captcha-mostrato.PNG" data-title="System Captcha 2" data-description="Captcha wygenerowane przez bota zostanie pokazane użytkownikowi, który klikając przycisk, otworzy formularz, aby wpisać kod.">
+        </div>
+        
+        <div class="mItem">
+            <img src="img/progetti/embed-testanza-captcha-modal.PNG" data-title="System Captcha 3" data-description="Po naciśnięciu przycisku otworzy się formularz, w którym należy wpisać otrzymany kod, aby uzyskać rolę.">
+        </div>
+        
+        <div class="mItem">
+            <img src="img/progetti/embed-traduttanza.PNG" data-title="Traduttanza" data-description="Traduttanza to mój bot stworzony do szybkiego tłumaczenia, dostępny również na moim serwerze wsparcia. Na początku wiadomości należy wpisać !! oraz kod języka, na przykład 'en' oznacza angielski.">
+        </div>
+        
+        <div class="mItem">
+            <img src="img/progetti/embed-volpix-link-sospetto.PNG" data-title="Podejrzane linki" data-description="Gdy zostanie wysłany link, a użytkownik nie ma roli staffera, zostanie usunięty, a generowana wiadomość ostrzeże personel o wysłaniu linku, co umożliwi natychmiastowe działanie. UWAGA: Aby używać tych przycisków, nie jest wymagane posiadanie uprawnień do banowania lub kickowania, wystarczy mieć dostęp do kanału, aby kliknąć przyciski.">
+        </div>
+        
+    </div>
+</section>
+    
+    <h1 id="bottwitch" class="titolanza">Bot Twitch</h1>
+<!-- AssistenteDiMikeDmC -->
+<section id="AssistenteDiMikeDmC" class="section">
+    <div class="bot-info">
+        <div class="bot-details">
+            <h2>Assistente</h2>
+            <p>Osobisty bot używany również przez niektóre wschodzące streamery, takie jak <a href="https://www.twitch.tv/dhapis" target="_blank">dhapis</a> i <a href="https://www.twitch.tv/n3olaura" target="_blank">n3olaura</a>, który umożliwia uzyskanie danych dotyczących Valoranta oraz wygodne ustawienie timera na maratony.</p>
+        </div>
+    </div>
+
+    <div class="masonry">
+        
+        <div class="mItem">
+            <img src="img/progetti/assistenteDiMikeDmC-val.PNG" data-title="Gra w Valorant" data-description="Pozwala uzyskać dane z ostatniej gry, takie jak tryb, mapa, czy wygrałeś, agent i KDA.">
+        </div>
+        
+        <div class="mItem">
+            <img src="img/progetti/assistenteDiMikeDmC-val_stat.PNG" data-title="Statystyki Valorant" data-description="Pokazuje twój rangę, punkty, które posiadasz, punkty zdobyte w ostatniej grze oraz najwyższą rangę, jaką kiedykolwiek osiągnąłeś.">
+        </div>
+        
+        <div class="mItem">
+            <img src="img/progetti/assistenteDiMikeDmC-time.PNG" data-title="Ustaw timer" data-description="Tworzy timer na twoim kanale z określoną liczbą godzin.">
+        </div>
+        
+        <div class="mItem">
+            <img src="img/progetti/assistenteDiMikeDmC-timeAdd.PNG" data-title="Dodaj czas" data-description="Możesz dodać minuty do timera, wydłużając czas, który ma upłynąć.">
+        </div>
+        
+        <div class="mItem">
+            <img src="img/progetti/assistenteDiMikeDmC-timeRemove.PNG" data-title="Usuń czas" data-description="Możesz usunąć czas z timera.">
+        </div>
+        
+        <div class="mItem">
+            <img src="img/progetti/assistenteDiMikeDmC-timeFinish.PNG" data-title="Timer zakończony" data-description="Po zakończeniu timera wysyła tę wiadomość. Prosta i funkcjonalna.">
+        </div>
+        
+        <div class="mItem">
+            <img src="img/progetti/assistenteDiMikeDmC-timeDelete.PNG" data-title="Usuń Timer" data-description="Usuwa timer.">
+        </div>
+        
+        <div class="mItem">
+            <img src="img/progetti/assistenteDiMikeDmC-timeStop.PNG" data-title="Zatrzymaj timer" data-description="Za pomocą tej samej komendy można zatrzymać i wznowić timer.">
+        </div>
+        
+    </div>
+</section>
+    
+    <!-- Modal for displaying the image and details -->
+	<div id="image-modal" class="modal">
+	  <div class="content-modal">
+	    <img id="modal-image" src="" alt="Large Image">
+	    <div class="modal-details">
+	      <h3 id="modal-title">Title</h3>
+	      <p id="modal-description">Description</p>
+	    </div>
+	  </div>
+	</div>
+    <!-- Footer -->
+    <div th:replace="~{fragments/footer-pl :: footer}"></div>
+    
+    <script src="js/progetti.js"></script>
+</body>
+</html>

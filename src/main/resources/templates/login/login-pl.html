@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MikeDmC | Zaloguj się</title>
+<link rel="stylesheet" href="/css/login.css" />
+<link th:replace="~{fragments/favicon :: link}">
+</head>
+<body>
+    <div th:replace="~{fragments/header-pl :: header}"></div>
+
+    <div class="body">
+
+        <form class="container"
+            th:classappend="${formLogin != null ? formLogin : ''}"
+            th:action="@{/login?lang=pl}" method="POST">
+            <div class="form">
+
+                <h2>Zaloguj się</h2>
+                <div class="inputBox">
+                    <input type="text" name="username" required="required"
+                        placeholder=" "> <i class="fa-solid fa-user"></i> <span>Nazwa użytkownika
+                        lub Email</span>
+                </div>
+                <div class="inputBox">
+                    <input type="password" id="password" name="password" required="required"
+                        placeholder=" "> <i class="fa-solid fa-lock"></i> <span>Hasło</span> <i  id="toggleIcon" onclick="togglePassword()" class="fa-solid fa-eye occhio"></i>
+                </div>
+                <div class="inputBox">
+                    <input type="submit" value="Zaloguj się">
+                </div>
+                <p>
+                    <a href="/reset-password?lang=pl" class="create">Zapomniałeś hasła?</a>
+                </p>
+            </div>
+            <div class="sub-form">
+                <a href="/register?lang=pl" style="margin-bottom:0;">Nie masz jeszcze konta?</a>
+            </div>
+        </form>
+
+    </div>
+    <div th:replace="~{fragments/footer-pl :: footer}"></div>
+    <script>
+		function togglePassword() {
+		    var passwordInput = document.getElementById("password");
+		    var toggleIcon = document.getElementById("toggleIcon");
+		
+		    // Cambia il tipo di input
+		    if (passwordInput.type === "password") {
+		        passwordInput.type = "text";
+		        // Cambia l'icona in "eye-slash"
+		        toggleIcon.classList.remove("fa-eye");
+		        toggleIcon.classList.add("fa-eye-slash");
+		    } else {
+		        passwordInput.type = "password";
+		        // Cambia l'icona in "eye"
+		        toggleIcon.classList.remove("fa-eye-slash");
+		        toggleIcon.classList.add("fa-eye");
+		    }
+		}
+	</script>
+</body>
+</html>

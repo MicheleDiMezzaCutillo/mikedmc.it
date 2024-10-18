@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-68L3V697J8"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'G-68L3V697J8');
+	</script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Nimic</title>
+	<link rel="stylesheet" href="css/sell.css">
+	<link th:replace="~{fragments/favicon :: link}">
+
+</head>
+<body>
+    <div th:replace="~{fragments/header-ro :: header}"></div>
+    
+	<section id="faq" class="sezione" style="margin: 3em 0;">
+		<div class="info-cards">
+			<div class="info-card">
+				<h4><i class="fas fa-couch"></i> Slogan</h4>
+				<p>Cauți un mod unic de a te relaxa? Uită de agitația vieții de zi cu zi și lasă-mă să nu fac nimic pentru a te ajuta.</p>
+			</div>
+			<div class="info-card">
+				<h4><i class="fas fa-question-circle"></i> De ce ai avea nevoie de mine?</h4>
+				<p>Ai avut vreodată dificultăți în a găsi un prieten care să se alăture ție pentru a nu face nimic în particular? Sau să te joci cu alții și să simți că trebuie să-i “distrezi” vorbind sau făcând ceva? Iată-mă, cunoscut și sub numele de “Omul care nu face nimic.”</p>
+			</div>
+			<div class="info-card">
+				<h4><i class="fas fa-user"></i> Ce fac eu?</h4>
+				<p>Ofer un serviciu de închiriere destul de neconvențional clienților mei online angajându-mă să “Nu fac nimic.”</p>
+			</div>
+		</div>
+	</section>
+	<section class="sezione">
+		<div class="info-cards">
+			<div></div>
+			<div class="info-card">
+				<h4><i class="fas fa-star"></i> De ce să mă alegi pe mine?</h4>
+				<p>Deși există agenții în care poți angaja actori pentru a interpreta rolul prietenului tău, sau întreaga familie, astfel de servicii de închiriere nu sunt rare. Cu toate acestea, mă disting printr-o abordare “ușoară” mai degrabă decât prin asumarea unui caracter diferit.</p>
+			</div>
+
+			<div class="info-card">
+				<h4><i class="fas fa-coffee"></i> Ce înseamnă “a nu face nimic”?</h4>
+				<p>“A nu face nimic înseamnă a mânca și bea (cu clienții), a te juca cu ei, a fi pe Discord și a răspunde întrebărilor lor simple cu răspunsuri simple.”</p>
+			</div>
+			<div></div>
+		</div>
+	</section>
+	<section id="prices" class="sezione">
+		<div class="info-cards">
+			<div></div>
+			<div class="info-card">
+				<img src="img/nimic/nimic-pe-discord.png" alt="nimic pe ds">
+				<img src="img/nimic/nimic-pe-lol.png" alt="nimic pe lol">
+			</div>
+			<div class="info-card">
+				<img src="img/nimic/nimic-pe-minecraft.png" alt="nimic pe mine">
+				<img src="img/nimic/nimic-pe-valorant.png" alt="nimic pe valo">
+			</div>
+			<div></div>
+		</div>
+	</section>
+	<div th:replace="~{fragments/footer-ro :: footer}"></div>
+</body>
+</html>

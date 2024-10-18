@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ro" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MikeDmC | Otp</title>
+<link rel="stylesheet" href="/css/login.css" />
+<link th:replace="~{fragments/favicon :: link}">
+</head>
+<body>
+    <div th:replace="~{fragments/header-ro :: header}"></div>
+
+    <div class="body">
+        <form class="container" th:action="@{/otp?lang=ro}" method="POST">
+            <div class="form">
+                <h2>Verificare Otp</h2>
+                <div class="inputBox">
+                    <input type="text" name="code" required="required" placeholder=" ">
+                    <i class="fas fa-key"></i> <span>Cod Otp</span>
+                </div>
+                <div class="inputBox">
+                    <input type="submit" value="Activează Contul">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div th:replace="~{fragments/footer-ro :: footer}"></div>
+</body>
+</html>

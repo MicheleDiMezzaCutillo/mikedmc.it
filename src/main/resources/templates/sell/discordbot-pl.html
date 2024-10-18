@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-68L3V697J8"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'G-68L3V697J8');
+	</script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Discord Bot</title>
+	<link rel="stylesheet" href="css/sell.css">
+	<link th:replace="~{fragments/favicon :: link}">
+
+</head>
+<body>
+    <div th:replace="~{fragments/header-pl :: header}"></div>
+    
+    <div class="sub-header">
+        <a href="#info"><i class="fa-solid fa-circle-info"></i> Informacje</a>
+        <a href="#faq"><i class="fa-solid fa-circle-question"></i> Pytania</a>
+        <a href="#prezzi"><i class="fa-solid fa-comment-dollar"></i> Ceny</a>
+    </div>
+    
+    <section id="info" class="sezione">
+		<div class="head-container">
+			<h2>Co to jest Niestandardowy Bot Discord?</h2>
+				<h5>Niestandardowy bot Discord to aplikacja stworzona specjalnie dla Ciebie. Będzie mieć nazwę, zdjęcie profilowe, tło, opis i aktywność spersonalizowaną według Twojego wyboru. Może mieć istniejące funkcje lub unikalne komendy, które będą tylko dla Ciebie! Na przykład możesz zobaczyć <a href="/progetti?lang=pl">moje projekty</a> lub bardziej szczegółowo, <a href="/progetti?lang=pl#botds">boty</a> i różne <a href="/progetti?lang=pl#embeds">embedy</a>, które zrobiłem, aby zobaczyć, co Cię zainteresuje.</h5>
+		</div>
+	</section>
+	<section id="faq" class="sezione">
+		<div class="head-container">
+			<h2>Często zadawane pytania</h2>
+		</div>
+		<div class="faq-cards">
+
+			<div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-language"></i> W jakim języku bot będzie odpowiadał? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>Możesz wybrać język. Głównie używam angielskiego i włoskiego, ale na życzenie mogę używać innych języków: wystarczy, że prześlesz mi teksty, których chcesz użyć.</h5>
+                </div>
+            </div>
+            
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-server"></i> Co oznacza "hostowanie" i jak mogę utrzymać mojego bota aktywnego 24/7? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>Hostowanie bota Discord oznacza utrzymanie go w działaniu, aby mógł działać nieprzerwanie. Aby Twój bot był aktywny 24/7, możesz go uruchomić na swoim komputerze, zostawić na maszynie wirtualnej lub powierzyć hostowanie mnie za miesięczną opłatą.</h5>
+                </div>
+            </div>
+            
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fa-solid fa-box-open"></i> Co to jest plik .jar? Czy otrzymam kod źródłowy? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>Plik .jar to program stworzony w języku Java, który można uruchomić. Po zakupie bota otrzymasz jeden z tych plików, który będzie zawierał samego bota. Uruchamiając go, bot się uruchomi. Oczywiście na życzenie mogę dostarczyć kod źródłowy wraz z plikiem .jar bota.</h5>
+                </div>
+            </div>
+            
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-tools"></i> Co zrobić, jeśli napotkam problemy z botem po dostawie? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>Możesz się ze mną skontaktować, a ja jak najszybciej naprawię błędy. Jeśli bot przestanie działać z powodu zmian w API w ciągu 1 miesiąca od dostawy, zaktualizuję go za darmo.</h5>
+                </div>
+            </div>
+            
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-link"></i> Czy muszę udostępnić Ci mój serwer Discord? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>Tak, do początkowej instalacji i testowania będę potrzebować dostępu do Twojego serwera. Alternatywnie, mogę stworzyć tymczasowy serwer, aby przetestować i zademonstrować żądane funkcje.</h5>
+                </div>
+            </div>
+            
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-plug"></i> Czy możesz zintegrować inne aplikacje lub strony internetowe? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>Z pewnością, korzystając z API lub Web Scraping, można zintegrować aplikacje i strony internetowe z Twoim botem.</h5>
+                </div>
+            </div>
+            
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-microphone"></i> Jeśli projekt nie jest łatwy do napisania lub wyjaśnienia, czy mogę porozmawiać z Tobą bezpośrednio? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>Oczywiście, głównie używam Discorda i zawsze jestem otwarty na rozmowy, aby zapewnić jak najlepszą obsługę w sposób klarowny.</h5>
+                </div>
+            </div>
+            
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-cogs"></i> Czy możesz stworzyć komendy slash i używać modułów oraz przycisków? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>Tak, mogę stworzyć komendy slash dla Twojego bota. Dodatkowo, mogę używać modułów i przycisków, które są często używane w botach do zarządzania zgłoszeniami i innymi interaktywnymi funkcjami.</h5>
+                </div>
+            </div>
+            
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-plus-circle"></i> Kupiłem bota i teraz chcę dodać nowe funkcje. Czy mogę to zrobić? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>Tak, jeśli masz kod źródłowy (który można poprosić przy dostawie bota), mogę dodać nowe funkcje lub zmodyfikować istniejące za opłatą, zależną od dodawanych funkcji.</h5>
+                </div>
+            </div>
+            
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-edit"></i> Czy możesz zmodyfikować istniejącego bota Discord? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>Mogę zmodyfikować bota, który został wcześniej ode mnie zakupiony, jeśli masz kod źródłowy. Nie można modyfikować botów, których nie stworzyłem.</h5>
+                </div>
+            </div>
+            <!-- Koniec faq-card -->
+		</div>
+	</section>
+	<section id="prezzi" class="sezione">
+		<div class="head-container">
+			<h2>Koszty</h2>
+		</div>
+		<div class="info-cards">
+
+			<div class="info-card">
+				<h4><i class="fas fa-dollar-sign"></i> Koszt Bota</h4>
+				<p>Koszt Bota będzie dostosowany do specyficznych wymagań i pożądanych funkcji.</p>
+				<p>Podstawowa cena wynosi 5 €.</p>
+			</div>
+			<div class="info-card">
+				<h4><i class="fas fa-shield-alt"></i> Hosting z mojej strony</h4>
+				<p>Za miesięczną opłatą, od momentu stworzenia bota, będę utrzymywać go aktywnego 24/7.</p>
+			</div>
+			<div class="info-card">
+				<h4><i class="fas fa-tags"></i> Hosting z Twojej strony</h4>
+				<p>Jeśli już wiesz, gdzie chcesz utrzymać swojego bota, wyślę Ci plik wykonywalny (.jar) i pomogę najlepiej, jak potrafię, w jego instalacji.</p>
+			</div>
+		</div>
+	</section>
+
+	<div th:replace="~{fragments/footer-pl :: footer}"></div>
+	<script>
+	    function toggleAnswer(element) {
+	        const answer = element.nextElementSibling;
+	        const icon = element.querySelector('.fas.fa-chevron-down');
+	        
+	        if (answer.style.display === "flex") {
+	            answer.style.display = "none";
+	            icon.style.transform = "rotate(0deg)";
+	        } else {
+	            answer.style.display = "flex";
+	            icon.style.transform = "rotate(180deg)";
+	        }
+	    }
+	</script>
+</body>
+</html>

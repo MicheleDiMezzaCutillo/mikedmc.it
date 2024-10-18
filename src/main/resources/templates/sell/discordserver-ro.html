@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-68L3V697J8"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'G-68L3V697J8');
+	</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server Discord</title>
+    <link rel="stylesheet" href="css/sell.css">
+    <link th:replace="~{fragments/favicon :: link}">
+</head>
+<body>
+    <div th:replace="~{fragments/header-ro :: header}"></div>
+    
+    <div class="sub-header">
+        <a href="?lang=ro#info"><i class="fa-solid fa-circle-info"></i> Informații</a>
+        <a href="?lang=ro#faq"><i class="fa-solid fa-circle-question"></i> Întrebări frecvente</a>
+        <a href="?lang=ro#prezzi"><i class="fa-solid fa-comment-dollar"></i> Prețuri</a>
+    </div>
+    
+    <section id="info" class="sezione">
+        <div class="head-container">
+            <h2>Ce este un server Discord?</h2>
+            <h5>Discord a devenit una dintre cele mai importante platforme de comunicare, fiind esențială în lumea online. Având un server Discord personalizat și unic este acum important, așa că de ce să nu comisionezi unul? Poți verifica și unele servere pe care le-am creat <a href="/projects#serverds?lang=ro">aici</a>.</h5>
+        </div>
+    </section>
+    <section id="faq" class="sezione">
+        <div class="head-container">
+            <h2>Întrebări frecvente</h2>
+        </div>
+        <div class="faq-cards">
+
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-server"></i> Ce tipuri de servere Discord poți crea? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>Pot crea un server pentru orice scop: comunități de gaming, servere pentru afaceri, grupuri de studiu, cluburi de fani și altele. Fiecare server este personalizat în funcție de nevoile tale specifice.</h5>
+                </div>
+            </div>
+
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-tools"></i> Cât timp durează să creezi un server Discord? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>Timpul necesar variază în funcție de complexitatea serverului. Serverele simple pot fi gata în câteva zile, în timp ce proiectele mai complexe pot dura o săptămână sau mai mult.</h5>
+                </div>
+            </div>
+
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-robot"></i> Poți adăuga bot-uri pe serverul meu? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>Desigur! Pot integra bot-uri pentru moderare, jocuri, gestionarea tichetelor, muzică și multe altele. De asemenea, pot crea un bot personalizat pentru tine.</h5>
+                </div>
+            </div>
+
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-link"></i> Trebuie să îți dau acces la serverul meu pentru configurare? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>Da, pentru a configura serverul și a testa funcționalitățile sale, voi avea nevoie de acces temporar la server.</h5>
+                </div>
+            </div>
+
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-users"></i> Pot primi asistență după crearea serverului? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>Da, ofer și suport continuu pentru gestionarea și întreținerea serverului. Pot să te ajut cu actualizări, soluționarea problemelor și optimizări.</h5>
+                </div>
+            </div>
+
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-cogs"></i> Pot adăuga noi funcționalități serverului în viitor? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>Absolut. Dacă în viitor dorești să adaugi noi funcționalități sau să modifici cele existente, pot actualiza serverul pentru a satisface noile tale cerințe.</h5>
+                </div>
+            </div>
+
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-sync-alt"></i> Este posibil să modific un server existent? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>Da, pot lucra la un server existent, optimizându-l și actualizându-l pentru a îndeplini cerințele necesare.</h5>
+                </div>
+            </div>
+
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-file-code"></i> Ce garanții oferi pentru funcționalitatea serverului după livrare? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>Garantez funcționalitatea serverului la livrare. Dacă apar probleme tehnice în termen de o lună de la achiziție, ofer asistență gratuită pentru rezolvarea acestora. După această perioadă, poți să mă contactezi întotdeauna pentru suport suplimentar.</h5>
+                </div>
+            </div>
+            <!-- Sfârșit faq-card -->
+        </div>
+    </section>
+    <section id="prezzi" class="sezione">
+        <div class="head-container">
+            <h2>Costuri</h2>
+        </div>
+
+        <div class="info-card solo">
+            <h4><i class="fas fa-dollar-sign"></i> Costul serverului</h4>
+            <p>Costul serverului va fi ajustat în funcție de cerințele tale specifice și funcționalitățile dorite.</p>
+            <p>Prețul de bază este de 3 €.</p>
+        </div>
+    </section>
+
+    <div th:replace="~{fragments/footer-ro :: footer}"></div>
+    <script>
+        function toggleAnswer(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('.fas.fa-chevron-down');
+            
+            if (answer.style.display === "block") {
+                answer.style.display = "none";
+                icon.style.transform = "rotate(0deg)";
+            } else {
+                answer.style.display = "block";
+                icon.style.transform = "rotate(180deg)";
+            }
+        }
+    </script>
+</body>
+</html>

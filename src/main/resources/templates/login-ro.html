@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ro" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-68L3V697J8"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'G-68L3V697J8');
+	</script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autentificare/Înregistrare</title>
+    <link rel="stylesheet" href="/css/login.css" />
+    <link th:replace="~{fragments/favicon :: link}">
+</head>
+<body>
+    <div th:replace="~{fragments/header-ro :: header}"></div>
+<div class="body">
+		<div class="container" th:classappend="${panel != null ? ' ' + panel : ''}">
+			<div class="form-container sign-up-container">
+				<form th:action="@{/register?lang=ro}" th:object="${userDtoForm}" method="POST" th:classappend="${formRegister != null ? formRegister : ''}">
+            		<div class="form signup">
+						<h2>Înregistrare</h2>
+						<div class="inputBox">
+							<input type="text" name="username" required="required">
+							<i class="fa-regular fa-user"></i>
+							<span>Poreclă</span>
+						</div>
+						<div class="inputBox">
+							<input type="text" name="email" required="required">
+							<i class="fa-regular fa-envelope"></i>
+							<span>Email</span>
+						</div>
+						<div class="inputBox">
+							<input class="password-checker" type="password" name="password" required="required">
+							<i class="fa-solid fa-lock passColor"></i>
+							<span>Parolă</span>
+						</div>
+						<div class="inputBox">
+							<input class="password-checker2" type="password" name="password2" required="required">
+							<i class="fa-solid fa-lock"></i>
+							<span>Confirmă parola</span>
+						</div>
+						<div class="inputBox">
+						<p>
+						<label style="display: flex; align-items: center;">
+						<input style="width: auto; margin-right:4px;" type="checkbox" required="required">Accepți <a style="margin-left:4px;" href="/termsAndConditions" class="create">Termenii și condițiile</a>
+						</label>
+						</p>
+							<input type="submit" value="Creează cont">
+						</div>
+					</div>
+				</form>
+				
+				<form class="" th:classappend="${formOtp != null ? formOtp : ''}" th:action="@{/otp?lang=ro}" method="POST">
+	                <div class="form signup">
+						<h2>Verificare OTP</h2>
+						<div class="inputBox">
+							<input type="text" name="code" required="required">
+							<i class="fas fa-key"></i>
+							<span>Cod OTP</span>
+						</div>
+						<div class="inputBox">
+							<input type="submit" value="Activează contul">
+						</div>
+					</div>
+				</form>
+			</div>
+		<div class="form-container sign-in-container">
+        	<form class="container signinForm" th:classappend="${formLogin != null ? formLogin : ''}"  th:action="@{/login?lang=ro}" method="POST">
+				<div class="form signin">
+					<h2>Autentificare</h2>
+					<div class="inputBox">
+						<input type="text" name="username" required="required">
+						<i class="fa-regular fa-user"></i>
+						<span>Utilizator sau Email</span>
+					</div>
+					<div class="inputBox">
+						<input type="password" name="password" required="required">
+						<i class="fa-solid fa-lock"></i>
+						<span>Parolă</span>
+					</div>
+					<div class="inputBox">
+						<input type="submit" value="Autentificare">
+					</div>
+					<p>Ai uitat parola? <a href="/reset-password?lang=ro" class="create">Reseteaz-o acum</a></p>
+				</div>
+			</form>
+			<form class="container signinForm" th:classappend="${formEmail != null ? formEmail : ''}"  th:action="@{/reset-password?lang=ro}" method="POST">
+				<div class="form signin">
+					<h2>Cerere schimbare parolă</h2>
+					<div class="inputBox">
+						<input type="text" name="email" required="required">
+						<i class="fa-regular fa-envelope"></i>
+						<span>Email</span>
+					</div>
+					<div class="inputBox">
+						<input type="submit" value="Cere">
+					</div>
+				</div>
+			</form>
+        	<form class="container signinForm" th:classappend="${formResetPassword != null ? formResetPassword : ''}" th:action="@{/reset-password-confirm?lang=ro}" method="POST">
+				<div class="form signin">
+						<h1>Verificare OTP</h1>
+						<div class="inputBox">
+							<input type="text" name="code" required="required">
+							<i class="fas fa-key"></i>
+							<span>Cod OTP</span>
+						</div>
+						<div class="inputBox">
+							<input type="submit" value="Confirmă codul">
+						</div>
+					</div>
+			</form>			
+        	<form class="container signinForm" th:classappend="${formResetPasswordFinal != null ? formResetPasswordFinal : ''}"   th:action="@{/resetting-password?lang=ro}" method="POST">
+				<div class="form signin">
+						<h2>Resetează parola</h2>
+						<div class="inputBox">
+							<input class="password-checker" type="password" name="password" required="required">
+							<i class="fa-solid fa-lock passColor"></i>
+							<span>Parolă</span>
+						</div>
+						<div class="inputBox">
+							<input type="password" name="password2" required="required">
+							<i class="fa-solid fa-lock"></i>
+							<span>Confirmă parola</span>
+						</div>
+						<div class="inputBox">
+							<input type="submit" value="Actualizează parola">
+						</div>
+					</div>
+			</form>
+		</div>
+		<div class="overlay-container">
+			<div class="overlay">
+				<div class="overlay-panel overlay-left">
+					<h2>Deja unul de-al nostru?</h2>
+					<p>Autentifică-te în contul tău.</p>
+					<button class="ghost" id="signIn">Autentificare</button>
+				</div>
+				<div class="overlay-panel overlay-right">
+					<h2>Nou pe aici?</h2>
+					<p>Creează un cont gratuit.</p>
+					<button class="ghost" id="signUp">Înregistrare</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="js/login.js"></script>
+</div>
+	<div th:replace="~{fragments/footer-ro :: footer}"></div>
+</body>
+</html>

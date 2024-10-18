@@ -1,0 +1,66 @@
+<footer id="footer" class="footer-">
+	<script src="/js/footer.js"></script>
+	<div class="footer-container">
+      <div class="footer-row">
+        <div  class="footer-col">
+          <h4 >Inny</h4>
+          <ul >
+			  <li>
+				  	<select id="lang-select" style="background: var(--background); color: var(--text);" name="lang" onchange="updateLanguage(event)">
+			            <option value="it">Italiano</option>
+			            <option value="en">English</option>
+			            <option value="pl">Polski</option>
+			            <option value="ro">Română</option>
+			        </select>
+			  </li>
+          	<li>
+			  <input type="checkbox" class="checkbox hidden" id="checkbox">
+			  <label for="checkbox" class="checkbox-label">
+			    <i class="fas fa-sun"></i>
+			    <i class="fas fa-moon"></i>
+			    <span class="ball"></span>
+			  </label>
+          	</li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Kontact</h4>
+          <ul >
+            <li><a href="https://discord.gg/9SF8yxtUr7" target="_blank">Discord</a></li>
+			<li><a href="mailto:latavernadimike@libero.it">latavernadimike@libero.it</a></li>
+          </ul>
+        </div>
+        <div  class="footer-col">
+          <h4 >Przydatne linki</h4>
+          <ul >
+            <li ><a  href="https://ko-fi.com/mikedmc" target="_blank">Ko-fi</a></li>
+            <li ><a  href="https://www.patreon.com/MikeDmC" target="_blank">Patreon</a></li>
+            <li ><a  href="https://discord.gg/qP8xbEP69Q" target="_blank">Discord</a></li>
+          </ul>
+        </div>
+        <div  class="footer-col">
+          <h4 >Nie osądzaj</h4>
+          <div  class="social-links">
+              <img class="footer-img" src="/img/footer-meme-pl.png">
+          </div>
+        </div>
+      </div>
+      </div>
+      <div class="bottom-details">
+	    <div class="bottom_text">
+	      <span class="copyright_text">Copyright © 2024 <a href="#">Mike Dm-C</a>Wszelkie prawa zastrzeżone</span>
+	      <span class="policy_terms">
+	      	<a href="/cookies" style="">Cookie Policy</a>
+	        <a href="https://www.iubenda.com/privacy-policy/92217974" style="">Privacy policy</a>
+	        <a href="/termsAndConditions?lang=pl" style="">Terms &amp; condition</a>
+	      </span>
+	    </div>
+	  </div>
+  <div th:if="${title}" class="popup-item show">
+        <div class="popup" th:classappend="${color}">
+            <label class="close"></label>
+            <h3 th:text="${title}">Title</h3>
+            <p th:text="${message}">Message</p>
+        </div>
+    </div>
+  </footer>

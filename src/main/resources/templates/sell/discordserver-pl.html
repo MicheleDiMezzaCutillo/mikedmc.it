@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-68L3V697J8"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'G-68L3V697J8');
+	</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server Discord</title>
+    <link rel="stylesheet" href="css/sell.css">
+    <link th:replace="~{fragments/favicon :: link}">
+</head>
+<body>
+    <div th:replace="~{fragments/header-pl :: header}"></div>
+    
+    <div class="sub-header">
+        <a href="?lang=pl#info"><i class="fa-solid fa-circle-info"></i> Informacje</a>
+        <a href="?lang=pl#faq"><i class="fa-solid fa-circle-question"></i> FAQ</a>
+        <a href="?lang=pl#prezzi"><i class="fa-solid fa-comment-dollar"></i> Ceny</a>
+    </div>
+    
+    <section id="info" class="sezione">
+        <div class="head-container">
+            <h2>Czym jest serwer Discord?</h2>
+            <h5>Discord stał się jednym z głównych narzędzi komunikacji, stając się niezbędnym w świecie online. Posiadanie spersonalizowanego i unikalnego serwera Discord jest teraz ważne, więc dlaczego nie zlecić jego stworzenia? Możesz także sprawdzić niektóre serwery, które stworzyłem <a href="/projects#serverds?lang=pl">tutaj</a>.</h5>
+        </div>
+    </section>
+    <section id="faq" class="sezione">
+        <div class="head-container">
+            <h2>Najczęściej zadawane pytania</h2>
+        </div>
+        <div class="faq-cards">
+
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-server"></i> Jakie typy serwerów Discord możesz stworzyć? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>Mogę stworzyć serwer do dowolnych celów: społeczności gamingowe, serwery firmowe, grupy studyjne, kluby fanów i inne. Każdy serwer jest dostosowany do Twoich konkretnych potrzeb.</h5>
+                </div>
+            </div>
+
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-tools"></i> Ile czasu zajmuje stworzenie serwera Discord? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>Czas realizacji zależy od złożoności serwera. Proste serwery mogą być gotowe w ciągu kilku dni, podczas gdy bardziej złożone projekty mogą zająć tydzień lub dłużej.</h5>
+                </div>
+            </div>
+
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-robot"></i> Czy możesz dodać boty do mojego serwera? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>Oczywiście! Mogę zintegrować boty do moderacji, gier, zarządzania zgłoszeniami, muzyki i innych funkcji. Mogę też stworzyć dla Ciebie własnego bota.</h5>
+                </div>
+            </div>
+
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-link"></i> Czy muszę dać Ci dostęp do mojego serwera w celu konfiguracji? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>Tak, aby skonfigurować serwer i przetestować jego funkcje, będę potrzebował tymczasowego dostępu do serwera.</h5>
+                </div>
+            </div>
+
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-users"></i> Czy mogę otrzymać wsparcie po stworzeniu serwera? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>Tak, oferuję również wsparcie w zakresie zarządzania i utrzymania serwera. Mogę pomóc w aktualizacjach, rozwiązywaniu problemów i optymalizacji.</h5>
+                </div>
+            </div>
+
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-cogs"></i> Czy mogę dodać nowe funkcje do serwera w przyszłości? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>Absolutnie. Jeśli w przyszłości chcesz dodać nowe funkcje lub zmodyfikować istniejące, mogę zaktualizować serwer, aby spełniał Twoje nowe wymagania.</h5>
+                </div>
+            </div>
+
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-sync-alt"></i> Czy możliwe jest zmodyfikowanie istniejącego serwera? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>Tak, mogę pracować nad istniejącym serwerem, optymalizując i aktualizując go, aby spełniał wymagane specyfikacje.</h5>
+                </div>
+            </div>
+
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-file-code"></i> Jakie gwarancje oferujesz na funkcjonalność serwera po dostarczeniu? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>Gwarantuję funkcjonalność serwera w momencie dostarczenia. Jeśli pojawią się problemy techniczne w ciągu miesiąca od zakupu, oferuję darmową pomoc w ich rozwiązaniu. Po tym okresie możesz zawsze skontaktować się ze mną w celu dodatkowego wsparcia.</h5>
+                </div>
+            </div>
+            <!-- Koniec faq-card -->
+        </div>
+    </section>
+    <section id="prezzi" class="sezione">
+        <div class="head-container">
+            <h2>Koszty</h2>
+        </div>
+
+        <div class="info-card solo">
+            <h4><i class="fas fa-dollar-sign"></i> Koszt serwera</h4>
+            <p>Koszt serwera będzie dostosowany do Twoich specyficznych wymagań i pożądanych funkcji.</p>
+            <p>Podstawowa cena wynosi 3 €.</p>
+        </div>
+    </section>
+
+    <div th:replace="~{fragments/footer-pl :: footer}"></div>
+    <script>
+        function toggleAnswer(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('.fas.fa-chevron-down');
+            
+            if (answer.style.display === "block") {
+                answer.style.display = "none";
+                icon.style.transform = "rotate(0deg)";
+            } else {
+                answer.style.display = "block";
+                icon.style.transform = "rotate(180deg)";
+            }
+        }
+    </script>
+</body>
+</html>
