@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-68L3V697J8"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'G-68L3V697J8');
+	</script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Nothing</title>
+	<link rel="stylesheet" href="css/sell.css">
+	<link th:replace="~{fragments/favicon :: link}">
+
+</head>
+<body>
+    <div th:replace="~{fragments/header-en :: header}"></div>
+    
+	<section id="faq" class="sezione" style="margin: 3em 0;">
+		<div class="info-cards">
+			<div class="info-card">
+				<h4><i class="fas fa-couch"></i> Slogan</h4>
+				<p>Looking for a unique way to relax? Forget the hustle and bustle of everyday life and let me do nothing to help you.</p>
+			</div>
+			<div class="info-card">
+				<h4><i class="fas fa-question-circle"></i> Why would you need me?</h4>
+				<p>Have you ever struggled to find a friend to join you in doing nothing in particular? Or to play with others and feel like you have to “entertain” them by talking or doing something? Here I am, also known as the “Man Who Does Nothing.”</p>
+			</div>
+			<div class="info-card">
+				<h4><i class="fas fa-user"></i> What Do I Do?</h4>
+				<p>I offer a rather unconventional rental service to my online clients by committing to “Do Nothing.”</p>
+			</div>
+		</div>
+	</section>
+	<section class="sezione">
+		<div class="info-cards">
+			<div></div>
+			<div class="info-card">
+				<h4><i class="fas fa-star"></i> Why choose me?</h4>
+				<p>Although there are agencies where you can hire actors to play your friend, or the whole family, such rental services are not rare. However, I stand out for a “light” approach rather than taking on a different character.</p>
+			</div>
+
+			<div class="info-card">
+				<h4><i class="fas fa-coffee"></i> What do I mean by “Do Nothing”?</h4>
+				<p>“Doing nothing means eating and drinking (with clients), playing with them, hanging out on Discord, and answering their simple questions with simple answers.”</p>
+			</div>
+			<div></div>
+		</div>
+	</section>
+	<section id="prices" class="sezione">
+		<div class="info-cards">
+			<div></div>
+			<div class="info-card">
+				<img src="img/nothing/nothing-on-discord.png" alt="nothing on ds">
+				<img src="img/nothing/nothing-on-lol.png" alt="nothing on lol">
+			</div>
+			<div class="info-card">
+				<img src="img/nothing/nothing-on-minecraft.png" alt="nothing on mine">
+				<img src="img/nothing/nothing-on-valorant.png" alt="nothing on valo">
+			</div>
+			<div></div>
+		</div>
+	</section>
+	<div th:replace="~{fragments/footer-en :: footer}"></div>
+</body>
+</html>

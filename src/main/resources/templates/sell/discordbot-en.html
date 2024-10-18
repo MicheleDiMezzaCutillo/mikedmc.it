@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-68L3V697J8"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'G-68L3V697J8');
+	</script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Discord Bot</title>
+	<link rel="stylesheet" href="css/sell.css">
+	<link th:replace="~{fragments/favicon :: link}">
+
+</head>
+<body>
+    <div th:replace="~{fragments/header-en :: header}"></div>
+    
+    <div class="sub-header">
+        <a href="#info"><i class="fa-solid fa-circle-info"></i> Info</a>
+        <a href="#faq"><i class="fa-solid fa-circle-question"></i> Questions</a>
+        <a href="#prezzi"><i class="fa-solid fa-comment-dollar"></i> Prices</a>
+    </div>
+    
+    <section id="info" class="sezione">
+		<div class="head-container">
+		<h2>What is a Custom Discord Bot?</h2>
+				<h5>A custom Discord bot is an application created just for you. It will have a name, profile picture, background, description, and personalized activity of your choice. It can have existing functions or commands that don’t exist and will be exclusive to you! For example, you can check out <a href="/progetti?lang=en">my projects</a> or more specifically, <a href="/progetti?lang=en#botds">the bots</a> and the various <a href="/progetti?lang=en#embeds">embeds</a> I've made, so you can see what might interest you.</h5>
+		</div>
+	</section>
+	<section id="faq" class="sezione">
+		<div class="head-container">
+			<h2>Frequently Asked Questions</h2>
+		</div>
+		<div class="faq-cards">
+
+			<div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-language"></i> What language will the bot respond in? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>You can choose the language. I mainly use English and Italian, but upon request, I can use other languages as well: just send me the texts you want to use.</h5>
+                </div>
+            </div>
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-server"></i> What does "host" mean, and how can I keep my bot running 24/7? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>Hosting a Discord bot means keeping it running so it can function continuously. To keep your bot active 24/7, you can either run it on your computer, leave it running on a virtual machine, or entrust hosting to me for a monthly fee.</h5>
+                </div>
+            </div>
+            
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fa-solid fa-box-open"></i> What is a .jar file? Will I receive the source code? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>A .jar file is a program created in Java that can be executed. After purchasing the bot, you will receive one of these files, which will contain the bot itself. Running it will start the bot. Of course, upon request, I can provide the source code along with the bot's .jar file.</h5>
+                </div>
+            </div>
+            
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-tools"></i> What should I do if I encounter problems with the bot after delivery? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>You can contact me, and I will fix the bugs as soon as possible. If the bot stops working due to API changes within 1 month of delivery, I will update it for free.</h5>
+                </div>
+            </div>
+            
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-link"></i> Do I need to share my Discord server with you? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>Yes, for the initial installation and testing, I will need access to your server. Alternatively, I can create a temporary server to test and demonstrate the requested features.</h5>
+                </div>
+            </div>
+            
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-plug"></i> Can you integrate other applications or websites? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>Absolutely, using APIs or Web Scraping, it is possible to integrate applications and websites into your bot.</h5>
+                </div>
+            </div>
+            
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-microphone"></i> If the project is not easy to write or explain, can I talk to you directly? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>Sure, I primarily use Discord and am always open to discussion to provide the best service possible in a clear manner.</h5>
+                </div>
+            </div>
+            
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-cogs"></i> Can you create slash commands, and can you use modules and buttons? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>Yes, I can create slash commands for your bot. Additionally, I can use modules and buttons, which are often used in bots for ticket management and other interactive features.</h5>
+                </div>
+            </div>
+            
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-plus-circle"></i> I bought a bot and now I want to add new features. Can I do that? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>Yes, if you have the source code (which can be requested at the time of bot delivery), I can add new features or modify existing ones for a fee based on the features to be added.</h5>
+                </div>
+            </div>
+            
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-edit"></i> Can you modify an existing Discord bot? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>I can modify a bot previously purchased from me if you have the source code. It is not possible to modify bots that I did not create.</h5>
+                </div>
+            </div>
+            <!-- Fine faq-card -->
+		</div>
+	</section>
+	<section id="prezzi" class="sezione">
+		<div class="head-container">
+			<h2>Costs</h2>
+		</div>
+		<div class="info-cards">
+
+			<div class="info-card">
+				<h4><i class="fas fa-dollar-sign"></i> Bot Cost</h4>
+				<p>The cost of the bot will be adapted to specific requests and desired features.</p>
+				<p>The starting price is €5.</p>
+			</div>
+			<div class="info-card">
+				<h4><i class="fas fa-shield-alt"></i> Hosting by Me</h4>
+				<p>For a monthly fee, established at the creation of the bot, I will keep your bot running 24/7.</p>
+			</div>
+			<div class="info-card">
+				<h4><i class="fas fa-tags"></i> Hosting by You</h4>
+				<p>If you already have a place in mind to keep the bot active, I will send you the executable file (.jar) and assist you in the best way possible with the installation.</p>
+			</div>
+		</div>
+	</section>
+
+	<div th:replace="~{fragments/footer-en :: footer}"></div>
+	<script>
+	    function toggleAnswer(element) {
+	        const answer = element.nextElementSibling;
+	        const icon = element.querySelector('.fas.fa-chevron-down');
+	        
+	        if (answer.style.display === "flex") {
+	            answer.style.display = "none";
+	            icon.style.transform = "rotate(0deg)";
+	        } else {
+	            answer.style.display = "flex";
+	            icon.style.transform = "rotate(180deg)";
+	        }
+	    }
+	</script>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-68L3V697J8"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'G-68L3V697J8');
+	</script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Telegram Bot</title>
+	<link rel="stylesheet" href="css/sell.css">
+	<link th:replace="~{fragments/favicon :: link}">
+
+</head>
+<body>
+    <div th:replace="~{fragments/header-en :: header}"></div>
+    
+    <div class="sub-header">
+        <a href="#info"><i class="fa-solid fa-circle-info"></i> Info</a>
+        <a href="#faq"><i class="fa-solid fa-circle-question"></i> FAQs</a>
+        <a href="#prices"><i class="fa-solid fa-comment-dollar"></i> Prices</a>
+    </div>
+    
+    <section id="info" class="sezione">
+		<div class="head-container">
+			<h2>What is a Telegram Bot?</h2>
+				<h5>A Telegram Bot is an application created specifically for you. It will have a name, a profile picture, and a personalized bio of your choice. It can have existing functions or custom commands that are unique to you! For example, you can check out <a href="/projects#bottg">one of my projects</a> that was commissioned to me.</h5>
+		</div>
+	</section>
+	<section id="faq" class="sezione">
+		<div class="head-container">
+			<h2>Frequently Asked Questions</h2>
+		</div>
+		<div class="faq-cards">
+
+			<div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-language"></i> In which language will the bot respond? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>You can choose the language. I mainly use English and Italian, but upon request, I can also use other languages: just send me the texts you want to use.</h5>
+                </div>
+            </div>
+            
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-server"></i> What does "hosting" mean, and how can I keep my bot active 24/7? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>Hosting a Telegram bot means keeping it running so it can operate continuously. To keep your bot active 24/7, you can choose to run it on your computer, keep it running on a virtual machine, or have me handle the hosting for a monthly fee.</h5>
+                </div>
+            </div>
+            
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fa-solid fa-box-open"></i> What is a .jar file? Will I receive the source code? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>A .jar file is a program created in Java that can be executed. Upon purchasing the bot, you will receive one of these files, which will contain the bot itself. Running it will start the bot. Of course, upon request, I can also provide the source code in addition to the bot's .jar file.</h5>
+                </div>
+            </div>
+            
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-tools"></i> What should I do if I encounter problems with the bot after delivery? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>You can contact me, and I will resolve the bugs as soon as possible. If the bot stops working due to API changes within 1 month of delivery, I will update it for free.</h5>
+                </div>
+            </div>
+            
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-link"></i> Do I need to share any groups or contacts? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>Yes, for initial installation and testing, it may be necessary. I will need access to your group if the bot is going to be in a group. I can also create a temporary group to test and demonstrate the required features.</h5>
+                </div>
+            </div>
+            
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-plug"></i> Can you integrate other applications or websites? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>Certainly, using APIs or web scraping, it is possible to integrate applications and websites into your bot.</h5>
+                </div>
+            </div>
+            
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-microphone"></i> If the project is difficult to describe or explain, can I speak to you directly? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>Sure, I mainly use Discord and am always open to discussion to provide the best possible service clearly.</h5>
+                </div>
+            </div>
+            
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-plus-circle"></i> I bought a bot and now want to add new features. Can I do that? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>Yes, if you have the source code (which can be requested at the time of bot delivery), I can add new features or modify existing ones for a fee based on the features to be added.</h5>
+                </div>
+            </div>
+            
+            <div class="faq-card">
+                <h4 class="faq-question" onclick="toggleAnswer(this)">
+                    <i class="fas fa-edit"></i> Can you modify an existing Telegram bot? <i class="fas fa-chevron-down"></i>
+                </h4>
+                <div class="faq-answer">
+                    <h5>I can modify a bot previously purchased from me if you have the source code. It is not possible to modify bots that I did not create.</h5>
+                </div>
+            </div>
+            <!-- End of faq-card -->
+		</div>
+	</section>
+	<section id="prices" class="sezione">
+		<div class="head-container">
+			<h2>Costs</h2>
+		</div>
+		<div class="info-cards">
+
+			<div class="info-card">
+				<h4><i class="fas fa-dollar-sign"></i> Bot Cost</h4>
+				<p>The cost of the bot will be adjusted based on specific requests and desired features.</p>
+				<p>The starting base is €5.</p>
+			</div>
+			<div class="info-card">
+				<h4><i class="fas fa-shield-alt"></i> Hosting by Me</h4>
+				<p>For a monthly fee, I will handle keeping your bot active 24/7, ensuring stability upon creation.</p>
+			</div>
+			<div class="info-card">
+				<h4><i class="fas fa-tags"></i> Hosting by You</h4>
+				<p>If you already have a place to host the bot, I will send you the executable file (.jar) and assist you in the best way I can with the installation.</p>
+			</div>
+		</div>
+	</section>
+
+	<div th:replace="~{fragments/footer-en :: footer}"></div>
+	<script>
+	    function toggleAnswer(element) {
+	        const answer = element.nextElementSibling;
+	        const icon = element.querySelector('.fas.fa-chevron-down');
+	        
+	        if (answer.style.display === "block") {
+	            answer.style.display = "none";
+	            icon.style.transform = "rotate(0deg)";
+	        } else {
+	            answer.style.display = "block";
+	            icon.style.transform = "rotate(180deg)";
+	        }
+	    }
+	</script>
+</body>
+</html>

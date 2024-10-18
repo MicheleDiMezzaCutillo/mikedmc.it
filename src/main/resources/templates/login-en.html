@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-68L3V697J8"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'G-68L3V697J8');
+	</script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Register</title>
+    <link rel="stylesheet" href="/css/login.css" />
+    <link th:replace="~{fragments/favicon :: link}">
+</head>
+<body>
+    <div th:replace="~{fragments/header-en :: header}"></div>
+<div class="body">
+		<div class="container" th:classappend="${panel != null ? ' ' + panel : ''}">
+			<div class="form-container sign-up-container">
+				<form th:action="@{/register?lang=en}" th:object="${userDtoForm}" method="POST" th:classappend="${formRegister != null ? formRegister : ''}">
+            		<div class="form signup">
+						<h2>Register</h2>
+						<div class="inputBox">
+							<input type="text" name="username" required="required">
+							<i class="fa-regular fa-user"></i>
+							<span>Nickname</span>
+						</div>
+						<div class="inputBox">
+							<input type="text" name="email" required="required">
+							<i class="fa-regular fa-envelope"></i>
+							<span>Email</span>
+						</div>
+						<div class="inputBox">
+							<input class="password-checker" type="password" name="password" required="required">
+							<i class="fa-solid fa-lock passColor"></i>
+							<span>Password</span>
+						</div>
+						<div class="inputBox">
+							<input class="password-checker2" type="password" name="password2" required="required">
+							<i class="fa-solid fa-lock"></i>
+							<span>Confirm Password</span>
+						</div>
+						<div class="inputBox">
+						<p>
+						<label style="display: flex;
+  align-items: center;">
+						<input style="width: auto; margin-right:4px;" type="checkbox" required="required">You accept the <a style="margin-left:4px;" href="/termsAndConditions" class="create"> Terms & Conditions</a>
+						</label>
+						</p>
+							<input type="submit" value="Create Account">
+						</div>
+					</div>
+				</form>
+				
+				<form class="" th:classappend="${formOtp != null ? formOtp : ''}" th:action="@{/otp?lang=en}" method="POST">
+	                <div class="form signup">
+						<h2>OTP Verification</h2>
+						<div class="inputBox">
+							<input type="text" name="code" required="required">
+							<i class="fas fa-key"></i>
+							<span>OTP Code</span>
+						</div>
+						<div class="inputBox">
+							<input type="submit" value="Activate Account">
+						</div>
+					</div>
+				</form>
+			</div>
+		<div class="form-container sign-in-container">
+        	<form class="container signinForm" th:classappend="${formLogin != null ? formLogin : ''}"  th:action="@{/login?lang=en}" method="POST">
+				<div class="form signin">
+				
+					<h2>Login</h2>
+					<div class="inputBox">
+						<input type="text" name="username" required="required">
+						<i class="fa-regular fa-user"></i>
+						<span>Username or Email</span>
+					</div>
+					<div class="inputBox">
+						<input type="password" name="password" required="required">
+						<i class="fa-solid fa-lock"></i>
+						<span>Password</span>
+					</div>
+					<div class="inputBox">
+						<input type="submit" value="Login">
+					</div>
+					<p>Forgot your password? <a href="/reset-password?lang=en" class="create">Reset it now</a></p>
+				</div>
+			</form>
+			<form class="container signinForm" th:classappend="${formEmail != null ? formEmail : ''}"  th:action="@{/reset-password?lang=en}" method="POST">
+				<div class="form signin">
+				
+					<h2>Request Password Change</h2>
+					<div class="inputBox">
+						<input type="text" name="email" required="required">
+						<i class="fa-regular fa-envelope"></i>
+						<span>Email</span>
+					</div>
+					<div class="inputBox">
+						<input type="submit" value="Request">
+					</div>
+					
+				</div>
+			</form>
+        	<form class="container signinForm" th:classappend="${formResetPassword != null ? formResetPassword : ''}" th:action="@{/reset-password-confirm?lang=en}" method="POST">
+				<div class="form signin">
+						<h1>OTP Verification</h1>
+						<div class="inputBox">
+							<input type="text" name="code" required="required">
+							<i class="fas fa-key"></i>
+							<span>OTP Code</span>
+						</div>
+						<div class="inputBox">
+							<input type="submit" value="Confirm Code">
+						</div>
+					</div>
+			</form>			
+        	<form class="container signinForm" th:classappend="${formResetPasswordFinal != null ? formResetPasswordFinal : ''}"   th:action="@{/resetting-password?lang=en}" method="POST">
+				<div class="form signin">
+						<h2>Reset Password</h2>
+						<div class="inputBox">
+							<input class="password-checker" type="password" name="password" required="required">
+							<i class="fa-solid fa-lock passColor"></i>
+							<span>Password</span>
+						</div>
+						<div class="inputBox">
+							<input type="password" name="password2" required="required">
+							<i class="fa-solid fa-lock"></i>
+							<span>Confirm Password</span>
+						</div>
+						<div class="inputBox">
+							<input type="submit" value="Update Password">
+						</div>
+					</div>
+			</form>
+		</div>
+		<div class="overlay-container">
+			<div class="overlay">
+				<div class="overlay-panel overlay-left">
+					<h2>Already one of us?</h2>
+					<p>Sign in to your account.</p>
+					<button class="ghost" id="signIn">Sign In</button>
+				</div>
+				<div class="overlay-panel overlay-right">
+					<h2>New here?</h2>
+					<p>Create an account for free.</p>
+					<button class="ghost" id="signUp">Sign Up</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="js/login.js"></script>
+</div>
+	<div th:replace="~{fragments/footer-en :: footer}"></div>
+</body>
+</html>
