@@ -35,3 +35,4 @@ build/
 /src/main/java/it/mikedmc/TestingA.java
 /src/main/resources/application.properties
 /src/main/resources/static/.well-known/pki-validation/
+/src/test/
