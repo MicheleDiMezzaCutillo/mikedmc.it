@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+.Comune {
+	background: linear-gradient(45deg, #3a3a3a, #545454) !important;
+}
+.Non_Comune {
+	background: linear-gradient(45deg, #1c341a, #2f572a) !important;
+}
+.Raro {
+	background: linear-gradient(45deg, #153544, #22536a) !important;
+}
+.Epico {
+	background: linear-gradient(45deg, #412548, #5f3769) !important;
+}
+.Leggendario {
+	background: linear-gradient(45deg, #51431b, #786227) !important;
+}

@@ -1,0 +1,91 @@
+@charset "UTF-8";
+
+.cards {
+	margin: var(--margin-lg);
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+}
+
+.card__ {
+	margin: 1%;
+  background-color: rgba(36, 40, 50, 1);
+  background-image: linear-gradient(
+    139deg,
+    rgba(36, 40, 50, 1) 0%,
+    rgba(36, 40, 50, 1) 0%,
+    rgba(37, 28, 40, 1) 100%
+  );
+
+  border-radius: 10px;
+  padding: 15px 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+@media (min-width: 40rem) {
+  .card__ {
+    width: 30.3333%;
+  }
+}
+
+@media (min-width: 56rem) {
+  .card__ {
+    width: 22%;
+  }
+}
+
+.card__ .separator {
+  border-top: 1.5px solid #42434a;
+}
+
+.card__ .list {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0px 10px;
+}
+
+.card__ .list .element {
+  display: flex;
+  align-items: center;
+  color: var(--text);
+  gap: 10px;
+  transition: all 0.3s ease-out;
+  padding: 4px 7px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.card__ .list .element svg {
+  width: 19px;
+  height: 19px;
+  transition: all 0.3s ease-out;
+}
+
+.card__ .list .element .label {
+  font-weight: 600;
+  margin-bottom:0;
+}
+
+.card__ .list .element:hover {
+  background-color: var(--accent);
+  color: var(--text);
+  transform: translate(1px, -1px);
+}
+.card__ .list .delete:hover {
+  background-color: #8e2a2a;
+}
+
+.card__ .list .element:active {
+  transform: scale(0.99);
+}
+
+.coordinate {
+	display: flex;
+	justify-content: space-between;
+	padding-left: 0;
+}
