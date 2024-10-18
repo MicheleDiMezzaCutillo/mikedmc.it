@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-68L3V697J8"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'G-68L3V697J8');
+	</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accesso Negato</title>	
+    <link th:replace="~{fragments/favicon :: link}">
+    <link rel="stylesheet" href="/css/error.css">
+</head>
+<body>
+    <div th:replace="~{fragments/header :: header}"></div>
+    
+    <main>
+    	<div class="error-message-box">
+	    	<div class="error-message">
+			    <h3>Accesso Negato</h3>
+		    	<p>Non hai i permessi necessari per visualizzare questa pagina.</p>
+		    	<div>
+			    	<a class="m-button" style="color: var(--text); background: var(--secondary);" href="/"><i class="fa-solid fa-house"></i></i> Torna alla home</a>
+				    <a class="m-button" style="color: var(--text); background: var(--secondary);" href="/login"><i class="fa-solid fa-right-to-bracket"></i> Effettua il login</a>
+		    	</div>
+	    	</div>
+    	</div>
+    
+    </main>
+    
+    <div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

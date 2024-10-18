@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-68L3V697J8"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'G-68L3V697J8');
+	</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina Non Trovata</title>
+    <link th:replace="~{fragments/favicon :: link}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/error.css">
+</head>
+<body>
+
+	<div class="body-100">
+		<div class="error-message-box">
+		    	<div class="error-message">
+				    <h3>Pagina non trovata</h3>
+			    	<p>La pagina che stai cercando non esiste.</p>
+			    	<div>
+				    	<a class="m-button" style="color: var(--text); background: var(--secondary);" href="/"><i class="fa-solid fa-house"></i></i> Torna alla home</a>
+					    <a class="m-button" style="color: var(--text); background: var(--secondary);" href="/login"><i class="fa-solid fa-right-to-bracket"></i> Effettua il login</a>
+			    	</div>
+		    	</div>
+	    	</div>
+		</div>
+	
+    <div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>
