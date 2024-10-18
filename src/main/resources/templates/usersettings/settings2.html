@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-68L3V697J8"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'G-68L3V697J8');
+	</script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Impostazioni</title>
+	<link rel="stylesheet" href="/css/dashboard.css" />
+	<link th:replace="~{fragments/favicon :: link}">
+</head>
+<body>
+	<div th:replace="~{fragments/header :: header}"></div>
+
+	<div class="dashboard-body">
+
+		<div class="dashboard-main">
+
+			<div class="dash-cols">
+				<div class="sidebar">
+
+					<a href="/settings" class="dash-item">
+						<i class="fa-regular fa-user"></i> User
+					</a>
+					<a href="/settings?id=2" class="dash-item selected">
+						<i class="fa-solid fa-music"></i> Musicanza
+					</a>
+					<a href="/settings?id=3" class="dash-item">
+						<i class="fa-regular fa-star"></i> Animanza
+					</a>
+				</div>
+				<div class="dash-tiles">
+					<ul class="tile-wrapper" style="justify-content: space-between; grid-template-columns: auto; grid-template-rows:auto;">
+					<li class="grid-area1135 pageView secondary-color-box" style="max-height: fit-content;">
+						    <a class="dash-row"><i class="fa-solid fa-bars"></i>Menu Musicanza</a>
+						    <div style="width:100%; display:flex; justify-content: space-between;">
+								<p>Nome</p>
+								<p>Link</p>
+								<p>Azione</p>
+							</div>
+						    <div class="rigo" th:each="musicanzaMenu : ${musicanzaMenus}">
+								<p th:text="${musicanzaMenu.title}"></p>
+				                <a th:href="${musicanzaMenu.link}" target="_blank" th:text="${musicanzaMenu.link}"></a>
+			                    <form th:action="@{/settings/musicanza/delete/{id}(id=${musicanzaMenu.id})}" method="get">
+			                        <button class="btn-red m-button" type="submit">Rimuovi</button>
+			                    </form>
+							</div>
+						</li>
+						<li class="grid-area3132 fade-color-box" style="justify-content: flex-start; gap:0.5rem;">
+							<p class="dash-row"><i class="fa-solid fa-music"></i> Tuoi utilizzi del bot</p>
+							<h4 th:text="${countComandi}"></h4>
+							<p class="dash-row">
+						</p></li>
+						<li class="fade-color-box" style="grid-area: 3 / 4 / 3 / 2; justify-content: flex-start; gap:0.5rem;">
+							<p class="dash-row"><i class="fa-solid fa-server"></i> Server dove hai usato di più Musicanza</p>
+							<h4 th:text="${server}"></h4>
+							<p class="dash-row"></p>
+							
+						</li>
+						<li class="grid-area3445 fade-color-box" style="justify-content: flex-start; gap:0.5rem;">
+							<p class="dash-row"><i class="fa-solid fa-arrow-trend-up"></i> Utilizzi nel server</p>
+							<h4 th:text="${countComandiServer}"></h4>
+							<p class="dash-row"></p>
+							
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

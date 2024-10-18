@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Console</title>
+	<link rel="stylesheet" href="/css/dashboard.css" />
+	<link th:replace="~{fragments/favicon :: link}">
+</head>
+<body>
+    <div th:replace="~{fragments/header :: header}"></div>
+
+	<div class="dashboard-body">
+
+		<div class="dashboard-main">
+
+			<div class="dash-cols">
+				<div class="sidebar">
+					<a href="/console" class="dash-item">
+						<i class="fa-solid fa-home"></i> General
+					</a>
+					<a href="/console?id=2" class="dash-item">
+						<i class="fa-solid fa-laptop-code"></i> Bots
+					</a>
+					<a href="/console?id=3" class="dash-item">
+						<i class="fa-solid fa-chart-simple"></i> Visitor Stats
+					</a>
+					<a href="/console?id=4" class="dash-item">
+						<i class="fa-solid fa-receipt"></i> Coupons
+					</a>
+					<a href="/console?id=5" class="dash-item selected">
+						<i class="fa-solid fa-music"></i> Musicanza Stats
+					</a>
+				</div>
+				<div class="dash-tiles">
+					<ul class="tile-wrapper tile-wrapper-console" style="grid-template-columns: repeat(3, 1fr);         grid-template-rows: 25% 40% 30% !important;">
+						<li class="tile-first-row-col1 secondary-color-box">
+							<a class="dash-row">
+								<i class="fa-solid fa-terminal"></i> Comandi Totali
+							</a>
+						    <h4 th:text="${commands}"></h4>
+							<p class="dash-row"></p>
+						</li>
+						<li class="tile-first-row-col2 secondary-color-box">
+							<a class="dash-row">
+								<i class="fa-solid fa-user-tie"></i>Utenti Totali
+							</a>
+							<h4 th:text="${names}"></h4>
+							<p class="dash-row">
+							</p>
+						</li>
+						<li class="tile-first-row-col3 secondary-color-box">
+						<a style="gap:0.3rem" class="dash-row">
+								<i class="fa-solid fa-server"></i> Server Totali
+							</a>
+							<h4 th:text="${serverNames}"></h4>
+							<p class="dash-row">
+							</p>
+						</li>
+						<li class="tile-second-row-col1-console fade-color-box"
+							style="grid-area: 2 / 1 / 5 / 2; justify-content: flex-start; position: relative; overflow-y: auto;">
+							<a class="dash-row">
+								<i class="fa-solid fa-ticket-simple"></i> Comandi - Usi 
+							</a>
+							<div class="rigo" style="background:none;" th:each="entry : ${commandsAndCount}">
+								<p style="width: 85%;" th:text="${entry.key}"></p>
+								<p th:text="${entry.value}"></p>
+							</div>
+						</li>
+						<li class="tile-second-row-col2-console fade-color-box"
+							style="grid-area: 2 / 2 / 5 / 2; justify-content: flex-start; position: relative; overflow-y: auto;">
+							<a class="dash-row">
+								<i class="fa-solid fa-terminal"></i>Utenti - Usi 
+							</a>
+							
+							<div class="rigo" style="background:none;" th:each="entry : ${namesAndCount}">
+								<p style="width: 85%;" th:text="${entry.key}"></p>
+								<p th:text="${entry.value}"></p>
+							</div>
+						</li>
+						<li class="tile-second-row-col3-console fade-color-box"
+							style="grid-area: 2 / 3 / 5 / 3; justify-content: flex-start; position: relative; overflow-y: auto;">
+							<a class="dash-row">
+								<i class="fa-solid fa-server"></i> Server - Usi
+							</a>
+							
+							<div class="rigo" style="background:none;" th:each="entry : ${serverNamesAndCount}">
+								<p style="width: 85%;" th:text="${entry.key}"></p>
+								<p th:text="${entry.value}"></p>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

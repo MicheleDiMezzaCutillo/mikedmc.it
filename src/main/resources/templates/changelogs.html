@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-68L3V697J8"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'G-68L3V697J8');
+	</script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Changelogs</title>
+	<link rel="stylesheet" href="/css/changelogs.css"/>
+	<link th:replace="~{fragments/favicon :: link}">
+</head>
+<body>
+    <div th:replace="~{fragments/header :: header}"></div>
+	<section>
+    <h1 class="animanza">Changelogs</h1>
+		<div th:each="changelog, stat : ${changelogs}" class="changelog-card">
+	        <h3>
+	            <span th:if="${stat.first}" style="color:var(--accent)">Newest</span>
+	            <span th:text="${changelog.formattedDate}"></span>
+	        </h3>
+	        <div style="display:flex;" th:each="log : ${changelog.logs}">
+	            <span class="pallino"></span><p th:utext="${log.message}"></p>
+	        </div>
+		</div>
+	</section>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

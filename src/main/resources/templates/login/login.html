@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MikeDmC | Login</title>
+<link rel="stylesheet" href="/css/login.css" />
+<link th:replace="~{fragments/favicon :: link}">
+</head>
+<body>
+	<div th:replace="~{fragments/header :: header}"></div>
+
+	<div class="body">
+
+		<form class="container"
+			th:classappend="${formLogin != null ? formLogin : ''}"
+			th:action="@{/login}" method="POST">
+			<div class="form">
+
+				<h2>Login</h2>
+				<div class="inputBox">
+					<input type="text" name="username" required="required"
+						placeholder=" "> <i class="fa-solid fa-user"></i> <span>username
+						o email</span>
+				</div>
+				<div class="inputBox">
+					<input type="password" id="password" name="password" required="required" placeholder=" "> 
+						<i class="fa-solid fa-lock"></i> <span>password</span> <i  id="toggleIcon" onclick="togglePassword()" class="fa-solid fa-eye occhio"></i>
+				</div>
+				<div class="inputBox">
+					<input type="submit" value="Login">
+				</div>
+				<p>
+					<a href="/reset-password" class="create">Password dimenticata?</a>
+				</p>
+			</div>
+		<div class="sub-form inputBox">
+			<a href="/register" style="margin-bottom:0;">Ancora non hai un account?</a>
+		</div>
+		</form>
+		
+
+	</div>
+	<div th:replace="~{fragments/footer :: footer}"></div>
+	<script>
+		function togglePassword() {
+		    var passwordInput = document.getElementById("password");
+		    var toggleIcon = document.getElementById("toggleIcon");
+		
+		    // Cambia il tipo di input
+		    if (passwordInput.type === "password") {
+		        passwordInput.type = "text";
+		        // Cambia l'icona in "eye-slash"
+		        toggleIcon.classList.remove("fa-eye");
+		        toggleIcon.classList.add("fa-eye-slash");
+		    } else {
+		        passwordInput.type = "password";
+		        // Cambia l'icona in "eye"
+		        toggleIcon.classList.remove("fa-eye-slash");
+		        toggleIcon.classList.add("fa-eye");
+		    }
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Changelog</title>
+    <link th:replace="~{fragments/favicon :: link}">
+</head>
+<body>
+
+	<div th:replace="~{fragments/header :: header}"></div>
+		<div class="body-89">
+			<div class="container-centrato">
+				<div class="title-buttons">
+					<a class="btn-blue m-button" href="/changelog">
+						<i class="fas fa-arrow-left"></i>
+						Indietro
+					</a>
+			    	<h1 class="header-title">Modifica Changelog</h1>
+					<a class="btn-green m-button" href="#" onclick="submitForm()">
+						<i class="fas fa-save"></i>
+						Salva
+					</a>
+					<a class="btn-green m-button" href="#" onclick="addLog()">
+						<i class="fas fa-save"></i>
+						Aggiungi Log
+					</a>
+				</div>
+				<form id="form" th:action="@{/changelog/edit}" method="POST">
+				        <input type="hidden" name="id" th:value="${changelog.id}" />
+				
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<td>Data</td>
+								<td><input type="date" name="date" th:value="${changelog.date}" required class="input-label"></td>
+							</tr>
+							<tr>
+								<td><p style="margin-bottom: auto;">Logs</p></td>
+								<td> 
+									<div id="logs">
+							            <div th:each="log, iter : ${logs}">
+							                <input class="default" style="width:78%" type="text" name="logMessages" th:value="${log.message}" />
+							                <button type="button" class="btn-red m-button" onclick="removeLog(this)">Remove</button>
+							                
+							            </div>
+						        	</div>
+						        </td>
+							</tr>
+						</thead>
+					</table>
+				</form>
+		</div>
+	</div>
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+    <script>
+        function submitForm() {
+            // Trova il modulo tramite il suo ID
+            var form = document.getElementById('form');
+            // Invia il modulo
+            form.submit();
+        }
+        
+        function addLog() {
+            const logContainer = document.getElementById('logs');
+            const logDiv = document.createElement('div');
+            logDiv.innerHTML = `
+                <input class="default" type="text" style="width:78%" name="logMessages" />
+                <button type="button" class="btn-red m-button" onclick="removeLog(this)">Remove</button>
+            `;
+            logContainer.appendChild(logDiv);
+        }
+
+        function removeLog(button) {
+            button.parentElement.remove();
+        }
+    </script>
+</body>
+</html>

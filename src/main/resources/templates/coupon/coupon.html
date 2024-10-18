@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Coupon</title>	
+    <link th:replace="~{fragments/favicon :: link}">
+</head>
+<body>
+    <div th:replace="~{fragments/header :: header}"></div>
+		<div class="body-89">
+			<div class="container-centrato">
+			 
+				<div class="title-buttons">
+					<a href="/console?id=4" class="btn-blue m-button">
+						<i class="fas fa-arrow-left"></i>
+						Indietro
+					</a>
+			    	<h1 class="header-title">Lista dei Coupon</h1>
+					<a class="btn-green m-button" href="/coupon/create">
+						<i class="fas fa-plus"></i>
+						Crea Coupon
+					</a>
+				</div>
+	
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Codice</th>
+						<th>Ruoli Permanenti</th>
+						<th>Disabilitato</th>
+						<th>Durata</th>
+	
+						<th>Usi Rimasti</th>
+	
+						<th>Usi Totali</th>
+	
+						<th>Scadenza</th>
+	
+						<th>Creazione</th>
+						<th>Ruoli</th>						
+						<th>Azioni</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="coupon : ${coupons}">
+		                <td th:text="${coupon.code}"></td>
+		                <td th:text="${coupon.permanent}"></td>
+		                <td th:text="${coupon.disabled}"></td>
+		                <td th:text="${coupon.durationDays}"></td>
+		                <td th:text="${coupon.uses}"></td>
+		                <td th:text="${coupon.totalUses}"></td>
+		                <td th:text="${#temporals.format(coupon.couponExpiration , 'dd/MM/yyyy HH:mm')}"></td>
+		                <td th:text="${#temporals.format(coupon.couponCreation , 'dd/MM/yyyy HH:mm')}"></td>
+		                <td>
+		                    <ul>
+		                        <li th:each="couponRole : ${coupon.couponRoles}" th:text="${couponRole.role.description}"></li>
+		                    </ul>
+		                </td>
+		                <td style="display:flex;">
+		                    <form th:action="@{/coupon/edit/{id}(id=${coupon.id})}" method="get">
+		                        <button class="btn-yellow m-button" type="submit">Modifica</button>
+		                    </form>
+		                	<form th:if="${!coupon.disabled}" th:action="@{/coupon/disable/{id}(id=${coupon.id})}" method="get">
+		                        <button class="btn-red m-button" type="submit">Disabilita</button>
+		                    </form>
+		                	<form th:if="${coupon.disabled}" th:action="@{/coupon/enable/{id}(id=${coupon.id})}" method="get">
+		                        <button class="btn-green m-button" type="submit">Abilita</button>
+		                    </form>
+		                    <form th:action="@{/coupon/delete/{id}(id=${coupon.id})}" method="post" onsubmit="return confirm('Sei sicuro?');">
+		                        <button class="btn-red m-button" type="submit">Elimina</button>
+		                    </form>
+		                </td>
+		            </tr>		
+				</tbody>
+			</table>
+		</div>
+	</div>
+    <div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

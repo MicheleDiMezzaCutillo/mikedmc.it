@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>OTP per mikedmc.it</title>
+</head>
+<style>
+
+* {
+	list-style: none;
+}
+body {
+      margin: 0;
+      padding: 0;
+    }
+/* main */
+main {
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 20vw;
+}
+
+main p {
+	font-size: 1.1rem;
+}
+
+main h4 {
+	font-size: 1,9rem;
+	line-height: 1.2;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    display: inline-block;
+    position: relative;
+}
+
+.m-button {
+    margin: 0 20px;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+	color: #2e89e4;
+    background-color: var(--blue);
+    border-color: #2e89e4;
+}
+
+.m-button:hover {
+    filter: brightness(80%);
+}
+
+/*footer*/
+footer {
+	margin: 0 20vw;
+}
+
+.footer-container {
+    max-width: 1170px;
+    margin: auto;
+}
+
+.footer {
+    padding: 10px;
+}
+
+footer h4 {
+    font-size: 18px;
+    color: black;
+    text-transform: capitalize;
+    margin-bottom: 35px;
+    font-weight: 500;
+    position: relative;
+}
+
+footer h4::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    background-color: #2e89e4;
+    height: 2px;
+    box-sizing: border-box;
+    width: 50px;
+}
+
+footer .bottom-details .bottom_text {
+    margin: auto;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.bottom-details .bottom_text span, .bottom-details .bottom_text a {
+    font-size: 14px;
+    font-weight: 300;
+    color: #fff;
+    opacity: 0.8;
+    text-decoration: none;
+}
+
+footer ul li a {
+    font-size: 16px;
+    text-decoration: none;
+    font-weight: 300;
+    display: block;
+    transition: all 0.3s ease;
+	cursor: pointer;
+	color: black;
+}
+
+footer ul li a:hover {
+    color: #2e89e4;
+    padding-left: 8px;
+}
+</style>
+<body>
+
+<main>
+
+    <h4>Salve {{name}}</h4>
+    <p>Il tuo codice OTP</p>
+	<h4>{{otpCode}}</h4>
+    <p>Premi per confermare automaticamente la tua email: <a class="m-button" href="https://mikedmc.it/otp?code={{otpCode}}">Qui</a></p>
+    <p>Buona continuazione.</p>
+	</main>
+	
+	<footer id="footer" class="footer-">
+		<h4>contatti</h4>
+		<ul style="padding-left: 0;">
+			<li><a href="https://discord.gg/qP8xbEP69Q" target="_blank">Discord</a></li>
+			<li><a href="mailto:latavernadimike@libero.it">latavernadimike@libero.it</a></li>
+		</ul>
+		<h4>link utili</h4>
+		<ul style="padding-left: 0;">
+			<li><a href="https://ko-fi.com/mikedmc" target="_blank">Ko-fi</a></li>
+			<li><a href="https://www.patreon.com/MikeDmC" target="_blank">Patreon</a></li>
+			<li><a href="https://it.fiverr.com/dimeku/create-custom-discord-bot-for-your-server" target="_blank">Fiverr</a></li>
+		</ul>
+		<div class="bottom-details">
+		<div class="bottom_text">
+		<span class="copyright_text">Copyright 2024 <a href="#">Mike Dm-C</a> All rights reserved</span>
+		<span class="policy_terms">
+		<a href="https://mikedmc.it/termsAndConditions" style="">Terms &amp; condition</a>
+		</span>
+		</div>
+		</div>
+  </footer>
+</body>
+</html>

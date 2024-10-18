@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Changelog List</title>
+    <link th:replace="~{fragments/favicon :: link}">
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+		<div class="body-89">
+			<div class="container-centrato">
+			 
+				<div class="title-buttons">
+					<a href="/console" class="btn-blue m-button">
+						<i class="fas fa-arrow-left"></i>
+						Indietro
+					</a>
+			    	<h1 class="header-title">Lista dei Ruoli</h1>
+					<a class="btn-green m-button" href="/changelog/create">
+						<i class="fas fa-plus"></i>
+						Crea Changelog
+					</a>
+				</div>
+	
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Date</th>
+		                <th>Logs</th>
+		                <th>Azioni</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="changelog : ${changelogs}">
+                		<td><h3 th:text="${changelog.date}"></h3></td>
+	                		<td>
+	                    <ul>
+	                        <li th:each="log : ${changelog.logs}" th:text="${log.message}"></li>
+	                    </ul>
+	                </td>
+                
+		                <td style="display:flex;">
+		                    <form th:action="@{/changelog/edit/{id}(id=${changelog.id})}" method="get">
+		                        <button class="btn-yellow m-button" type="submit">Modifica</button>
+		                    </form>
+		                    <form th:action="@{/changelog/delete/{id}(id=${changelog.id})}" method="get" onsubmit="return confirm('Sei sicuro?');">
+		                        <button class="btn-red m-button" type="submit">Elimina</button>
+		                    </form>
+		                </td>
+		            </tr>		
+				</tbody>
+			</table>
+		</div>
+	</div>
+    <div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>
+

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit User</title>
+    <link th:replace="~{fragments/favicon :: link}">
+</head>
+<body>
+
+	<div th:replace="~{fragments/header :: header}"></div>
+		<div class="body-89">
+			<div class="container-centrato">
+				<div class="title-buttons">
+					<a class="btn-blue m-button" href="/users">
+						<i class="fas fa-arrow-left"></i>
+						Indietro
+					</a>
+			    	<h1 class="header-title">Modifica Utente</h1>
+					<a class="btn-green m-button" href="#" onclick="submitForm()">
+						<i class="fas fa-save"></i>
+						Salva
+					</a>
+				</div>
+				<form id="form" th:action="@{/users/edit/{id}(id=${user.id})}" method="POST">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<td>Username</td>
+								<td><input type="text" id="username" name="username" th:value="${user.username}"></td>
+							</tr>
+							<tr>
+								<td>Email</td>
+								<td><input type="text" id="email" name="email" th:value="${user.email}" /></td>
+							</tr>
+							<tr>
+								<td>Confermato</td>
+								<td><input class="default" type="checkbox" id="confirmed" name="confirmed" th:checked="${user.confirmed}" /></td>
+							</tr>
+							<tr>
+								<td>ID Discord</td>
+								<td><input type="text" id="idDiscord" name="idDiscord" th:value="${user.idDiscord}" /></td>
+							</tr>
+							<tr>
+								<td>Ruoli</td>
+								<td>
+								<div th:each="role : ${allRoles}">
+							        <input type="checkbox" th:id="${role.id}"
+							               name="roles"
+							               th:value="${role.id}"
+							               th:checked="${userRoleIds.contains(role.id)}" />
+							        <label th:for="${role.id}" th:text="${role.description}"></label>
+								</div>
+							    </td>
+							</tr>
+						</thead>
+					</table>
+				</form>
+		</div>
+	</div>
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+    <script>
+        function submitForm() {
+            // Trova il modulo tramite il suo ID
+            var form = document.getElementById('form');
+            // Invia il modulo
+            form.submit();
+        }
+    </script>
+</body>
+</html>
+        <label>Roles:</label>
+	    <div th:each="role : ${allRoles}">
+	        <input type="checkbox" th:id="${role.id}"
+	               name="roles"
+	               th:value="${role.id}"
+	               th:checked="${userRoleIds.contains(role.id)}" />
+	        <label th:for="${role.id}" th:text="${role.description}"></label>
+	        <br />
+	    </div>

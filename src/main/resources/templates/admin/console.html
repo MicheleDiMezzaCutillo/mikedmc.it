@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Console</title>
+	<link rel="stylesheet" href="/css/dashboard.css" />
+	<link th:replace="~{fragments/favicon :: link}">
+</head>
+<body>
+    <div th:replace="~{fragments/header :: header}"></div>
+
+	<div class="dashboard-body">
+
+		<div class="dashboard-main">
+
+			<div class="dash-cols">
+				<div class="sidebar">
+					<a href="/console" class="dash-item selected">
+						<i class="fa-solid fa-home"></i> General
+					</a>
+					<a href="/console?id=2" class="dash-item">
+						<i class="fa-solid fa-laptop-code"></i> Bots
+					</a>
+					<a href="/console?id=3" class="dash-item">
+						<i class="fa-solid fa-chart-simple"></i> Visitor Stats
+					</a>
+					<a href="/console?id=4" class="dash-item">
+						<i class="fa-solid fa-receipt"></i> Coupons
+					</a>
+					<a href="/console?id=5" class="dash-item">
+						<i class="fa-solid fa-music"></i> Musicanza Stats
+					</a>
+				</div>
+				<div class="dash-tiles">
+					<ul class="tile-wrapper tile-wrapper-console">
+						<li class="tile-first-row-col1 secondary-color-box">
+							<a href="/users" class="dash-row">
+								<i class="fa-regular fa-user"></i>Utenti <i class="fa-solid fa-ellipsis"></i>
+							</a>
+							    <h4 th:text="${utenti}"></h4>
+
+
+							<p class="dash-row">
+							</p>
+						</li>
+						<li class="tile-first-row-col2 secondary-color-box">
+							<a href="/users/confirmed" class="dash-row">
+								<i class="fa-solid fa-check-circle"></i>Confermati <i class="fa-solid fa-ellipsis"></i>
+							</a>
+							<h4 th:text="${utentiConfermati}"></h4>
+							<p class="dash-row">
+							</p>
+						</li>
+						<li class="tile-first-row-col3 secondary-color-box">
+						<a href="/users/notconfirmed" style="gap:0.3rem" class="dash-row">
+								<i class="fa-solid fa-times-circle"></i>Non Confermati <i class="fa-solid fa-ellipsis"></i>
+							</a>
+							<h4 th:text="${utentiNonConfermati}"></h4>
+							<p class="dash-row">
+							</p>
+						</li>
+						<li class="tile-first-row-col4 fade-color-box">
+							<a href="/changelog" class="dash-row">
+								<i class="fa-solid fa-file-alt"></i>Changelog<i class="fa-solid fa-ellipsis"></i>
+							</a>
+							<h4 th:text="${changelog}"></h4>
+							<p class="dash-row">
+							</p>
+						</li>
+						<li class="tile-second-row-col1-console secondary-color-box"
+							style="justify-content: flex-start; position: relative;">
+							<a href="/users/active" class="dash-row">
+								<i class="fa-solid fa-user-check"></i>Attivi <i class="fa-solid fa-ellipsis"></i>
+							</a>
+							<h4 th:text="${utentiAttivi}"></h4>
+							<p class="dash-row">
+							</p>
+						</li>
+						<li class="tile-second-row-col2-console secondary-color-box"
+							style="justify-content: flex-start; position: relative;">
+							<a href="/users/new" class="dash-row">
+								<i class="fa-solid fa-user-plus"></i>Nuovi <i class="fa-solid fa-ellipsis"></i>
+							</a>
+							<h4 th:text="${utentiRecenti}"></h4>
+							<p class="dash-row">
+							</p>
+						</li>
+						<li class="tile-second-row-col3-console fade-color-box"
+							style="justify-content: flex-start; position: relative;">
+							<a href="/advertising" class="dash-row">
+								<i class="fas fa-ad"></i>Pubblicità <i class="fa-solid fa-ellipsis"></i>
+							</a>
+							<h4 th:text="${advertising}"></h4>
+							<p class="dash-row">
+							</p>
+						</li>
+						<li class="tile-second-row-col4-console fade-color-box"
+							style="justify-content: flex-start; position: relative;">
+							<a href="/roles" class="dash-row">
+								<i class="fa-solid fa-user-tag"></i>Ruoli <i class="fa-solid fa-ellipsis"></i>
+							</a>
+							<h4 th:text="${ruoli}"></h4>
+							<p class="dash-row">
+							</p>
+							
+						</li>
+						<li class="tile-third-row-col1 fade-color-box"
+							style="justify-content: flex-start; font-family: Poppins, sans-serif;"
+							>
+							<p class="dash-row"><i class="fa-solid fa-percent"></i>Percentuali Utenti</p>
+							<div class="ticket-row">
+								<p  th:style="${perAttivi}" >Attivi</p>
+							</div>
+							<div class="ticket-row">
+								<p  th:style="${perRecenti}" >Recenti</p>
+							</div>
+						</li>
+						<li class="tile-third-row-col2 fade-color-box"
+							style="justify-content: flex-start;"
+							>
+							<div th:each="role : ${ruoliNuovi}" class="ticket-row">
+								<p th:text="${role.description}"></p>
+								<p th:text="${role.path}"></p>
+								<p class="status">
+									<span class="status-light"></span>
+									Nuovo
+								</p>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

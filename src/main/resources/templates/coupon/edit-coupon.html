@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Modifica Coupon</title>	
+    <link th:replace="~{fragments/favicon :: link}">
+</head>
+<body>
+
+	<div th:replace="~{fragments/header :: header}"></div>
+		<div class="body-89">
+			<div class="container-centrato">
+				<div class="title-buttons">
+					<a class="btn-blue m-button" href="/coupon">
+						<i class="fas fa-arrow-left"></i>
+						Indietro
+					</a>
+			    	<h1 class="header-title">Modifica Coupon</h1>
+					<a class="btn-green m-button" href="#" onclick="submitForm()">
+						<i class="fas fa-save"></i>
+						Salva
+					</a>
+				</div>
+				<form id="form" th:action="@{/coupon/edit/{id}(id=${coupon.id})}" method="POST">
+					<table class="table table-striped">
+				        <thead>
+				            <tr>
+				                <td>Codice</td>
+				                <td>
+				                    <input type="text" id="code" name="code" th:value="${coupon.code}" class="input-label">
+				                </td>
+				            </tr>
+				            <tr>
+				                <td>Ruoli Permanenti</td>
+				                <td>
+				                    <input type="checkbox" id="permanent" name="permanent" th:checked="${coupon.permanent}" class="input-label">
+				                </td>
+				            </tr>
+				            <tr>
+				                <td>Durata</td>
+				                <td>
+				                    <input type="number" id="durationDays" name="durationDays" th:value="${coupon.durationDays}"  class="input-label">
+				                </td>
+				            </tr>
+				            <tr>
+				                <td>Usi Rimasti</td>
+				                <td>
+				                    <input type="number" id="uses" name="uses" th:value="${coupon.uses}" class="input-label">
+				                </td>
+				            </tr>
+				            <tr>
+				                <td>Usi Totali</td>
+				                <td>
+				                    <input type="number" id="totalUses" name="totalUses" th:value="${coupon.totalUses}" class="input-label">
+				                </td>
+				            </tr>
+				            <tr>
+				                <td>Data di Scadenza</td>
+				                <td>
+				                    <input type="datetime-local" id="couponExpiration" name="couponExpiration" th:value="${coupon.couponExpiration}" class="input-label">
+				                </td>
+				            </tr>
+				            <tr>
+								<td>Ruoli</td>
+								<td>
+									<div th:each="role : ${roles}">
+								        <input type="checkbox" th:id="${role.id}"
+								               name="roles"
+								               th:value="${role.id}"
+								               th:checked="${couponRoleIds.contains(role.id)}" />
+								        <label th:for="${role.id}" th:text="${role.description}"></label>
+									</div>
+							    </td>
+							</tr>
+				        </thead>
+				    </table>
+				</form>
+		</div>
+	</div>
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+    <script>
+        function submitForm() {
+            // Trova il modulo tramite il suo ID
+            var form = document.getElementById('form');
+            // Invia il modulo
+            form.submit();
+        }
+    </script>
+</body>
+</html>
+

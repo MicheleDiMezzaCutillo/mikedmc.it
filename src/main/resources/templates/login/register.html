@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MikeDmC | Register</title>
+<link rel="stylesheet" href="/css/login.css" />
+<link th:replace="~{fragments/favicon :: link}">
+</head>
+<body>
+	<div th:replace="~{fragments/header :: header}"></div>
+
+	<div class="body">
+		<form class="container" th:action="@{/register}"
+			th:object="${userDto}" method="POST"
+			th:classappend="${formRegister != null ? formRegister : ''}">
+			<div class="form">
+				<h2>Registrati</h2>
+				<div class="inputBox">
+					<input type="text" id="username" name="username" required="required"
+						placeholder=" " th:field="*{username}"> <i
+						class="fa-solid fa-user"></i> <span>Nickname</span>
+				</div>
+				<div class="inputBox">
+					<input type="email" name="email" id="email" required="required"
+						placeholder=" " th:field="*{email}"> <i
+						class="fa-solid fa-envelope"></i> <span>Email</span>
+				</div>
+				<div class="inputBox">
+					<input type="password" id="password" name="password"
+						required="required" placeholder=" " th:field="*{password}">
+					<i class="fa-solid fa-lock passColor"></i> <span>Password</span> <i
+						id="toggleIcon" onclick="togglePassword()"
+						class="fa-solid fa-eye occhio"></i>
+				</div>
+				<div class="inputBox">
+					<input type="password" id="password2" name="password2"
+						required="required" placeholder=" " th:field="*{password2}">
+					<i class="fa-solid fa-lock"></i> <span>Conferma password</span> <i
+						id="toggleIcon2" onclick="togglePassword2()"
+						class="fa-solid fa-eye occhio"></i>
+				</div>
+				<div class="inputBox">
+					<p>
+						<label> <input id="termini" style="width: auto; margin-right: 4px;"
+							type="checkbox" required="required">Accetti i <a
+							style="margin-left: 4px;" href="/termsAndConditions"
+							class="create"> Termini & Condizioni</a>
+						</label>
+					</p>
+					<input type="button" onclick="checkFields()" value="Procedi"
+						style="padding: 12px 10px;">
+				</div>
+			</div>
+			<div class="sub-form">
+				<a href="/login" style="margin-bottom: 0;">Hai già un account?</a>
+			</div>
+
+			<div class="blur-body" style="display: none;">
+				<div class="container">
+					<div class="form captcha-box">
+						<i class="fa-solid fa-xmark" onclick="closeBlurBody()"></i>
+						<h2>Captcha</h2>
+						<div class="inputBox">
+							<img th:src="${captchaImage}" alt="Captcha Image" />
+						</div>
+						<div class="inputBox">
+							<input type="text" name="code" required="required"
+								placeholder=" " th:field="*{code}"> <i
+								class="fa-solid fa-key"></i> <span>Codice Captcha</span> <i onclick="refreshPage()" class="fa-solid fa-rotate-right destra"></i>
+						</div>
+						<div class="inputBox">
+							<input type="submit" value="Crea Account"
+								onclick="confirmCaptcha()">
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+
+	</div>
+	<div th:replace="~{fragments/footer :: footer}"></div>
+	<script>
+		function checkFields() {
+			// Se tutti i campi sono validi, mostra l'overlay
+			const blurBody = document.querySelector(".blur-body");
+			blurBody.style.display = "flex"; // Cambia il display a flex per mostrare l'overlay
+		}
+
+		function confirmCaptcha(event) {
+			const captchaInput = document.querySelector("input[name='code']");
+			const blurBody = document.querySelector(".blur-body");
+			const form = document.querySelector(".container");
+			const username = form.username;
+			const email = form.email;
+			const password = form.password;
+			const password2 = form.password2;
+			const termsAccepted = form.querySelector("input[type='checkbox']").checked;
+
+			// Controllo della validità dei campi
+			if (!username.validity.valid || !email.validity.valid
+					|| !password.validity.valid
+					|| password.value !== password2.value || !termsAccepted) {
+				// Se uno dei campi non è valido, nascondi l'overlay
+				blurBody.style.display = "none";
+				return; // Esci dalla funzione
+			}
+
+		}
+
+		function closeBlurBody() {
+			const blurBody = document.querySelector(".blur-body");
+			blurBody.style.display = "none";
+		}
+	</script>
+
+	<script>
+		function togglePassword() {
+			var passwordInput = document.getElementById("password");
+			var toggleIcon = document.getElementById("toggleIcon");
+
+			// Cambia il tipo di input
+			if (passwordInput.type === "password") {
+				passwordInput.type = "text";
+				// Cambia l'icona in "eye-slash"
+				toggleIcon.classList.remove("fa-eye");
+				toggleIcon.classList.add("fa-eye-slash");
+			} else {
+				passwordInput.type = "password";
+				// Cambia l'icona in "eye"
+				toggleIcon.classList.remove("fa-eye-slash");
+				toggleIcon.classList.add("fa-eye");
+			}
+		}
+
+		function togglePassword2() {
+			var passwordInput = document.getElementById("password2");
+			var toggleIcon = document.getElementById("toggleIcon2");
+
+			// Cambia il tipo di input
+			if (passwordInput.type === "password") {
+				passwordInput.type = "text";
+				// Cambia l'icona in "eye-slash"
+				toggleIcon.classList.remove("fa-eye");
+				toggleIcon.classList.add("fa-eye-slash");
+			} else {
+				passwordInput.type = "password";
+				// Cambia l'icona in "eye"
+				toggleIcon.classList.remove("fa-eye-slash");
+				toggleIcon.classList.add("fa-eye");
+			}
+		}
+	</script>
+	
+	<script>
+		function refreshPage() {
+		    // Salva i dati di username e email in localStorage
+		    localStorage.setItem("username", document.getElementById("username").value);
+		    localStorage.setItem("email", document.getElementById("email").value);
+		    localStorage.setItem("termini", document.getElementById("termini").value);
+
+		    // Ricarica la pagina
+		    location.reload();
+		}
+		
+		// Recupera i dati da localStorage dopo il caricamento della pagina
+		window.onload = function() {
+		    if (localStorage.getItem("username")) {
+		        document.getElementById("username").value = localStorage.getItem("username");
+		    }
+		    if (localStorage.getItem("email")) {
+		        document.getElementById("email").value = localStorage.getItem("email");
+		    }
+		    if (localStorage.getItem("termini")) {
+		        document.getElementById("termini").value = localStorage.getItem("termini");
+		    }
+		    
+		    // Opzionalmente, rimuovi i dati dal localStorage dopo averli recuperati
+		    localStorage.removeItem("username");
+		    localStorage.removeItem("email");
+		    localStorage.removeItem("termini");
+		};
+	</script>
+</body>
+</html>

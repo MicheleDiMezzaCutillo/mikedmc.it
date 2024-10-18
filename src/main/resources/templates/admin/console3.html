@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Console</title>
+	<link rel="stylesheet" href="/css/dashboard.css" />
+	<link th:replace="~{fragments/favicon :: link}">
+</head>
+<body>
+    <div th:replace="~{fragments/header :: header}"></div>
+
+	<div class="dashboard-body">
+
+		<div class="dashboard-main">
+
+			<div class="dash-cols">
+				<div class="sidebar">
+					<a href="/console" class="dash-item">
+						<i class="fa-solid fa-home"></i> General
+					</a>
+					<a href="/console?id=2" class="dash-item">
+						<i class="fa-solid fa-laptop-code"></i> Bots
+					</a>
+					<a href="/console?id=3" class="dash-item selected">
+						<i class="fa-solid fa-chart-simple"></i> Visitor Stats
+					</a>
+					<a href="/console?id=4" class="dash-item">
+						<i class="fa-solid fa-receipt"></i> Coupons
+					</a>
+					<a href="/console?id=5" class="dash-item">
+						<i class="fa-solid fa-music"></i> Musicanza Stats
+					</a>
+				</div>
+				<div class="dash-tiles">
+					<ul class="tile-wrapper tile-wrapper-console">
+						<li class="grid-area1133 pageView secondary-color-box">
+						<a class="dash-row">
+								<i class="fa-regular fa-user"></i>Visualizzazioni Pagine
+							</a>
+							 <div th:each="pageView : ${pageviews}" class="pageview-row">
+						      <span class="pageview-url" th:text="${pageView.pageUrl}"></span>
+						      <span class="pageview-count" th:text="': ' + ${pageView.viewCount}"></span>
+						  </div>
+						</li>
+						<li class="tile-first-row-col3 secondary-color-box">
+						<a style="gap:0.3rem" class="dash-row">
+								<i class="fa-solid fa-times-circle"></i>Totale visite
+							</a>
+							<h4 th:text="${totalviews}"></h4>
+							<p class="dash-row">
+							</p>
+						</li>
+						<li class="tile-first-row-col4 fade-color-box">
+							<a class="dash-row">
+								<i class="fa-solid fa-file-alt"></i>N Pagine
+							</a>
+							<h4 th:text="${count}"></h4>
+							<p class="dash-row">
+							</p>
+						</li>
+						<li class="tile-third-row-col1 fade-color-box"
+							style="justify-content: flex-start; gap:0.5rem;"
+							>
+							<p class="dash-row"><i class="fa-solid fa-arrow-trend-up"></i>Top 3</p>
+							<div th:each="top : ${top3}" class="ticket-row">
+								<p th:text="${top.pageUrl}"></p>
+								<p th:text="${top.viewCount}"></p>
+								<p class="status">
+									<span class="status-light"></span>
+									Top
+								</p>
+							</div>
+							
+						</li>
+						<li class="tile-third-row-col2 fade-color-box"
+							style="justify-content: flex-start; gap:0.5rem;"
+							>
+							<p class="dash-row"><i class="fa-solid fa-arrow-trend-down"></i>Worst 3</p>
+							<div th:each="bot : ${bot3}" class="ticket-row">
+								<p th:text="${bot.pageUrl}"></p>
+								<p th:text="${bot.viewCount}"></p>
+								<p class="status">
+									<span class="status-light"></span>
+									Worst
+								</p>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Carica File</title>
+</head>
+<body>
+    <h1>Carica un file JSON</h1>
+    <form action="#" th:action="@{/aof/load}" method="post" enctype="multipart/form-data">
+        <label for="type">Seleziona un tipo:</label>
+        <select name="type" id="type" required>
+            <option th:each="option : ${options}" th:value="${option}" th:text="${option}"></option>
+        </select>
+        <br/><br/>
+        <label for="file">Scegli un file JSON:</label>
+        <input type="file" name="file" id="file" accept=".json" required/>
+        <br/><br/>
+        <button type="submit">Carica</button>
+    </form>
+</body>
+</html>

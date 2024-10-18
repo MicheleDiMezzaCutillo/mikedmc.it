@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-68L3V697J8"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'G-68L3V697J8');
+	</script>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Discord Server</title>
+	<link rel="stylesheet" href="css/sell.css">
+	<link th:replace="~{fragments/favicon :: link}">
+
+</head>
+<body>
+    <div th:replace="~{fragments/header :: header}"></div>
+    
+    <div class="sub-header">
+        <a href="#info"><i class="fa-solid fa-circle-info"></i> Info</a>
+        <a href="#faq"><i class="fa-solid fa-circle-question"></i> Domande</a>
+        <a href="#prezzi"><i class="fa-solid fa-comment-dollar"></i> Prezzi</a>
+    </div>
+    
+    <section id="info" class="sezione">
+		<div class="head-container">
+			<h2>Cos'è un Server Discord?</h2>
+				<h5>Discord si è affermato come uno dei principali mezzi di comunicazione, diventando indispensabile nel mondo online. Possedere un server Discord personalizzato ed unico è ormai importante, quindi perchè non commissionarne uno? Puoi andare anche a vedere qualche server che ho fatto io <a href="/progetti#serverds">premendo quì</a>.</h5>
+		</div>
+	</section>
+	<section id="faq" class="sezione">
+		<div class="head-container">
+			<h2>Domande frequenti</h2>
+		</div>
+		<div class="faq-cards">
+
+    <div class="faq-card">
+        <h4 class="faq-question" onclick="toggleAnswer(this)">
+            <i class="fas fa-server"></i> Quali tipi di server Discord puoi fare? <i class="fas fa-chevron-down"></i>
+        </h4>
+        <div class="faq-answer">
+            <h5>Posso fare un server per qualsiasi scopo: community di gaming, server aziendali, gruppi di studio, fan club e altro. Ogni server è progettato su misura in base alle tue esigenze specifiche.</p>
+        </div>
+    </div>
+
+    <div class="faq-card">
+        <h4 class="faq-question" onclick="toggleAnswer(this)">
+            <i class="fas fa-tools"></i> Quanto tempo ci metti per creare un server Discord? <i class="fas fa-chevron-down"></i>
+        </h4>
+        <div class="faq-answer">
+            <h5>Il tempo necessario varia in base alla complessità del server. Server semplici possono essere pronti in pochi giorni, mentre progetti più complessi potrebbero richiedere una settimana o più.</p>
+        </div>
+    </div>
+
+    <div class="faq-card">
+        <h4 class="faq-question" onclick="toggleAnswer(this)">
+            <i class="fas fa-robot"></i> Puoi aggiungere bot al mio server? <i class="fas fa-chevron-down"></i>
+        </h4>
+        <div class="faq-answer">
+            <h5>Certamente! Posso integrare dei bot per moderazione, giochi, gestione dei ticket, musica e molto altro. O anche crearne uno personalizzato per te.</p>
+        </div>
+    </div>
+
+    <div class="faq-card">
+        <h4 class="faq-question" onclick="toggleAnswer(this)">
+            <i class="fas fa-link"></i> Ho bisogno di darti accesso al mio server per la configurazione? <i class="fas fa-chevron-down"></i>
+        </h4>
+        <div class="faq-answer">
+            <h5>Sì, per configurare il server e testare le funzionalità, avrò bisogno dell'accesso temporaneo al server.</p>
+        </div>
+    </div>
+
+    <div class="faq-card">
+        <h4 class="faq-question" onclick="toggleAnswer(this)">
+            <i class="fas fa-users"></i> Posso ricevere assistenza dopo la creazione del server? <i class="fas fa-chevron-down"></i>
+        </h4>
+        <div class="faq-answer">
+            <h5>Sì, offro anche supporto continuo per la gestione e la manutenzione del server. Posso aiutarti con aggiornamenti, risoluzione di problemi e ottimizzazioni.</p>
+        </div>
+    </div>
+
+    <div class="faq-card">
+        <h4 class="faq-question" onclick="toggleAnswer(this)">
+            <i class="fas fa-cogs"></i> Posso aggiungere nuove funzionalità al server in futuro? <i class="fas fa-chevron-down"></i>
+        </h4>
+        <div class="faq-answer">
+            <h5>Assolutamente. Se in futuro desideri aggiungere nuove funzionalità o modificare quelle esistenti, posso aggiornare il server per soddisfare le tue nuove esigenze.</p>
+        </div>
+    </div>
+
+    <div class="faq-card">
+        <h4 class="faq-question" onclick="toggleAnswer(this)">
+            <i class="fas fa-sync-alt"></i> È possibile modificare un server che ho? <i class="fas fa-chevron-down"></i>
+        </h4>
+        <div class="faq-answer">
+            <h5>Si, posso lavorare su un server che già esiste, ottimizzandolo ed aggiornandolo in modo che soddisfi i requisiti richiesti.</p>
+        </div>
+    </div>
+
+    <div class="faq-card">
+        <h4 class="faq-question" onclick="toggleAnswer(this)">
+            <i class="fas fa-file-code"></i> Quali garanzie offri sulla funzionalità del server una volta consegnato? <i class="fas fa-chevron-down"></i>
+        </h4>
+        <div class="faq-answer">
+            <h5>Garantisco il funzionamento del server al momento della consegna. Se dovessero sorgere problemi tecnici entro un mese dall'acquisto, offro assistenza gratuita per risolverli. Successivamente, puoi sempre contattarmi per supporto aggiuntivo.</p>
+        </div>
+    </div>
+    <!-- Fine faq-card -->
+</div>
+
+	<section id="prezzi" class="sezione">
+		<div class="head-container">
+			<h2>Costi</h2>
+		</div>
+
+			<div class="info-card solo">
+				<h4><i class="fas fa-dollar-sign"></i> Costo del Server</h4>
+				<p>Il costo del Server verrà adattato alle richieste specifiche e alle funzioni desiderate.</p>
+				<p>La base di partenza è di €3.</p>
+			</div>
+	</section>
+
+	<div th:replace="~{fragments/footer :: footer}"></div>
+	<script>
+	    function toggleAnswer(element) {
+	        const answer = element.nextElementSibling;
+	        const icon = element.querySelector('.fas.fa-chevron-down');
+	        
+	        if (answer.style.display === "block") {
+	            answer.style.display = "none";
+	            icon.style.transform = "rotate(0deg)";
+	        } else {
+	            answer.style.display = "block";
+	            icon.style.transform = "rotate(180deg)";
+	        }
+	    }
+	</script>
+</body>
+</html>

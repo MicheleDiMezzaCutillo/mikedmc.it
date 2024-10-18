@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-68L3V697J8"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'G-68L3V697J8');
+	</script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Niente</title>
+	<link rel="stylesheet" href="css/sell.css">
+	<link th:replace="~{fragments/favicon :: link}">
+
+</head>
+<body>
+    <div th:replace="~{fragments/header :: header}"></div>
+    
+	<section id="faq" class="sezione" style="margin: 3em 0;">
+		<div class="info-cards">
+			<div class="info-card">
+				<h4><i class="fas fa-couch"></i> Slogan</h4>
+				<p>Cerchi un modo unico per rilassarti? Dimentica il trambusto della vita quotidiana e lascia che io non faccia nulla per aiutarti.</p>
+			</div>
+			<div class="info-card">
+				<h4><i class="fas fa-question-circle"></i> Perchè avresti bisogno di me?</h4>
+				<p>Hai mai avuto difficoltà a trovare un amico che si unisse a te per non fare niente in particolare? O di giocare con altre persone, e sentirti come se dovessi “intrattenerli” parlando o facendo qualcosa? Eccomi, noto anche come “Uomo che non fà niente”.</p>
+			</div>
+			<div class="info-card">
+				<h4><i class="fas fa-user"></i> Cosa Faccio?</h4>
+				<p>Offro un servizio di noleggio piuttosto non convezionale ai miei clienti online contraendomi a “Non fare nulla”.</p>
+			</div>
+		</div>
+	</section>
+	<section class="sezione">
+		<div class="info-cards">
+<div></div>
+			<div class="info-card">
+				<h4><i class="fas fa-star"></i> Perchè scegliere me?</h4>
+				<p>Sebbene ci siano agenzie in cui puoi assumere attori per interpretare il tuo amico, o l’intera famiglia, tali servizi di noleggio non sono rari. Tuttavia, mi distinguo per un approccio “leggero” piuttosto che per assumere un carattere diverso.</p>
+			</div>
+
+			<div class="info-card">
+				<h4><i class="fas fa-coffee"></i> Cosa intendo con “Non fare nulla”?</h4>
+				<p>“Non fare nulla significa mangiare e bere (con i clienti), giocare con loro, stare su Discord e rispondere alle loro semplici domande con risposte semplici.”</p>
+			</div>
+			<div></div>
+		</div>
+	</section>
+<section id="prezzi" class="sezione">
+		<div class="info-cards">
+					<div></div>
+		
+			<div class="info-card">
+				<img src="img/niente/non-faccio-nulla-anche-su-discord.png" alt="niente su ds">
+				<img src="img/niente/non-faccio-nulla-anche-su-lol.png" alt="niente su lol">
+			</div>
+			<div class="info-card">
+				<img src="img/niente/non-faccio-nulla-anche-su-minecraft.png" alt="niente su mine">
+				<img src="img/niente/non-faccio-nulla-anche-su-Valorant.png" alt="niente su valo">
+			</div>
+			<div></div>
+		</div>
+	</section>
+	<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

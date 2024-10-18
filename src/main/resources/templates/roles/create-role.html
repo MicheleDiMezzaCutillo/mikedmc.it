@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Crea Role</title>	
+    <link th:replace="~{fragments/favicon :: link}">
+</head>
+<body>
+    <div th:replace="~{fragments/header :: header}"></div>
+		<div class="body-89">
+			<div class="container-centrato">
+				<div class="title-buttons">
+					<a class="btn-blue m-button" href="/roles">
+						<i class="fas fa-arrow-left"></i>
+						Indietro
+					</a>
+			    	<h1 class="header-title">Crea Ruolo</h1>
+					<a class="btn-green m-button" href="#" onclick="submitForm()">
+						<i class="fas fa-save"></i>
+						Salva
+					</a>
+				</div>
+				<form id="roleForm" th:action="@{/roles/create}" th:object="${role}" method="POST">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<td>Nome</td>
+								<td><input type="text" id="description" th:field="*{description}" class="input-label"></td>
+							</tr>
+							<tr>
+								<td>Path</td>
+								<td><input type="text" id="path" th:field="*{path}" class="input-label"></td>
+							</tr>
+						</thead>
+					</table>
+				</form>
+		</div>
+	</div>
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+    <script>
+        function submitForm() {
+            // Trova il modulo tramite il suo ID
+            var form = document.getElementById('roleForm');
+            // Invia il modulo
+            form.submit();
+        }
+    </script>
+</body>
+</html>
+

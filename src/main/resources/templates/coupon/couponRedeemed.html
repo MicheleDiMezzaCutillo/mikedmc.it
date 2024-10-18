@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Coupon</title>	
+    <link th:replace="~{fragments/favicon :: link}">
+</head>
+<body>
+    <div th:replace="~{fragments/header :: header}"></div>
+		<div class="body-89">
+			<div class="container-centrato">
+			 
+				<div class="title-buttons">
+					<a href="/console?id=4" class="btn-blue m-button">
+						<i class="fas fa-arrow-left"></i>
+						Indietro
+					</a>
+			    	<h1 class="header-title">Lista dei Coupon Riscattati</h1>
+					<a class="btn-green m-button" href="/coupon/create">
+						<i class="fas fa-plus"></i>
+						Crea Coupon
+					</a>
+				</div>
+	
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Attivo</th>
+						<th>Inizio</th>
+						<th>Fine</th>
+						<th>Coupon</th>
+						<th>Utente</th>
+						<th>Azioni</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="couponRedeemed : ${couponRedeemeds}">
+		                <td th:text="${couponRedeemed.active}"></td>
+		                <td th:text="${#temporals.format(couponRedeemed.startingDate , 'dd/MM/yyyy HH:mm')}"></td>
+		                <td th:text="${#temporals.format(couponRedeemed.finishDate , 'dd/MM/yyyy HH:mm')}"></td>
+		                <td>
+			                <form th:action="@{/coupon/find/{code}(code=${couponRedeemed.coupon.code})}" method="get">
+		                        <button class="m-button default" type="submit" th:text="${couponRedeemed.coupon.code}"></button>
+		                    </form>
+		                </td>
+		                <td th:text="${couponRedeemed.user.username}"></td>
+		                <td style="display:flex;">
+		                    <form th:action="@{/couponRedeemed/edit/{id}(id=${couponRedeemed.id})}" method="get">
+		                        <button class="btn-yellow m-button" type="submit">Modifica</button>
+		                    </form>
+		                	<form th:if="${couponRedeemed.active}" th:action="@{/couponRedeemed/disable/{id}(id=${couponRedeemed.id})}" method="get">
+		                        <button class="btn-red m-button" type="submit">Disabilita</button>
+		                    </form>
+		                	<form th:if="${!couponRedeemed.active}" th:action="@{/couponRedeemed/enable/{id}(id=${couponRedeemed.id})}" method="get">
+		                        <button class="btn-green m-button" type="submit">Abilita</button>
+		                    </form>
+		                    <form th:action="@{/couponRedeemed/delete/{id}(id=${couponRedeemed.id})}" method="post" onsubmit="return confirm('Sei sicuro?');">
+		                        <button class="btn-red m-button" type="submit">Elimina</button>
+		                    </form>
+		                </td>
+		            </tr>		
+				</tbody>
+			</table>
+		</div>
+	</div>
+    <div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ruoli</title>	
+    <link th:replace="~{fragments/favicon :: link}">
+</head>
+<body>
+    <div th:replace="~{fragments/header :: header}"></div>
+		<div class="body-89">
+			<div class="container-centrato">
+			 
+				<div class="title-buttons">
+					<a href="/console" class="btn-blue m-button">
+						<i class="fas fa-arrow-left"></i>
+						Indietro
+					</a>
+			    	<h1 class="header-title">Lista dei Ruoli</h1>
+					<a class="btn-green m-button" href="/roles/create">
+						<i class="fas fa-plus"></i>
+						Crea Ruolo
+					</a>
+				</div>
+	
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Nome</th>
+						<th>Path</th>
+						<th>Possessori</th>
+						<th>Azioni</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="role : ${roles}">
+		                <td th:text="${role.description}"></td>
+		                <td th:text="${role.path}"></td>
+		                <td th:text="${role.userRoles.size()}"></td>
+		                <td style="display:flex;">
+		                    <form th:action="@{/roles/edit/{id}(id=${role.id})}" method="get">
+		                        <button class="btn-yellow m-button" type="submit">Modifica</button>
+		                    </form>
+		                    <form th:action="@{/roles/delete/{id}(id=${role.id})}" method="post" onsubmit="return confirm('Sei sicuro?');">
+		                        <button class="btn-red m-button" type="submit">Elimina</button>
+		                    </form>
+		                </td>
+		            </tr>		
+				</tbody>
+			</table>
+		</div>
+	</div>
+    <div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<!-- Cookies -->
+	<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="2694d87e-ab41-430b-9c27-dc8b415cf3dc" data-blockingmode="auto" type="text/javascript"></script>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-68L3V697J8"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'G-68L3V697J8');
+	</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link th:replace="~{fragments/favicon :: link}">
+</head>
+<body>
+     <!-- Inclusione dell'header comune -->
+    <div th:replace="~{fragments/header :: header}"></div>
+    
+    <main class="prima-cosa-che-vedi">
+        <div class="text-item active">
+            <h5>Salve! sono</h5>
+            <h2>Mike DmC</h2>
+        </div>
+	    <div class="text-item">
+            <h5>uno sviluppatore Java</h5>
+            <h2>che crea bot discord <i class="fa-brands fa-discord"></i></h2>
+        </div>
+    </main>
+    <div class="container-changelog-banner">
+            <!-- Banner Sinistro -->
+             <div th:if="${advertisings}" class="banner-column">
+            <!-- Itera sulla prima metà della lista advertisings -->
+            	<a th:each="advertising, iterStat : ${advertisings}" 
+                 th:if="${iterStat.index < advertisings.size() / 2}"
+                 th:classappend="${iterStat.index > 0} ? 'hidden'" class="banner" th:href="${advertising.authorLink}" target="_blank">
+	                 <div class="content">                 
+	                    <h2 th:text="${advertising.author}"></h2>
+	                 </div>
+                    <img th:src="${advertising.imageLink}" th:alt="${advertising.author}">
+	            </a>
+	        </div>
+            <!-- Changelog -->
+            <div class="changelog">
+			    <h4>Changelog <span th:text="${changelog.formattedDate}"></span></h4>
+			
+			        <ul class="log-entries">
+			            <!-- Iterare sui log del changelog -->
+			            <li th:each="log : ${changelog.logs}">
+			                <p th:utext="${log.message}"></p>
+			            </li>
+			        </ul>
+			    
+			    <a href="/changelogs" class="m-button btn-blue">Visualizza tutti i changelog</a>
+			</div>
+            <!-- Banner Destro -->
+            <div th:if="${advertisings}" class="banner-column">
+            <!-- Itera sulla seconda metà della lista advertisings -->
+	            <a th:each="advertising, iterStat : ${advertisings}" 
+	                 th:if="${iterStat.index >= advertisings.size() / 2}"
+	                 th:classappend="${iterStat.index > advertisings.size() / 2} ? 'hidden'" class="banner" th:href="${advertising.authorLink}" target="_blank">
+	                    <div class="content">                 
+		                    <h2 th:text="${advertising.author}"></h2>
+		                 </div>
+	                    <img th:src="${advertising.imageLink}" th:alt="${advertising.author}">
+	            </a>
+	        </div>
+        </div>
+    
+    <!-- Inclusione del footer comune -->
+    <div th:replace="~{fragments/footer :: footer}"></div>
+    <script>
+	document.addEventListener("DOMContentLoaded", function() {
+	    const items = document.querySelectorAll('.text-item');
+	    let currentIndex = 0;
+	    let transitionCount = 0;
+	    const maxTransitions = 5; // Numero massimo di transizioni (2 elementi x 3 cicli)
+	
+	    function showNextItem() {
+	        // Rimuovi la classe active e aggiungi la classe di dissolvenza in uscita all'elemento corrente
+	        items[currentIndex].classList.remove('active');
+	        items[currentIndex].classList.add('fade-out');
+	        
+	        // Calcola il prossimo indice
+	        const nextIndex = (currentIndex + 1) % items.length;
+	        
+	        // Rimuovi la classe di dissolvenza in uscita dall'elemento successivo
+	        items[nextIndex].classList.remove('fade-in', 'fade-out');
+	        items[nextIndex].classList.add('active', 'fade-in');
+	        
+	        // Imposta l'indice corrente al prossimo
+	        currentIndex = nextIndex;
+	        
+	        // Rimuovi la classe di dissolvenza in entrata dopo la durata dell'animazione
+	        setTimeout(() => {
+	            items[nextIndex].classList.remove('fade-in');
+	        }, 1000); // La durata dell'animazione è 1 secondo
+	
+	        // Incrementa il contatore delle transizioni
+	        transitionCount++;
+	        
+	        // Se raggiunge il numero massimo di transizioni, ferma l'intervallo
+	        if (transitionCount >= maxTransitions) {
+	            clearInterval(intervalId);
+	        }
+	    }
+	
+	    // Inizia il ciclo di cambiamento del testo
+	    const intervalId = setInterval(showNextItem, 5000); // Cambia testo ogni 5 secondi
+	});
+	
+	document.addEventListener("DOMContentLoaded", function() {
+	    // Seleziona tutte le card nelle due colonne
+	    const leftColumnCards = document.querySelectorAll('.banner-column:first-child .banner');
+	    const rightColumnCards = document.querySelectorAll('.banner-column:last-child .banner');
+
+	    let leftIndex = 0;  // Contatore per la colonna sinistra
+	    let rightIndex = 0; // Contatore per la colonna destra
+
+	    function cycleCards(columnCards, currentIndex) {
+	        // Nascondi la card attualmente visibile
+	        columnCards[currentIndex].classList.add('hidden');
+
+	        // Calcola il prossimo indice
+	        const nextIndex = (currentIndex + 1) % columnCards.length;
+
+	        // Mostra la prossima card
+	        columnCards[nextIndex].classList.remove('hidden');
+
+	        // Restituisci il nuovo indice
+	        return nextIndex;
+	    }
+
+	    // Cambia le card ogni 5 secondi
+	    setInterval(function() {
+	        // Aggiorna la colonna sinistra
+	        leftIndex = cycleCards(leftColumnCards, leftIndex);
+
+	        // Aggiorna la colonna destra
+	        rightIndex = cycleCards(rightColumnCards, rightIndex);
+	    }, 5000); // Cambia ogni 5 secondi
+	});
+	</script>
+
+
+</body>
+</html>

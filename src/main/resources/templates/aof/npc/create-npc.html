@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Crea NPC</title>
+    <link th:replace="~{fragments/favicon :: link}">
+</head>
+<body>
+	
+	<div th:replace="~{fragments/header :: header}"></div>
+		<div class="body-89">
+			<div class="container-centrato">
+				<div class="title-buttons">
+					<a class="btn-blue m-button" href="/aofnpc">
+						<i class="fas fa-arrow-left"></i>
+						Indietro
+					</a>
+			    	<h1 class="header-title">Modifica Npc</h1>
+					<a class="btn-green m-button" href="#" onclick="submitForm()">
+						<i class="fas fa-save"></i>
+						Salva
+					</a>
+				</div>
+				<form id="form" th:action="@{/aofnpc/create}" th:object="${npc}" method="POST">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<td>Nome</td>
+								<td><input type="text" th:field="*{nome}" class="input-label"></td>
+							</tr>
+							<tr>
+								<td>X</td>
+								<td><input type="number" th:field="*{x}" class="input-label"></td>
+							</tr>
+							<tr>
+								<td>Y</td>
+								<td><input type="number" th:field="*{y}" class="input-label"></td>
+							</tr>
+							<tr>
+								<td>Z</td>
+								<td><input type="number" th:field="*{z}" class="input-label"></td>
+							</tr>
+							<tr>
+								<td>Luogo</td>
+								<td>
+									<select th:field="*{place}" class="input-label">
+								        <option style="background: var(--background);" th:each="place : ${places}" th:value="${place}" th:text="${place}"></option>
+								    </select>
+								</td>
+							</tr>
+						</thead>
+					</table>
+				</form>
+		</div>
+	</div>
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+    <script>
+        function submitForm() {
+            // Trova il modulo tramite il suo ID
+            var form = document.getElementById('form');
+            // Invia il modulo
+            form.submit();
+        }
+    </script>
+
+</body>
+</html>

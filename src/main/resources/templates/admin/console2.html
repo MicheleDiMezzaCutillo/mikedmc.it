@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Console</title>
+	<link rel="stylesheet" href="/css/dashboard.css" />
+	<link th:replace="~{fragments/favicon :: link}">
+</head>
+<body>
+    <div th:replace="~{fragments/header :: header}"></div>
+
+	<div class="dashboard-body">
+
+		<div class="dashboard-main">
+
+			<div class="dash-cols">
+				<div class="sidebar">
+					<a href="/console" class="dash-item">
+						<i class="fa-solid fa-home"></i> General
+					</a>
+					<a href="/console?id=2" class="dash-item selected">
+						<i class="fa-solid fa-laptop-code"></i> Bots
+					</a>
+					<a href="/console?id=3" class="dash-item">
+						<i class="fa-solid fa-chart-simple"></i> Visitor Stats
+					</a>
+					<a href="/console?id=4" class="dash-item">
+						<i class="fa-solid fa-receipt"></i> Coupons
+					</a>
+					<a href="/console?id=5" class="dash-item">
+						<i class="fa-solid fa-music"></i> Musicanza Stats
+					</a>
+				</div>
+				<div class="dash-tiles">
+					<ul class="tile-wrapper tile-wrapper-console">
+						<li class="grid-area1135 pageView secondary-color-box">
+						    <a class="dash-row"><i class="fa-regular fa-user"></i>Visualizzazioni Pagine</a>
+						    
+						    <table>
+						        <thead>
+						            <tr>
+						                <th>Attivo</th>
+						                <th>Nome</th>
+										<th>Nome Processo</th> 
+						                <th>PID</th>
+						                <th>Uso Memoria (%)</th>
+						                <th>Memoria Fisica</th>
+						                <th>Ora di Avvio</th>
+						                <th>Azioni</th>
+						            </tr>
+						        </thead>
+						        <tbody>
+						            <tr th:each="processo : ${processList}">
+						                <td th:text="${processo.attivo} ? 'Sì' : 'No'"></td>
+						                <td th:text="${processo.name}"></td>
+						                <td th:text="${processo.processName}"></td>
+						                <td th:text="${processo.pid}"></td>
+						                <td th:text="${processo.memoryUsagePercentage}"></td>
+						                <td th:text="${processo.physicalMemory}"></td>
+						                <td th:text="${processo.startTime}"></td>
+						                <td>
+						                    <form th:action="@{/console/process/restart/{name}(name=${processo.processName})}" method="post" style="display:inline;">
+						                        <button type="submit" class="btn-green m-button">Riavvia</button>
+						                    </form>
+						                    <form th:if="${processo.attivo}" th:action="@{/console/process/switchoff/{pid}(pid=${processo.pid})}" method="post" style="display:inline;">
+						                        <button type="submit" class="btn-red m-button">Spegni</button>
+						                    </form>
+						                </td>
+						            </tr>
+						        </tbody>
+						    </table>
+						</li>
+						<li class="grid-area3132 fade-color-box"
+							style="justify-content: flex-start; gap:0.5rem;"
+							>
+							<p class="dash-row"><i class="fa-solid fa-arrow-trend-up"></i>Processi</p>
+							<h4 th:text="${nProcessi}"></h4>
+							<p class="dash-row">
+						</li>
+						<li class="grid-area3232 fade-color-box" style="justify-content: flex-start; gap:0.5rem;">
+							<p class="dash-row"><i class="fa-solid fa-arrow-trend-up"></i>Attivi</p>
+							<h4 th:text="${processiAttivi}"></h4>
+							<p class="dash-row"></p>
+							
+						</li>
+						<li class="grid-area3333 fade-color-box" style="justify-content: flex-start; gap:0.5rem;">
+							<p class="dash-row"><i class="fa-solid fa-arrow-trend-up"></i>Non Attivi</p>
+							<h4 th:text="${processiNonAttivi}"></h4>
+							<p class="dash-row"></p>
+							
+						</li>
+						<li class="grid-area3445 fade-color-box" style="justify-content: flex-start; gap:0.5rem;">
+							<p class="dash-row"><i class="fa-solid fa-arrow-trend-up"></i>Ram usata (%)</p>
+							<h4 th:text="${percentualeRamUsata}"></h4>
+							<p class="dash-row"></p>
+							
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

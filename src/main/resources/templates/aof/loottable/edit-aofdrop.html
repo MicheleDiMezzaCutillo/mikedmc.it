@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Modifica Drop</title>
+    <link th:replace="~{fragments/favicon :: link}">
+    <link rel="stylesheet" th:href="@{/css/crud.css}" />
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+	<div class="body-89">
+			<div class="container-centrato">
+				<div class="title-buttons">
+					<a class="btn-blue m-button" th:href="@{/aofmonster/edit/{id}(id=${drop.aofMonster.id})}">
+						<i class="fas fa-arrow-left"></i>
+						Indietro 
+					</a>
+			    	<h1 class="header-title">Modifica Drop</h1>
+					<a class="btn-green m-button" href="#" onclick="submitForm()">
+						<i class="fas fa-save"></i>
+						Salva
+					</a>
+				</div>
+				<form id="form" th:action="@{/aofdrop/edit/{id}(id=${drop.id})}" th:object="${drop}" method="POST">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<td>Nome</td>
+								<td><input type="text" th:field="*{nome}" class="input-label"></td>
+							</tr>
+							<tr>
+								<td>Rarità</td>
+								<td>
+									<select th:field="*{rarita}" class="input-label">
+								        <option style="background: var(--background);" th:each="rarity : ${raritys}" th:value="${rarity}" th:text="${rarity}"></option>
+								    </select>
+								</td>
+							</tr>
+							<input type="hidden" th:field="*{aofMonster}" />
+							
+						</thead>
+					</table>
+				</form>
+		</div>
+	</div>
+
+	<div th:replace="~{fragments/footer :: footer}"></div>
+    <script>
+        function submitForm() {
+            // Trova il modulo tramite il suo ID
+            var form = document.getElementById('form');
+            // Invia il modulo
+            form.submit();
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const element = document.getElementById('rarita');
+            
+            // Aggiungi la classe corrispondente al valore selezionato all'inizio
+            const initialValue = element.value;
+            if (initialValue) {
+                element.classList.add(initialValue);
+            }
+
+            // Aggiungi l'event listener per il cambiamento del valore
+            element.addEventListener('change', function() {
+                const selectedValue = this.value;
+                
+                // Rimuovi tutte le classi mantenendo solo la classe di base
+                this.className = 'input-label';
+                
+                // Aggiungi la classe corrispondente al valore selezionato
+                if (selectedValue) {
+                    this.classList.add(selectedValue);
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

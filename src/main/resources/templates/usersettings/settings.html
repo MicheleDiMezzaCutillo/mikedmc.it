@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-68L3V697J8"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'G-68L3V697J8');
+	</script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Impostazioni</title>
+	<link rel="stylesheet" href="/css/dashboard.css" />
+	<link th:replace="~{fragments/favicon :: link}">
+</head>
+<body>
+	<div th:replace="~{fragments/header :: header}"></div>
+
+	<div class="dashboard-body">
+
+		<div class="dashboard-main">
+
+			<div class="dash-cols">
+				<div class="sidebar">
+
+					<a href="/settings" class="dash-item selected">
+						<i class="fa-regular fa-user"></i> User
+					</a>
+					<a href="/settings?id=2" class="dash-item">
+						<i class="fa-solid fa-music"></i> Musicanza
+					</a>
+					<a href="/settings?id=3" class="dash-item">
+						<i class="fa-regular fa-star"></i> Animanza
+					</a>
+				</div>
+				<div class="dash-tiles">
+					<ul class="tile-wrapper">
+						<li class="grid-area1133 secondary-color-box input-container">
+						<form style="width:100%;" th:action="@{/coupon/use}" method="POST">
+							    <!-- Parametro nascosto per operazione -->
+							    
+							    <h4>Usa Coupon</h4>
+
+							    <!-- Email -->
+							    <div class="input">
+							        <label class="input__label" style="font-size:var(--h5)">
+							            <i class="fa-solid fa-ticket"></i> Codice
+							        </label>
+							        <input class="input__field" type="text" name="code">
+									
+							    </div>
+							    
+							    
+							    
+							    <button style="margin-top:10px;" class="button button--primary">Invia</button>
+							    <div class="input">
+							    	<p class="input__description">
+							    		I coupon ti permettono di ottenere dei permessi per accedere a delle pagine con accesso limitato. Ottenibili tramite contest, o con l'acquisto di un bot discord. Sono ad uso singolo.
+							    	</p>
+							    </div>
+							</form>
+						</li>
+						<li class="grid-area1533 secondary-color-box input-container">
+							<form style="width:100%;" th:action="@{/settings/sendMessage}" method="POST">
+							    <!-- Parametro nascosto per operazione -->
+							    <input type="hidden" name="operazione" value="contattami">
+							    
+							    <h4>Contattami</h4>
+
+							    <!-- Email -->
+							    <div class="input">
+							        <label class="input__label" style="font-size:var(--h5)">
+							            <i class="fa-regular fa-envelope"></i> Email
+							        </label>
+							        <input class="input__field" type="text" name="email" th:value="${loggedUser.email}">
+							    </div>
+							    
+							    <!-- Messaggio -->
+							    <div class="input">
+							        <label class="input__label" style="font-size:var(--h5)">
+							            <i class="fa-regular fa-message"></i> Messaggio
+							        </label>
+							        <textarea class="input__field input__field--textarea" name="messaggio" placeholder="Scrivi qui un messaggio per contattarmi."></textarea>
+							        <p class="input__description">
+							            Consiglio l'utilizzo del mio server 
+							            <a href="https://discord.gg/8e5PYG9NFa" target="_blank">Discord</a> per contattarmi.
+							        </p>
+							    </div>
+							    
+							    
+							    <button class="button button--primary">Invia messaggio</button>
+							</form>
+						</li>
+						<li class="tile-third-row-col1 fade-color-box input-container"
+							style="justify-content: flex-start;">
+							<form th:if="${loggedUser.idDiscord != null}" style="width:100%;">
+								<h4>Discord</h4>
+								<div class="input">
+								<label class="input__label" style="font-size:var(--h5)">
+									<i class="fa-brands fa-discord"></i> Discord Id
+								</label>
+								<input class="input__field" type="text" th:value="${loggedUser.idDiscord}" readonly>
+							</div>
+							</form>	
+							<form th:unless="${loggedUser.idDiscord != null}" th:action="@{/settings/linkDiscord}" style="width:100%;" method="POST" >
+								<input type="hidden" name="operazione" value="discordLink">
+							
+								<h4>Discord</h4>
+								<p class="input__description">Premi il bottone per ricevere un email con le istruzioni per collegare il tuo account Discord. <i class="fa-brands fa-discord"></i></p>
+								<button type="submit" class="button button--primary">Collega Discord</button>								
+							</form>						
+						</li>
+						<li class="tile-third-row-col2 fade-color-box"
+							style="justify-content: flex-start;">
+							<p class="dash-row"
+								style="font-family: Poppins, sans-serif;">
+								Completamento del profilo
+							</p>
+							<div class="ticket-row">
+								<p
+									style="border-bottom: 2px solid var(--accent); width: 100%; text-align: left; font-family: Poppins, sans-serif;"
+									>Dati Utente</p>
+							</div>
+							<div th:if="${loggedUser.idDiscord != null}" class="ticket-row">
+								<p
+									style="border-bottom: 2px solid var(--accent); width: 100%; text-align: left; font-family: Poppins, sans-serif;"
+									>Discord</p>
+							</div>
+							<div th:unless="${loggedUser.idDiscord != null}" class="ticket-row">
+								<p
+									style="border-bottom: 2px solid var(--accent); width: 1%; text-align: left; font-family: Poppins, sans-serif;"
+									>Discord</p>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Crea Demone</title>
+    <link th:replace="~{fragments/favicon :: link}">
+    <link rel="stylesheet" th:href="@{/css/crud.css}" />
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+
+	<div class="body-89">
+		<div class="container-centrato">
+			<div class="title-buttons">
+				<a class="btn-blue m-button" th:href="@{/aofmonster}"> <i
+					class="fas fa-arrow-left"></i> Indietro
+				</a>
+				<h1 class="header-title">Creazione Demone</h1>
+				<a class="btn-green m-button" href="#" onclick="submitForm()"> <i
+					class="fas fa-save"></i> Salva
+				</a>
+			</div>
+			<form id="form" th:action="@{/aofmonster/create}"
+				th:object="${monster}" method="post">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<td>Nome</td>
+							<td><input type="text" th:field="*{nome}" class="input-label"></td>
+						</tr>
+						<tr>
+							<td>Link PNG</td>
+							<td><input type="text" th:field="*{linkPng}" class="input-label"></td>
+						</tr>
+						<tr>
+							<td>Regione</td>
+							<td>
+							<select class="input-label" th:field="*{regione}">
+						        <option th:each="region : ${regions}" th:value="${region}" th:text="${region}"></option>
+						    </select>
+							</td>
+						</tr>
+					</thead>
+				</table>
+			</form>
+		</div>
+	</div>
+	
+
+
+	<div th:replace="~{fragments/footer :: footer}"></div>
+    <script>
+        function submitForm() {
+            // Trova il modulo tramite il suo ID
+            var form = document.getElementById('form');
+            // Invia il modulo
+            form.submit();
+        }
+    </script>
+</body>
+</html>

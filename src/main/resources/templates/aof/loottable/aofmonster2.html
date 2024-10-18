@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Elenco Demoni</title>
+<link th:replace="~{fragments/favicon :: link}">
+<link rel="stylesheet" th:href="@{/css/crud.css}" />
+<link rel="stylesheet" href="/css/loottable.css">
+</head>
+<body>
+	<div th:replace="~{fragments/header :: header}"></div>
+	<div class="body-89">
+		<div class="container-centrato">
+
+			<div class="title-buttons">
+				<a href="/aof" class="btn-blue m-button"> <i
+					class="fas fa-arrow-left"></i> Indietro
+				</a>
+				<h1 class="header-title">Elenco dei Demoni</h1>
+				<a class="btn-green m-button" th:href="@{/aofmonster/create}"> <i
+					class="fas fa-plus"></i> Aggiungi Demone
+				</a>
+			</div>
+		</div>
+		<div class="sub-header filter-container">
+			<!-- Filtro per Nome Mostro -->
+			<input class="default" type="text" id="filterName"
+				placeholder="Cerca per nome mostro" oninput="applyFilters()"
+				style="margin: 0 0.5em;">
+
+			<!-- Filtro per Nome Drop -->
+			<input class="default" type="text" id="filterDropName"
+				placeholder="Cerca per nome drop" oninput="applyFilters()"
+				style="margin: 0 0.5em;">
+
+			<!-- Filtro per Rarità -->
+			<select class="default" id="filterRarity" onchange="applyFilters()"
+				style="margin: 0 0.5em;">
+				<option value="">Tutte le rarità</option>
+				<th:block th:each="rarity : ${raritys}">
+					<option th:value="${rarity}" th:text="${rarity}"></option>
+				</th:block>
+			</select>
+
+			<!-- Filtro per Regione -->
+			<select class="default" id="filterRegion" onchange="applyFilters()"
+				style="margin: 0 0.5em;">
+				<option value="">Tutte le regioni</option>
+				<th:block th:each="region : ${regions}">
+					<option th:value="${region}" th:text="${region}"></option>
+				</th:block>
+			</select>
+
+		</div>
+
+		<ul id="monsterList" class="cards">
+			<li th:each="monster : ${monsters}" class="cards_item">
+				<div class="card" th:data-name="${monster.nome}"
+					th:data-region="${monster.regione}">
+					<div class="card_image">
+						<span th:text="${monster.regione}" th:class="@{'note ' + ${monster.regione}}"></span>
+						<form class="card_price2"
+							th:action="@{/aofmonster/delete/{id}(id=${monster.id})}"
+							method="get" onsubmit="return confirm('Sei sicuro?');">
+							<button style="margin: 0 4px;" class="btn-red m-button"
+								type="submit">Elimina</button>
+						</form>
+						<form class="card_price"
+							th:action="@{/aofmonster/edit/{id}(id=${monster.id})}"
+							method="get">
+							<button style="margin: 0 4px;" class="btn-yellow m-button"
+								type="submit">Modifica</button>
+						</form>
+						<img th:src="${monster.linkPng}" alt="Demone" />
+					</div>
+					<div class="card_content">
+						<h2 th:text="${monster.nome}" class="card_title"></h2>
+						<div class="card_text">
+							<th:block th:each="drop : ${monster.drops}">
+								<p th:text="${drop.nome}" th:class="${drop.rarita}"
+									th:data-rarity="${drop.rarita}"></p>
+							</th:block>
+						</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<script>
+function applyFilters() {
+    const nameFilter = document.getElementById('filterName').value.toLowerCase();
+    const rarityFilter = document.getElementById('filterRarity').value;
+    const regionFilter = document.getElementById('filterRegion').value;
+    const dropNameFilter = document.getElementById('filterDropName').value.toLowerCase();
+
+    const monsters = document.querySelectorAll('.cards_item');
+
+    monsters.forEach(monster => {
+        const monsterName = monster.querySelector('.card').getAttribute('data-name').toLowerCase();
+        const monsterRegion = monster.querySelector('.card').getAttribute('data-region');
+        const drops = monster.querySelectorAll('.card_text p');
+
+        // Controllo per nome mostro e regione
+        let nameMatch = monsterName.includes(nameFilter);
+        let regionMatch = regionFilter === '' || monsterRegion === regionFilter;
+
+        // Variabile per controllare se il mostro ha almeno un drop della rarità selezionata
+        let hasRarityDrop = false;
+        let hasDropMatch = false; // Per verificare se c'è almeno un drop che corrisponde al filtro di nome
+
+        // Mostra o nascondi i drop in base alla rarità selezionata e alla ricerca per nome
+        drops.forEach(drop => {
+            const dropName = drop.textContent.toLowerCase(); // Nome del drop
+            const dropRarity = drop.getAttribute('data-rarity');
+
+            // Controllo se il drop soddisfa i criteri di nome
+            let dropNameMatch = dropName.includes(dropNameFilter);
+
+            // Se c'è un filtro di rarità, controlla se il drop corrisponde
+            if (rarityFilter && dropRarity === rarityFilter) {
+                drop.style.display = ''; // Mostra il drop se corrisponde
+                hasRarityDrop = true; // Imposta true se il mostro ha un drop della rarità selezionata
+            } else if (!rarityFilter) {
+                drop.style.display = ''; // Mostra tutti i drop se non c'è filtro di rarità
+            } else {
+                drop.style.display = 'none'; // Nascondi il drop se non corrisponde
+            }
+
+            // Controlla anche se il drop corrisponde al filtro di nome dei drop
+            if (dropNameMatch) {
+                hasDropMatch = true; // Imposta true se c'è almeno un drop che corrisponde
+            }
+        });
+
+        // Mostra il mostro solo se soddisfa i criteri di nome, regione e ha almeno un drop visibile
+        if (nameMatch && regionMatch && (hasRarityDrop || !rarityFilter) && (hasDropMatch || dropNameFilter === '')) {
+            monster.style.display = ''; // Mostra il mostro
+        } else {
+            monster.style.display = 'none'; // Nascondi il mostro
+        }
+    });
+}
+</script>
+	<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

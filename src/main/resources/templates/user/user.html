@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Utenti</title>	
+    <link th:replace="~{fragments/favicon :: link}">
+</head>
+<body>
+    <div th:replace="~{fragments/header :: header}"></div>
+		<div class="body-89">
+			<div class="container-centrato">
+			 
+				<div class="title-buttons">
+					<a href="/console" class="btn-blue m-button">
+						<i class="fas fa-arrow-left"></i>
+						Indietro
+					</a>
+			    	<h1 class="header-title">Lista Utenti</h1>
+					<a class="btn-green m-button" href="/roles/create">
+						<i class="fas fa-plus"></i>
+						Crea Ruolo
+					</a>
+				</div>
+	
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Username</th>
+		                <th>Email</th>
+		                <th>Data creazione</th>
+		                <th>Ultimo Accesso</th>
+		                <th>Discord?</th>
+		                <th>Roles</th>
+		                <th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+            	<tr th:each="user : ${users}">
+		                <td th:text="${user.username}"></td>
+                		<td th:text="${user.email}"></td>
+		                <td th:text="${#temporals.format(user.createdDate, 'dd-MM-yyyy HH:mm')}"></td>
+		                <td th:text="${#temporals.format(user.lastLoginDate, 'dd-MM-yyyy HH:mm')}"></td>
+                		<td th:text="${user.idDiscord != null ? user.idDiscord : 'No'}"></td>
+		                <td>
+		                    <ul>
+		                        <li th:each="userRole : ${user.userRoles}" th:text="${userRole.role.description}"></li>
+		                    </ul>
+		                </td>
+		                <td>
+		                    <form th:action="@{/users/edit/{id}(id=${user.id})}" method="get">
+		                        <button class="btn-yellow m-button" type="submit">Modifica</button>
+		                    </form>
+		                    <form th:action="@{/users/delete/{id}(id=${user.id})}" method="post" onsubmit="return confirm('Sei sicuro?');">
+		                        <button class="btn-red m-button" type="submit">Elimina</button>
+		                    </form>
+		                </td>
+		            </tr>		
+				</tbody>
+			</table>
+		</div>
+	</div>
+    <div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

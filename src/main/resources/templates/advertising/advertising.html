@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+    <div th:replace="~{fragments/header :: header}"></div>
+		<div class="body-89">
+			<div class="container-centrato">
+			 
+				<div class="title-buttons">
+					<a href="/console" class="btn-blue m-button">
+						<i class="fas fa-arrow-left"></i>
+						Indietro
+					</a>
+			    	<h1 class="header-title">Lista dei Banner</h1>
+					<a class="btn-green m-button" href="/advertising/create">
+						<i class="fas fa-plus"></i>
+						Crea Banner
+					</a>
+				</div>
+	
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Immagine</th>
+						<th>Autore</th>
+						<th>Link</th>
+						<th>Azioni</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="advertising : ${advertisings}">
+						<td>
+							<img style="width: 100%;" th:src="${advertising.imageLink}" alt="Advertising Image"/>
+						</td>
+						<td th:text="${advertising.author}"></td>
+		                <td th:text="${advertising.authorLink}"></td>
+		                <td style="display:flex;">
+		                    <form th:action="@{/advertising/edit/{id}(id=${advertising.id})}" method="get">
+		                        <button class="btn-yellow m-button" type="submit">Modifica</button>
+		                    </form>
+		                    <form th:action="@{/advertising/delete/{id}(id=${advertising.id})}" method="get" onsubmit="return confirm('Sei sicuro?');">
+		                        <button class="btn-red m-button" type="submit">Elimina</button>
+		                    </form>
+		                </td>
+		            </tr>		
+				</tbody>
+			</table>
+		</div>
+	</div>
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+</body>
+</html>

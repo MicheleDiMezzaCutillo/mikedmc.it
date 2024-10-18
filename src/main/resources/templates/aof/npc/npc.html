@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>NPC List</title>
+    <link th:replace="~{fragments/favicon :: link}">
+</head>
+<body>
+	<div th:replace="~{fragments/header :: header}"></div>
+		<div class="body-89">
+			<div class="container-centrato">
+			 
+				<div class="title-buttons">
+					<a href="/npcs" class="btn-blue m-button">
+						<i class="fas fa-arrow-left"></i>
+						Indietro
+					</a>
+			    	<h1 class="header-title">Lista dei Ruoli</h1>
+					<a class="btn-green m-button" href="/aofnpc/create">
+						<i class="fas fa-plus"></i>
+						Crea Ruolo
+					</a>
+				</div>
+	
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Nome</th>
+						<th>X</th>
+				        <th>Y</th>
+				        <th>Z</th>
+				        <th>Luogo</th>
+				        <th>Azioni</th>
+					</tr>
+				</thead>
+				<tbody>
+    				<tr th:each="npc : ${npcs}">
+		                <td th:text="${npc.nome}">Nome</td>
+				        <td th:text="${npc.x}"></td>
+				        <td th:text="${npc.y}"></td>
+				        <td th:text="${npc.z}"></td>
+				        <td th:text="${npc.place}"></td>
+		                <td style="display:flex;">
+		                    <form th:action="@{/aofnpc/edit/{id}(id=${npc.id})}" method="get">
+		                        <button class="btn-yellow m-button" type="submit" style="margin:0;">Modifica</button>
+		                    </form>
+		                    <form th:action="@{/aofnpc/delete/{id}(id=${npc.id})}" method="post" onsubmit="return confirm('Sei sicuro?');">
+		                        <button class="btn-red m-button" type="submit" style="margin:0;">Elimina</button>
+		                    </form>
+		                </td>
+		            </tr>		
+				</tbody>
+			</table>
+		</div>
+	</div>
+    <div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

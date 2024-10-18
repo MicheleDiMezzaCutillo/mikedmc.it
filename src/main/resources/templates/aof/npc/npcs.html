@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Npc</title>
+<link rel="stylesheet" href="/css/npcs.css">
+<!-- Modifica con il tuo percorso CSS -->
+<link rel="stylesheet" th:href="@{/css/crud.css}" />
+<link th:replace="~{fragments/favicon :: link}">
+</head>
+<body>
+	<div th:replace="~{fragments/header :: header}"></div>
+
+	<div class="sub-header filter-container">
+		<!-- Filtro per Nome Mostro -->
+		<input class="default" type="text" id="filterName"
+			placeholder="Cerca per nome" oninput="applyFilters()"
+			style="margin: 0 0.5em;">
+
+		<!-- Filtro per Rarità -->
+		<select class="default" id="filterRarity" onchange="applyFilters()"
+			style="margin: 0 0.5em;">
+			<option value="">Tutti i luoghi</option>
+			<th:block th:each="place : ${places}">
+				<option th:value="${place}" th:text="${place}"></option>
+			</th:block>
+		</select>
+	</div>
+	<div class="cards">
+
+		<div class="card__" th:each="npc : ${npcs}" th:data-name="${npc.nome}" 
+    th:data-place="${npc.place}" th:data-x="${npc.x}" th:data-y="${npc.y}" th:data-z="${npc.z}">
+			<ul class="list">
+				<li class="element copy-name"><i class="fa-regular fa-user"></i>
+					<p class="label" th:text="${npc.nome}"></p>
+				</li>
+				<li class="element copy-place"><i class="fa-solid fa-globe"></i>
+					<p class="label" th:text="${npc.place}"></p>
+				</li>
+				<ul class="coordinate">
+					<li class="element coordinates"><i class="fa-solid fa-map-location-dot"></i>
+						<p class="label">
+							X: <span th:text="${npc.x}"></span> Y: <span th:text="${npc.y}"></span>
+							Z: <span th:text="${npc.z}"></span>
+						</p>
+					</li>
+					<li class="element copy-phrase">
+						<p class="label"><i class="fa-regular fa-copy"></i></p>					
+					</li>
+				</ul>
+			</ul>
+		</div>
+	</div>
+<script>
+function applyFilters() {
+    // Ottieni i valori di input
+    const nameFilter = document.getElementById('filterName').value.toLowerCase();
+    const rarityFilter = document.getElementById('filterRarity').value;
+
+    // Ottieni tutte le schede degli NPC
+    const cards = document.querySelectorAll('.card__');
+
+    // Filtra le schede
+    cards.forEach(card => {
+        const npcName = card.getAttribute('data-name').toLowerCase();
+        const npcPlace = card.getAttribute('data-place'); // Ottieni il valore direttamente dall'attributo
+
+        // Controlla se il nome corrisponde e se il luogo corrisponde
+        const nameMatches = npcName.includes(nameFilter);
+        const placeMatches = rarityFilter === '' || npcPlace === rarityFilter;
+
+        console.log(`Filtering: ${npcName}, Place: ${npcPlace}, Name Matches: ${nameMatches}, Place Matches: ${placeMatches}`);
+
+        // Mostra o nasconde la scheda in base ai filtri
+        if (nameMatches && placeMatches) {
+            card.style.display = '';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+function copyToClipboard(text, element) {
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
+
+    // Cambia il colore di sfondo dell'elemento cliccato
+    element.style.backgroundColor = 'var(--primary)'; // Colore di conferma (puoi cambiarlo)
+    
+    // Rimuovi il colore dopo 3 secondi
+    setTimeout(() => {
+        element.style.backgroundColor = ''; // Ripristina il colore originale
+    }, 1500);
+}
+
+//Aggiungi gli event listeners per la copia
+function addCopyListeners() {
+    const nameElements = document.querySelectorAll('.copy-name');
+    const placeElements = document.querySelectorAll('.copy-place');
+    const phraseElements = document.querySelectorAll('.copy-phrase');
+    const coordinateElements = document.querySelectorAll('.coordinates'); // Aggiunto per le coordinate
+
+    nameElements.forEach(element => {
+        element.addEventListener('click', () => {
+            const npcName = element.querySelector('.label').textContent;
+            copyToClipboard(npcName, element);
+        });
+    });
+
+    placeElements.forEach(element => {
+        element.addEventListener('click', () => {
+            const npcPlace = element.querySelector('.label').textContent;
+            copyToClipboard(npcPlace, element);
+        });
+    });
+
+    phraseElements.forEach(element => {
+        element.addEventListener('click', () => {
+            const card = element.closest('.card__');
+            const npcName = card.getAttribute('data-name');
+            const npcPlace = card.getAttribute('data-place');
+            const npcX = card.getAttribute('data-x');
+            const npcY = card.getAttribute('data-y');
+            const npcZ = card.getAttribute('data-z');
+
+            const phrase = `L'NPC ${npcName} si trova a coordinate X: ${npcX} Y: ${npcY} Z: ${npcZ} (${npcPlace})`;
+            copyToClipboard(phrase, element);
+        });
+    });
+
+    // Aggiungi il gestore di eventi per le coordinate
+    coordinateElements.forEach(element => {
+        element.addEventListener('click', () => {
+            const card = element.closest('.card__');
+            const npcX = card.getAttribute('data-x');
+            const npcY = card.getAttribute('data-y');
+            const npcZ = card.getAttribute('data-z');
+
+            const coordinates = `X: ${npcX}, Y: ${npcY}, Z: ${npcZ}`;
+            copyToClipboard(coordinates, element);
+        });
+    });
+}
+
+// Assicurati che la funzione venga chiamata quando l'elemento è pronto
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('filterRarity').addEventListener('change', applyFilters);
+    document.getElementById('filterName').addEventListener('input', applyFilters);
+    addCopyListeners(); // Aggiungi i listener per la copia
+});
+</script>
+	<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>
