@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${project.name} + ' - Documentazione'"></title>
+
+    <!-- Aggiungi Tailwind CSS tramite CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="/css/styles.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let lastModified = new Date(document.getElementById("last-modified").dataset.timestamp);
+            let now = new Date();
+            let diffInMillis = now - lastModified;
+            let diffInSeconds = Math.floor(diffInMillis / 1000);
+            let diffInMinutes = Math.floor(diffInSeconds / 60);
+            let diffInHours = Math.floor(diffInMinutes / 60);
+            let diffInDays = Math.floor(diffInHours / 24);
+            let diffInWeeks = Math.floor(diffInDays / 7);
+            let timeAgo = '';
+
+            if (diffInWeeks > 0) {
+                timeAgo = `${diffInWeeks} settiman${diffInWeeks > 1 ? 'e' : 'a'} fa`;
+            } else if (diffInDays > 0) {
+                timeAgo = `${diffInDays} giorn${diffInDays > 1 ? 'i' : 'o'} fa`;
+            } else if (diffInHours > 0) {
+                timeAgo = `${diffInHours} or${diffInHours > 1 ? 'e' : 'a'} fa`;
+            } else if (diffInMinutes > 0) {
+                timeAgo = `${diffInMinutes} minut${diffInMinutes > 1 ? 'i' : 'o'} fa`;
+            } else {
+                timeAgo = `Appena ora`;
+            }
+
+            document.getElementById("last-modified").textContent = `Ultima modifica: ${timeAgo}`;
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", async function () {
+            const contentArea = document.getElementById("doc-content-area");
+            const code = '[[${project.code}]]';
+            console.log(code);
+
+            const headingLevels = {
+                H1: 1,
+                H2: 2,
+                H3: 3,
+                H4: 4,
+                H5: 5
+            };
+
+            try {
+                const response = await fetch(`/api/public/documentation/${code}/contents`);
+                if (!response.ok) throw new Error("Errore nel caricamento dei contenuti");
+
+                const contents = await response.json();
+                contentArea.innerHTML = ""; // pulisce il messaggio "Caricamento..."
+                console.log(Array.isArray(contents), contents);
+                let headingCounter = 0; // Contatore per id univoci
+                const glossaryList = document.getElementById("glossary-list");
+
+
+                contents.forEach(item => {
+                    let element = null;
+
+                    const id = `heading-${headingCounter}`;
+                    const level = headingLevels[item.type] || 0;
+                    const li = document.createElement("li");
+
+                    switch (item.type) {
+                        case "H1":
+                            ++headingCounter;
+                            element = document.createElement("h1");
+                            element.id = id;
+                            element.className = "text-3xl font-bold";
+                            element.textContent = item.data;
+
+                            li.innerHTML = `<a href="#${id}" class="block ml-${level * 2} hover:underline">${item.data}</a>`;
+                            glossaryList.appendChild(li);
+                            break;
+
+                        case "H2":
+                            ++headingCounter;
+                            element = document.createElement("h2");
+                            element.id = id;
+                            element.className = "text-2xl font-semibold";
+                            element.textContent = item.data;
+
+                            li.innerHTML = `<a href="#${id}" class="block ml-${level * 2} hover:underline">${item.data}</a>`;
+                            glossaryList.appendChild(li);
+                            break;
+
+                        case "H3":
+                            ++headingCounter;
+                            element = document.createElement("h2");
+                            element.id = id;
+                            element.className = "text-xl font-semibold";
+                            element.textContent = item.data;
+
+                            li.innerHTML = `<a href="#${id}" class="block ml-${level * 2} hover:underline">${item.data}</a>`;
+                            glossaryList.appendChild(li);
+                            break;
+
+                        case "H4":
+                            ++headingCounter;
+                            element = document.createElement("h4");
+                            element.id = id;
+                            element.className = "text-lg font-medium";
+                            element.textContent = item.data;
+
+                            li.innerHTML = `<a href="#${id}" class="block ml-${level * 2}  hover:underline">${item.data}</a>`;
+                            glossaryList.appendChild(li);
+                            break;
+
+                        case "H5":
+                            ++headingCounter;
+                            element = document.createElement("h5");
+                            element.id = id;
+                            element.className = "text-base font-medium";
+                            element.textContent = item.data;
+
+                            li.innerHTML = `<a href="#${id}" class="block ml-${level * 2} hover:underline">${item.data}</a>`;
+                            glossaryList.appendChild(li);
+                            break;
+
+                        case "P":
+                            element = document.createElement("p");
+                            element.textContent = item.data;
+
+                            break;
+                        case "TABLE":
+                            element = document.createElement("div");
+                            const tableId = `table-${Math.random().toString(36).substr(2, 9)}`; // ID unico
+                            element.id = tableId;
+                            element.className = "overflow-x-auto";
+                            element.textContent = "Caricamento tabella da CSV...";
+
+                            loadCSVTable(`/api/public/documentation/csv/${item.data}`, tableId);
+                            break;
+                        case "LIST":
+                            const list = document.createElement("ul");
+                            list.className = "list-disc list-inside";
+
+                            const items = item.data.split("\n");
+                            items.forEach(i => {
+                                const li = document.createElement("li");
+                                li.textContent = i;
+                                list.appendChild(li);
+                            });
+
+                            element = list;
+                            break;
+                        case "IMAGE":
+                            element = document.createElement("img");
+                            element.className = "max-w-full rounded";
+                            element.src = item.data;
+
+                            break;
+                        case "CALLOUT":
+                             element = document.createElement("div");
+                            element.className = "p-4 border-l-4 shadow-[0_0_2px_var(--text)] rounded max-w-full rounded";
+
+                            // Applica colore dal parametro o default
+                            if (item.option1) {
+                                element.classList.add(item.option1);
+                            } else {
+                                element.classList.add("border-blue-500");
+                            }
+
+                            if (item.option2) {
+                                const icon = document.createElement("i");
+                                icon.className = `${item.option2} mr-2`;
+                                element.appendChild(icon);
+                            }
+
+                            if (item.option3) {
+                                const strong = document.createElement("strong");
+                                strong.textContent = item.option3 + ": ";
+                                element.appendChild(strong);
+                            }
+
+                            const text = document.createTextNode(item.data);
+                            element.appendChild(text);
+                            break;
+                        case "ALERT":
+                            element = document.createElement("div");
+                            element.className = "p-4 rounded";
+                            element.classList.add(item.option1 || "bg-red-100", "text-red-700");
+                            element.textContent = item.data;
+                            break;
+
+                        case "BUTTON":
+                            if (item.option3) {
+                                // Se c'è un link, usa <a> come contenitore
+                                element = document.createElement("a");
+                                element.href = item.option3;
+                                element.target = "_blank"; // opzionale: apre in nuova scheda
+                                element.className = "inline-block px-4 py-2 rounded no-underline";
+                            } else {
+                                element = document.createElement("button");
+                                element.className = "px-4 py-2 rounded";
+                            }
+
+                            // Applica le classi di colore/stile se fornite
+                            const baseClasses = item.option1 ? item.option1.split(" ") : ["bg-blue-500", "text-white"];
+                            element.classList.add(...baseClasses);
+
+                            // Aggiungi icona se presente
+                            if (item.option2) {
+                                const icon = document.createElement("i");
+                                icon.className = `${item.option2} mr-2`;
+                                element.appendChild(icon);
+                            }
+
+                            // Testo del bottone
+                            const buttonText = document.createTextNode(item.data);
+                            element.appendChild(buttonText);
+                            break;
+
+                        case "CODE":
+                            const pre = document.createElement("pre");
+                            pre.className = "p-2 rounded";
+
+                            const codeElem = document.createElement("code");
+                            const language = item.option1 || "text";
+                            codeElem.className = `language-${language}`;
+                            codeElem.textContent = item.data;
+
+                            pre.appendChild(codeElem);
+                            element = pre;
+
+                            // Carica Prism.js solo se non l'hai già fatto
+                            if (!window.Prism) {
+                                const loadPrism = async () => {
+                                    // Carica CSS
+                                    const css = document.createElement("link");
+                                    css.rel = "stylesheet";
+                                    css.href = "https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css";
+                                    document.head.appendChild(css);
+
+                                    // Carica Prism core
+                                    await import("https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js");
+
+                                    // Carica il linguaggio specifico se è diverso da 'text'
+                                    if (language !== "text") {
+                                        await import(`https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-${language}.min.js`);
+                                    }
+
+                                    Prism.highlightElement(codeElem);
+                                };
+
+                                loadPrism();
+                            } else {
+                                // Se Prism è già disponibile
+                                Prism.highlightElement(codeElem);
+                            }
+
+                            break;
+
+
+                        case "DIVIDER":
+                            element = document.createElement("hr");
+                            element.className = "my-4 border-gray-300";
+                            break;
+
+                       case "VIDEO":
+                            const video = document.createElement("video");
+                            video.src = item.data;
+                            video.controls = true;
+                            video.className = "w-full max-w-[800px] rounded-lg shadow-lg"; // puoi personalizzare
+
+                            element = video;
+                            break;
+
+                        case "HTML":
+                            element = document.createElement("div");
+                            element.innerHTML = item.data; // attenzione: potenzialmente insicuro!
+                            break;
+                        default:
+                            element.innerHTML = `<p>${item.data}</p>`;
+                    }
+
+
+                    if (element) contentArea.appendChild(element);
+                });
+
+            } catch (e) {
+                contentArea.innerHTML = `<p class="text-red-500">Errore nel caricamento: ${e.message}</p>`;
+            }
+        });
+    </script>
+    <script>
+        function loadCSVTable(csvUrl, targetId) {
+            fetch(csvUrl)
+                .then(response => response.text())
+                .then(text => {
+                    const rows = text.trim().split("\n").map(line => line.split(","));
+                    const table = document.createElement("table");
+                    table.className = "min-w-full border border-gray-300";
+
+                    rows.forEach((row, index) => {
+                        const tr = document.createElement("tr");
+                        row.forEach(cell => {
+                            const td = document.createElement(index === 0 ? "th" : "td");
+                            td.textContent = cell.trim();
+                            td.className = "border px-2 py-1";
+                            tr.appendChild(td);
+                        });
+                        table.appendChild(tr);
+                    });
+
+                    const target = document.getElementById(targetId);
+                    if (target) {
+                        target.innerHTML = "";
+                        target.appendChild(table);
+                    }
+                })
+                .catch(error => {
+                    console.error("Errore nel caricamento CSV:", error);
+                    const target = document.getElementById(targetId);
+                    if (target) {
+                        target.textContent = "Errore nel caricamento della tabella.";
+                    }
+                });
+        }
+    </script>
+</head>
+
+<body>
+<div th:replace="~{fragments/doc-header :: header}"></div>
+<div class="container mx-auto px-4 py-8">
+    <!-- Prima riga con immagine e dettagli -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <!-- Colonna per l'immagine -->
+        <div class="col-span-1 w-full h-48 bg-gray-200 rounded-lg overflow-hidden">
+            <img th:src="@{${project.imagePath}}" alt="Project Image" class="w-full h-full object-cover">
+        </div>
+        <!-- Colonna per i dettagli del progetto -->
+        <div class="col-span-3 flex flex-col justify-between">
+            <h1 class="text-3xl font-bold" th:text="${project.name}"></h1>
+            <p class="text-lg mt-2" th:text="${project.description}"></p>
+            <p id="last-modified" class="text-sm text-gray-500 mt-2" th:data-timestamp="${project.lastModifiedDate}"></p>
+        </div>
+    </div>
+
+    <!-- Dividi in due colonne: una per il glossario e una per la documentazione -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <!-- Colonna per il glossario -->
+        <div class="col-span-1 p-4 rounded-lg shadow-md">
+            <h2 class="text-xl font-bold">Glossario</h2>
+            <ul id="glossary-list" class="mt-2">
+                <!-- Voci dinamiche -->
+            </ul>
+        </div>
+        <!-- Colonna per i contenuti della documentazione -->
+        <div id="content" class="col-span-3 p-4 rounded-lg shadow-md">
+            <h2 class="text-2xl font-bold">Contenuti della documentazione</h2>
+            <div id="doc-content-area" class="mt-4 space-y-4">
+                <p>Caricamento in corso...</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="~{fragments/doc-footer :: footer}"></div>
+</body>
+</html>

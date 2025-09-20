@@ -1,5 +1,6 @@
 package it.mikedmc;
 
+import it.mikedmc.config.FileManagerConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -14,6 +15,7 @@ public class Application {
 		new EmailConfig(EmailConfig.class);
 		new WebhookLinkConfig(WebhookLinkConfig.class);
 		new DatabaseConfig(DatabaseConfig.class);
+		new FileManagerConfig(FileManagerConfig.class);
 		SpringApplication.run(Application.class, args);
 	}
 

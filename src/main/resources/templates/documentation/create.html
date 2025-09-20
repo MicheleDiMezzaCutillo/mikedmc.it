@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Crea Documentazione</title>
+  <script>
+    function submitDocumentation() {
+        const doc = {
+            name: document.getElementById("name").value,
+            code: document.getElementById("code").value,
+            description: document.getElementById("description").value,
+            password: document.getElementById("password").value,
+            isActive: document.getElementById("isActive").checked,
+            colorCode: document.getElementById("colorCode").value,
+            imagePath: document.getElementById("imagePath").value
+        };
+
+        fetch('/api/admin/documentation/create', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(doc)
+        })
+        .then(response => response.json())
+        .then(data => {
+            window.location.href = "/documentation/edit/" + data.id;
+        })
+        .catch(error => {
+            alert("Errore durante il salvataggio.");
+            console.error(error);
+        });
+    }
+  </script>
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<main class="container">
+  <h1>Crea nuova documentazione</h1>
+
+  <div>
+    <label for="name">Nome:</label>
+    <input type="text" id="name" required />
+  </div>
+
+  <div>
+    <label for="code">Codice (unico):</label>
+    <input type="text" id="code" required />
+  </div>
+
+  <div>
+    <label for="description">Descrizione:</label>
+    <textarea id="description" rows="3"></textarea>
+  </div>
+
+  <div>
+    <label for="password">Password:</label>
+    <input type="text" id="password" />
+  </div>
+
+  <div>
+    <label for="isActive">Attivo:</label>
+    <input type="checkbox" id="isActive" checked />
+  </div>
+
+  <div>
+    <label for="colorCode">Colore:</label>
+    <input type="text" id="colorCode" />
+  </div>
+
+  <div>
+    <label for="imagePath">Immagine:</label>
+    <input type="text" id="imagePath" />
+  </div>
+
+  <div>
+    <button id="submitBtn" type="button" onclick="submitDocumentation()">Salva</button>
+  </div>
+</main>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+</body>
+</html>

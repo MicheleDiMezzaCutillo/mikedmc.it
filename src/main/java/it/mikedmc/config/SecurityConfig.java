@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -31,6 +32,11 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.access.AccessDeniedHandlerImpl;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -41,14 +47,34 @@ public class SecurityConfig {
 
     @Autowired
     private CustomAuthenticationSuccessHandler successHandler;
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowCredentials(true);
+        config.addAllowedOrigin("https://mikedmc.it");
+        config.addAllowedHeader("*");
+        config.addAllowedMethod("*");
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", config);
+        return source;
+    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
+        http.csrf(csrf -> csrf.ignoringRequestMatchers(
+                        new AntPathRequestMatcher("/api/public/**"),
+                        new AntPathRequestMatcher("/api/admin/**")
+                ))
                 .authorizeHttpRequests(requests -> requests
-                        .requestMatchers("/", "/login", "/css/*", "/js/*", "/img/*","/img/progetti/*", "/img/niente/*","/home", "/register", "/logout","/login-required", "/message/*","/otp","/reset-password", "/reset-password-confirm", "/resetting-password","/discordbot", "/discordserver", "/telegrambot", "/niente", "/progetti", "/discord", "/changelogs", "/termsAndConditions", "/.well-known/pki-validation/*", "/cookies", "/coupon/use", "/test").permitAll()
-						
-                        .requestMatchers("/console", "/console/process/switchoff/*", "/console/process/restart/*","/roles","/roles/*","/users","/users/*","/changelog","/changelog/*", "/advertising", "/advertising/*", "/aof/load", "/aof/download/npcs", "/aofmonster","/aofmonster/*", "/coupon","/coupon/*", "/couponRedemption", "/couponRedemption/*").hasAuthority("ROLE_Console")
+                        .requestMatchers("/", "/login", "/css/*", "/js/*", "/img/*","/img/progetti/*", "/img/niente/*","/home", "/register", "/logout","/login-required", "/message/*","/otp","/reset-password", "/reset-password-confirm", "/resetting-password","/discordbot", "/discordserver", "/telegrambot", "/niente", "/progetti", "/discord", "/changelogs", "/termsAndConditions", "/mikedmc.itF73FC5DB1A1E6A87F3EB02FB3709583A.txt", "/cookies", "/coupon/use", "/docs", "/docs/*", "/csv/*","/test", "/api/public/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/admin/**").hasAuthority("ROLE_Console")
+                        .requestMatchers(HttpMethod.POST,"/api/admin/**").hasAuthority("ROLE_Console")
+                        .requestMatchers(HttpMethod.PUT,"/api/admin/**").hasAuthority("ROLE_Console")
+                        .requestMatchers(HttpMethod.PATCH,"/api/admin/**").hasAuthority("ROLE_Console")
+                        .requestMatchers(HttpMethod.DELETE,"/api/admin/**").hasAuthority("ROLE_Console")
+                        .requestMatchers("/console", "/console/process/switchoff/*", "/console/process/restart/*","/roles","/roles/*","/users","/users/*","/changelog","/changelog/*", "/advertising", "/advertising/*", "/aof/load", "/aof/download/npcs", "/aofmonster","/aofmonster/*", "/coupon","/coupon/*", "/couponRedemption", "/couponRedemption/*", "/console/docs").hasAuthority("ROLE_Console")
+
                         .requestMatchers("/aofmonster","/aofmonster/*","/aofdrop","/aofdrop/*").hasAuthority("ROLE_LootTableStaff")
                         .requestMatchers("/aofloottables").hasAuthority("ROLE_LootTable")
                         .requestMatchers("/aofnpc", "/aofnpc/*").hasAuthority("ROLE_NpcStaff")
@@ -66,6 +92,8 @@ public class SecurityConfig {
                     		.accessDeniedHandler(accessDeniedHandler())
                     		.authenticationEntryPoint(authenticationEntryPoint())
                     		);
+        http
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()));
 
         return http.build();
     }

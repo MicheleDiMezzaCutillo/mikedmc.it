@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Documentazioni</title>
+  <link th:replace="~{fragments/favicon :: link}">
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+<div class="body-89">
+  <div class="container-centrato">
+
+    <div class="title-buttons">
+      <a href="/console" class="btn-blue m-button">
+        <i class="fas fa-arrow-left"></i>
+        Indietro
+      </a>
+      <h1 class="header-title">Lista Documentazioni</h1>
+      <a class="btn-green m-button" href="/documentation/create">
+        <i class="fas fa-plus"></i>
+        Crea Documentazione
+      </a>
+    </div>
+
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Codice</th>
+        <th>Pubblica</th>
+        <th>Attiva</th>
+        <th>Colore</th>
+        <th>Ultima Modifica</th>
+        <th>Azioni</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="doc : ${documentations}" th:attr="data-id=${doc.id}">
+        <td th:text="${doc.name}"></td>
+        <td th:text="${doc.code}"></td>
+        <td th:text="${doc.public} ? 'Sì' : 'No'"></td>
+        <td class="active-status" th:text="${doc.active} ? 'Sì' : 'No'"></td>
+        <td>
+          <span th:text="${doc.colorCode}" th:style="'color:' + doc.colorCode"></span>
+        </td>
+        <td th:text="${#temporals.format(doc.lastModifiedDate, 'dd/MM/yyyy HH:mm')}"></td>
+        <td style="display:flex; flex-wrap: wrap; gap: 4px;">
+          <form th:action="@{/documentation/edit/{id}(id=${doc.id})}" method="get">
+            <button class="btn-yellow m-button" type="submit">Modifica</button>
+          </form>
+
+          <button class="btn-toggle-active m-button"
+                  th:text="${doc.active} ? 'Disabilita' : 'Abilita'"
+                  th:classappend="${doc.active} ? ' btn-red' : ' btn-green'"
+                  type="button"
+                  th:attr="data-id=${doc.id}, data-active=${doc.active}">
+          </button>
+
+          <form th:action="@{/documentation/delete/{id}(id=${doc.id})}" method="post">
+            <button class="btn-red m-button" type="submit">Elimina</button>
+          </form>
+        </td>
+      </tr>
+      </tbody>
+
+    </table>
+  </div>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.btn-toggle-active').forEach(button => {
+      button.addEventListener('click', function() {
+        const docId = this.getAttribute('data-id');
+        const currentActive = this.getAttribute('data-active') === 'true';
+
+        fetch(`/api/admin/documentation/toggle/${docId}`, {
+          method: 'PUT', // supponendo sia un update
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+        .then(response => {
+          if (!response.ok) throw new Error('Errore nella chiamata');
+          return response.json();
+        })
+        .then(data => {
+          // Aggiorna il bottone e la riga
+          const newActive = data.active;
+          this.setAttribute('data-active', newActive);
+
+          this.textContent = newActive ? 'Disabilita' : 'Abilita';
+          this.classList.toggle('btn-red', newActive);
+          this.classList.toggle('btn-green', !newActive);
+
+          // Aggiorna la colonna "Attiva"
+          const row = this.closest('tr');
+          row.querySelector('.active-status').textContent = newActive ? 'Sì' : 'No';
+        })
+        .catch(error => {
+          alert('Errore nel modificare lo stato: ' + error.message);
+        });
+      });
+    });
+  });
+  document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('form[action^="/documentation/delete/"]').forEach(form => {
+    form.addEventListener('submit', function(event) {
+      event.preventDefault(); // Previene l'invio del form classico
+
+      if (!confirm('Sei sicuro di voler eliminare questa documentazione?')) {
+        return; // Se annulli, esci
+      }
+
+      // Prendo l'id dal form action: es. /documentation/delete/2
+      const actionUrl = form.getAttribute('action');
+      // Estrai l'id alla fine dell'url
+      const docId = actionUrl.substring(actionUrl.lastIndexOf('/') + 1);
+
+      fetch(`/api/admin/documentation/delete/${docId}`, {
+        method: 'DELETE'
+      })
+      .then(response => {
+        if (!response.ok) throw new Error('Errore durante l\'eliminazione');
+        // Rimuovi la riga della tabella
+        const row = form.closest('tr');
+        row.remove();
+      })
+      .catch(error => {
+        alert('Errore: ' + error.message);
+      });
+    });
+  });
+});
+
+</script>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

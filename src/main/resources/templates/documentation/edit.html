@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Modifica Documentazione</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <link th:replace="~{fragments/favicon :: link}">
+  <!-- jQuery UI (per sortable) -->
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+  <style>
+    .content-block {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: 10px;
+      border: 1px solid #ddd;
+      padding: 10px;
+      margin-bottom: 15px;
+    }
+
+    .content-block > div {
+      display: flex;
+      flex-direction: column;
+      min-width: 150px;
+      flex: 1 1 auto;
+    }
+
+    .content-block label {
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+
+    .content-block textarea {
+      min-height: 80px;
+    }
+
+    .content-block .drag-handle {
+      cursor: move;
+      align-self: center;
+      padding: 10px;
+      font-weight: bold;
+    }
+
+    .m-button {
+      padding: 5px 10px;
+      margin-right: 5px;
+    }
+
+    .content-block .button-group {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex-direction: row;
+    }
+  </style>
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+
+<div class="body-89">
+  <div class="container-centrato">
+    <div class="title-buttons">
+      <a class="btn-blue m-button" href="/documentation/list">
+        <i class="fas fa-arrow-left"></i>
+        Indietro
+      </a>
+      <h1 class="header-title">Modifica Documentazione</h1>
+      <a class="btn-green m-button" href="#" onclick="saveDocumentation()">
+        <i class="fas fa-save"></i>
+        Salva
+      </a>
+    </div>
+
+    <form>
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <td>Nome</td>
+          <td><input type="text" id="doc-name" th:value="${documentation.name}" class="input-label"></td>
+        </tr>
+        <tr>
+          <td>Descrizione</td>
+          <td><textarea id="doc-description" rows="3" class="input-label">[[${documentation.description}]]</textarea></td>
+        </tr>
+        <tr>
+          <td>Codice</td>
+          <td><input type="text" id="doc-code" th:value="${documentation.code}" class="input-label"></td>
+        </tr>
+        <tr>
+          <td>Password</td>
+          <td><input type="text" id="doc-password" th:value="${documentation.password}" class="input-label"></td>
+        </tr>
+        <tr>
+          <td>Colore</td>
+          <td><input type="text" id="doc-color" th:value="${documentation.colorCode}" class="input-label"></td>
+        </tr>
+        </thead>
+      </table>
+    </form>
+
+    <hr>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <button id="move-to-last" class="btn btn-primary ms-3">Scendi</button>
+      <h2 class="text-center flex-grow-1 m-0">Contenuti</h2>
+      <button id="add-divider-btn" class="btn btn-primary ms-3">Aggiungi</button>
+    </div>
+
+
+    <div id="content-list">
+      <div th:each="content : ${contents}" class="content-block" th:attr="data-id=${content.id}">
+        <hr>
+        <div>
+          <label>Tipo:</label>
+          <select name="type" class="content-type" th:attr="data-id=${content.id}">
+            <option value="H1" th:selected="${content.type.name() == 'H1'}">H1</option>
+            <option value="H2" th:selected="${content.type.name() == 'H2'}">H2</option>
+            <option value="H3" th:selected="${content.type.name() == 'H3'}">H3</option>
+            <option value="H4" th:selected="${content.type.name() == 'H4'}">H4</option>
+            <option value="H5" th:selected="${content.type.name() == 'H5'}">H5</option>
+            <option value="P" th:selected="${content.type.name() == 'P'}">P</option>
+            <option value="TABLE" th:selected="${content.type.name() == 'TABLE'}">TABLE</option>
+            <option value="LIST" th:selected="${content.type.name() == 'LIST'}">LIST</option>
+            <option value="IMAGE" th:selected="${content.type.name() == 'IMAGE'}">IMAGE</option>
+            <option value="CALLOUT" th:selected="${content.type.name() == 'CALLOUT'}">CALLOUT</option>
+            <option value="ALERT" th:selected="${content.type.name() == 'ALERT'}">ALERT</option>
+            <option value="BUTTON" th:selected="${content.type.name() == 'BUTTON'}">BUTTON</option>
+            <option value="CODE" th:selected="${content.type.name() == 'CODE'}">CODE</option>
+            <option value="DIVIDER" th:selected="${content.type.name() == 'DIVIDER'}">DIVIDER</option>
+            <option value="VIDEO" th:selected="${content.type.name() == 'VIDEO'}">VIDEO</option>
+            <option value="HTML" th:selected="${content.type.name() == 'HTML'}">HTML</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Dati:</label>
+          <textarea class="content-data input-label" th:attr="data-id=${content.id}">[[${content.data}]]</textarea>
+        </div>
+
+        <div>
+          <label>Opzione 1:</label>
+          <input type="text" class="content-option1 input-label" th:attr="data-id=${content.id}" th:value="${content.option1}">
+        </div>
+        <div>
+          <label>Opzione 2:</label>
+          <input type="text" class="content-option2 input-label" th:attr="data-id=${content.id}" th:value="${content.option2}">
+        </div>
+        <div>
+          <label>Opzione 3:</label>
+          <input type="text" class="content-option3 input-label" th:attr="data-id=${content.id}" th:value="${content.option3}">
+        </div>
+
+        <div>
+          <label>Posizione:</label>
+          <input type="number" class="content-position input-label" th:attr="data-id=${content.id}" th:value="${content.position}">
+        </div>
+
+        <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
+          <span class="drag-handle"><i class="fas fa-bars"></i> Trascina</span>
+        </div>
+
+        <!-- Bottoni Salva/Elimina -->
+        <div style="margin-top: 5px;">
+          <button type="button" class="save-btn btn-green m-button" th:data-id="${content.id}" onclick="saveContentByButton(this)">
+            Salva
+          </button>
+          <button type="button" class="delete-btn btn-red m-button" th:data-id="${content.id}" onclick="deleteContentByButton(this)">
+            Elimina
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script th:inline="javascript">
+  const id = [[${documentation.id}]];
+
+  function saveDocumentation() {
+      const data = {
+          name: $("#doc-name").val(),
+          description: $("#doc-description").val(),
+          code: $("#doc-code").val(),
+          password: $("#doc-password").val(),
+          colorCode: $("#doc-color").val()
+      };
+
+      $.ajax({
+          url: `/api/admin/documentation/edit/${id}`,
+          type: "PUT",
+          contentType: "application/json",
+          data: JSON.stringify(data),
+          success: () => alert("Documentazione salvata!"),
+          error: () => alert("Errore nel salvataggio")
+      });
+  }
+
+  $(function () {
+      $("#content-list").sortable({
+          handle: ".drag-handle",
+          update: function (event, ui) {
+              const updatedOrder = [];
+              $("#content-list .content-block").each(function (index) {
+                  const id = $(this).attr("data-id");
+                  const newPosition = index + 1;
+                  $(this).find(".content-position").val(newPosition);
+                  updatedOrder.push({ id: parseInt(id), position: newPosition });
+              });
+
+              // Invia la nuova posizione al backend
+              $.ajax({
+                  url: "/api/admin/documentation/content/swap",
+                  type: "POST",
+                  contentType: "application/json",
+                  data: JSON.stringify(updatedOrder),
+                  success: () => console.log("Ordine aggiornato!"),
+                  error: () => alert("Errore nell'aggiornamento dell'ordine")
+              });
+          }
+      });
+  });
+
+
+
+  // Rileva modifiche su tutti i campi dentro una scheda
+  document.querySelector('#content-list').addEventListener('input', function (e) {
+    const input = e.target;
+
+    if (['INPUT', 'TEXTAREA', 'SELECT'].includes(input.tagName)) {
+      const block = input.closest('.content-block');
+      const saveBtn = block?.querySelector('.save-btn');
+
+      if (saveBtn && !saveBtn.classList.contains('btn-yellow')) {
+        saveBtn.classList.remove('btn-green');
+        saveBtn.classList.add('btn-yellow');
+      }
+    }
+  });
+
+    // Salvataggio di un entità che già esiste
+    function saveContentByButton(buttonElement) {
+      const container = buttonElement.closest(".content-block");
+      const id = buttonElement.getAttribute("data-id");
+
+      const type = container.querySelector("select[name='type']").value;
+      const data = container.querySelector("textarea.content-data").value;
+      const option1 = container.querySelector("input.content-option1").value;
+      const option2 = container.querySelector("input.content-option2").value;
+      const option3 = container.querySelector("input.content-option3").value;
+      const position = parseInt(container.querySelector("input.content-position").value);
+
+      fetch(`/api/admin/documentation/content/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          type: type,
+          data: data,
+          option1: option1,
+          option2: option2,
+          option3: option3,
+          position: position
+        })
+      }).then(res => {
+        if (res.ok) {
+          buttonElement.classList.remove('btn-yellow');
+          buttonElement.classList.add('btn-green');
+        } else {
+          alert("Errore durante il salvataggio");
+        }
+      });
+    }
+
+    function deleteContentByButton(buttonElement) {
+      const id = buttonElement.getAttribute("data-id");
+
+      if (!confirm("Sei sicuro di voler eliminare questo contenuto?")) return;
+
+      fetch(`/api/admin/documentation/contents/${id}`, {
+        method: "DELETE"
+      }).then(res => {
+        if (res.ok) {
+          // Rimuove il contenitore del contenuto dalla pagina
+          const container = buttonElement.closest(".content-block");
+          if (container) container.remove();
+        } else {
+          alert("Errore durante l'eliminazione");
+        }
+      });
+    }
+
+    document.getElementById("content-list").addEventListener("change", function (e) {
+      const select = e.target;
+      if (!select.classList.contains('content-type')) return;
+
+      const contentId = select.getAttribute('data-id');
+      const type = select.value;
+
+      const option1 = document.querySelector(`.content-option1[data-id="${contentId}"]`);
+      const option2 = document.querySelector(`.content-option2[data-id="${contentId}"]`);
+
+      // Rimuovi eventuali datalist esistenti
+      option1?.removeAttribute('list');
+      option2?.removeAttribute('list');
+      document.querySelectorAll(`#option1-list-${contentId}, #option2-list-${contentId}`).forEach(el => el.remove());
+
+      if (type === 'CALLOUT') {
+        const datalist1 = document.createElement('datalist');
+        datalist1.id = `option1-list-${contentId}`;
+        ['border-green-500', 'border-blue-500', 'border-yellow-500'].forEach(val => {
+          const opt = document.createElement('option');
+          opt.value = val;
+          datalist1.appendChild(opt);
+        });
+        document.body.appendChild(datalist1);
+        option1?.setAttribute('list', datalist1.id);
+
+        const datalist2 = document.createElement('datalist');
+        datalist2.id = `option2-list-${contentId}`;
+        ['fa-solid fa-house', 'fa-solid fa-info-circle', 'fa-solid fa-check'].forEach(val => {
+          const opt = document.createElement('option');
+          opt.value = val;
+          datalist2.appendChild(opt);
+        });
+        document.body.appendChild(datalist2);
+        option2?.setAttribute('list', datalist2.id);
+      }
+
+      if (type === 'CODE') {
+        const datalist1 = document.createElement('datalist');
+        datalist1.id = `option1-list-${contentId}`;
+        ['java', 'css', 'html', 'c#', 'python'].forEach(val => {
+          const opt = document.createElement('option');
+          opt.value = val;
+          datalist1.appendChild(opt);
+        });
+        document.body.appendChild(datalist1);
+        option1?.setAttribute('list', datalist1.id);
+      }
+
+      if (type === 'ALERT') {
+          const datalist1 = document.createElement('datalist');
+          datalist1.id = `option1-list-${contentId}`;
+          ['bg-red-100 text-red-800', 'bg-yellow-100 text-yellow-800', 'bg-green-100 text-green-800', 'bg-blue-100 text-blue-800'].forEach(val => {
+              const opt = document.createElement('option');
+              opt.value = val;
+              datalist1.appendChild(opt);
+          });
+          document.body.appendChild(datalist1);
+          option1?.setAttribute('list', datalist1.id);
+      }
+
+      if (type === 'BUTTON') {
+        const datalist1 = document.createElement('datalist');
+        datalist1.id = `option1-list-${contentId}`;
+        ['bg-blue-500 text-white', 'bg-green-500 text-white', 'bg-red-500 text-white'].forEach(val => {
+            const opt = document.createElement('option');
+            opt.value = val;
+            datalist1.appendChild(opt);
+        });
+        document.body.appendChild(datalist1);
+        option1?.setAttribute('list', datalist1.id);
+
+        const datalist2 = document.createElement('datalist');
+        datalist2.id = `option2-list-${contentId}`;
+        ['fas fa-download', 'fas fa-link', 'fas fa-external-link-alt'].forEach(val => {
+            const opt = document.createElement('option');
+            opt.value = val;
+            datalist2.appendChild(opt);
+        });
+        document.body.appendChild(datalist2);
+        option2?.setAttribute('list', datalist2.id);
+
+        const datalist3 = document.createElement('datalist');
+        datalist3.id = `option3-list-${contentId}`;
+        ['https://mikedmc.it', 'https://github.com', 'https://example.com'].forEach(val => {
+            const opt = document.createElement('option');
+            opt.value = val;
+            datalist3.appendChild(opt);
+        });
+        document.body.appendChild(datalist3);
+        option3?.setAttribute('list', datalist3.id);
+    }
+
+
+      const saveBtn = document.querySelector(`.save-btn[data-id="${contentId}"]`);
+      if (saveBtn) {
+        saveBtn.classList.remove('btn-green');
+        saveBtn.classList.add('btn-yellow');
+      }
+    });
+
+
+  </script>
+<script>
+  // Rileva modifiche su tutti i campi dentro una scheda
+  document.querySelector('#content-list').addEventListener('input', function (e) {
+    const input = e.target;
+
+    if (['INPUT', 'TEXTAREA', 'SELECT'].includes(input.tagName)) {
+      const block = input.closest('.content-block');
+      const saveBtn = block?.querySelector('.save-btn');
+
+      if (saveBtn && !saveBtn.classList.contains('btn-yellow')) {
+        saveBtn.classList.remove('btn-green');
+        saveBtn.classList.add('btn-yellow');
+      }
+    }
+  });
+
+  const documentationId = [[${documentation.id}]];
+
+document.getElementById("add-divider-btn").addEventListener("click", function () {
+  const container = document.getElementById("content-list");
+
+  const allPositions = Array.from(document.querySelectorAll(".content-position"))
+    .map(input => parseInt(input.value))
+    .filter(num => !isNaN(num));
+  const lastPosition = allPositions.length > 0 ? Math.max(...allPositions) : 0;
+  const newPosition = lastPosition + 2;
+
+  // 1. Invio al backend PRIMA di creare il blocco HTML
+  fetch("/api/admin/documentation/save", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      type: "DIVIDER",
+      data: "",
+      option1: "",
+      option2: "",
+      option3: "",
+      position: newPosition,
+      documentationId: documentationId
+    })
+  })
+    .then(response => {
+      if (!response.ok) throw new Error("Errore nel salvataggio");
+      return response.json();
+    })
+    .then(data => {
+      const newId = data.id;
+
+      // 2. Crea il blocco HTML con data-id ovunque
+      const block = document.createElement("div");
+      block.className = "content-block";
+      block.setAttribute("data-id", newId);
+      block.innerHTML = `
+        <hr>
+        <div>
+          <label>Tipo:</label>
+          <select name="type" class="content-type" data-id="${newId}">
+            <option value="H1">H1</option>
+            <option value="H2">H2</option>
+            <option value="H3">H3</option>
+            <option value="H4">H4</option>
+            <option value="H5">H5</option>
+            <option value="P">P</option>
+            <option value="TABLE">TABLE</option>
+            <option value="LIST">LIST</option>
+            <option value="IMAGE">IMAGE</option>
+            <option value="CALLOUT">CALLOUT</option>
+            <option value="ALERT">ALERT</option>
+            <option value="BUTTON">BUTTON</option>
+            <option value="CODE">CODE</option>
+            <option value="DIVIDER" selected>DIVIDER</option>
+            <option value="VIDEO">VIDEO</option>
+            <option value="HTML">HTML</option>
+          </select>
+        </div>
+        <div>
+          <label>Dati:</label>
+          <textarea class="content-data input-label" data-id="${newId}"></textarea>
+        </div>
+        <div>
+          <label>Opzione 1:</label>
+          <input type="text" class="content-option1 input-label" data-id="${newId}">
+        </div>
+        <div>
+          <label>Opzione 2:</label>
+          <input type="text" class="content-option2 input-label" data-id="${newId}">
+        </div>
+        <div>
+          <label>Opzione 3:</label>
+          <input type="text" class="content-option3 input-label" data-id="${newId}">
+        </div>
+        <div>
+          <label>Posizione:</label>
+          <input type="number" class="content-position input-label" value="${newPosition}" data-id="${newId}">
+        </div>
+        <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
+          <span class="drag-handle ui-sortable-handle"><i class="fas fa-bars"></i> Trascina</span>
+        </div>
+        <div style="margin-top: 5px;">
+          <button type="button" class="save-btn btn-green m-button" data-id="${newId}" onclick="saveContentByButton(this)">Salva</button>
+          <button type="button" class="delete-btn btn-red m-button" data-id="${newId}" onclick="deleteContentByButton(this)">Elimina</button>
+        </div>
+      `;
+
+      container.appendChild(block);
+      initializeCsvDrop(block);
+    })
+    .catch(error => {
+      console.error("Errore:", error);
+    });
+});
+
+document.getElementById("move-to-last").addEventListener("click", function () {
+  const blocks = document.querySelectorAll(".content-block");
+  if (blocks.length > 0) {
+    const lastBlock = blocks[blocks.length - 1];
+    lastBlock.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".content-block").forEach(initializeCsvDrop);
+});
+function initializeCsvDrop(block) {
+  if (block.dataset.dropInitialized === "true") return; // già inizializzato
+
+  block.addEventListener("dragover", function (e) {
+    e.preventDefault();
+    this.classList.add("drag-over");
+  });
+
+  block.addEventListener("dragleave", function () {
+    this.classList.remove("drag-over");
+  });
+
+  block.addEventListener("drop", function (e) {
+    e.preventDefault();
+    this.classList.remove("drag-over");
+
+    const file = e.dataTransfer.files[0];
+    if (!file || !file.name.endsWith(".csv")) {
+      alert("Trascina un file CSV valido.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    const id = this.querySelector(".save-btn").dataset.id;
+
+    fetch(`/api/admin/documentation/upload-csv/${id}`, {
+      method: "POST",
+      body: formData
+    })
+      .then(res => {
+        if (res.ok) return res.text();
+        else throw new Error("Errore nel caricamento");
+      })
+      .then(path => {
+        this.querySelector("select[name='type']").value = "TABLE";
+        this.querySelector("textarea.content-data").value = path;
+        this.querySelector(".save-btn").click();
+      })
+      .catch(err => {
+        alert("Errore: " + err.message);
+      });
+  });
+
+  // 🔒 Segnala che è stato inizializzato
+  block.dataset.dropInitialized = "true";
+}
+
+document.querySelectorAll(".content-block").forEach(initializeCsvDrop);
+
+</script>
+
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

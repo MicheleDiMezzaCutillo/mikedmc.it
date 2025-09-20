@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentazioni Progetti</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --text: #e3ecf5;
+            --background: #0f0f0f;
+            --primary: #0B2239;
+            --secondary: #174d82;
+            --accent: #2e89e4;
+            --hover: #101417;
+            --form: #223243;
+            --border-radius: 1rem;
+        }
+        body {
+            background: var(--background);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+        }
+        .project-card {
+            border-radius: var(--border-radius);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .project-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 4px 20px rgba(255, 255, 255, 0.2);
+        }
+
+         .text-theme {
+            color: var(--text);
+        }
+
+        .p90-height {
+            height: 90% !important;
+        }
+    </style>
+</head>
+<body>
+<div th:replace="~{fragments/doc-header :: header}"></div>
+
+<div class="container mx-auto px-4 py-8">
+    <div class="text-center mb-6">
+        <h1 class="text-3xl font-bold text-text">Documentazione dei progetti di MikeDmC</h1>
+        <p class="text-text mt-2" style="margin: 0 20%;">Qui potrete trovare alcune delle documentazioni per i progetti che ho creato. Se hai acquistato un bot ed hai richiesto una documentazione, puoi contattarmi per ottenere l'accesso alla documentazione.</p>
+    </div>
+    <div class="text-center mb-6">
+        <input type="text" id="search" placeholder="Cerca un progetto..." class="px-4 py-2 border rounded-lg w-full sm:w-1/2">
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <a th:each="project : ${projects}" th:href="@{/docs/{path}(path=${project.code})}" class="p-6 rounded-lg shadow-lg border-4 flex items-center gap-4 transition-transform transform hover:scale-105" style="border-color: var(--accent)">
+            <div class="w-32 h-32 flex-shrink-0 overflow-hidden rounded-lg bg-gray-800">
+                <img th:src="@{${project.imagePath}}" alt="Document Image" class="object-cover w-full h-full">
+            </div>
+            <div class="flex flex-col p90-height">
+                <h3 class="text-xl font-bold text-theme" th:style="'padding-left: 5px; border-left: 3px solid ' + ${project.colorCode}" th:text="${project.name}"></h3>
+                <p class="text-theme mt-2" th:text="${project.description}"></p>
+            </div>
+        </a>
+    </div>
+</div>
+
+<div th:replace="~{fragments/doc-footer :: footer}"></div>
+
+<script>
+    document.getElementById('search').addEventListener('input', function() {
+        let filter = this.value.toLowerCase();
+        document.querySelectorAll('.grid > a').forEach(function(project) {
+            let title = project.querySelector('h3').textContent.toLowerCase();
+            project.style.display = title.includes(filter) ? 'flex' : 'none';
+        });
+    });
+</script>
+
+
+</body>
+</html>
+
